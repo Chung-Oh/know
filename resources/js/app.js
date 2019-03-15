@@ -6,6 +6,8 @@
  */
 
 require('./bootstrap');
+require('./btn-top');
+require('./tooltip-welcome');
 
 window.Vue = require('vue');
 

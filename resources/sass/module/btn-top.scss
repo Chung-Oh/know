@@ -1,0 +1,35 @@
+.btn-top {
+    position: fixed;
+    cursor: pointer;
+    transition: .7s;
+    height: 40px;
+    width: 40px;
+    display: none;
+    background-color: #0ab73d;
+    border: 1px solid #0cf905;
+    box-shadow: 1px 1px 3px black;
+    opacity: .5;
+    top: 490px;
+    left: 10px;
+    z-index: 99;
+    border-radius: 50px;
+}
+
+.btn-top:focus,
+.btn-top:hover {
+    transition: .7s;
+	background-color: #72b0ec;
+	border: 1px solid #66bf7a;
+	opacity: 1;
+}
+
+.icon-up {
+	font-size: 25px;
+    color: lavender;
+}
+/** MAX HEIGHT 400PX **/
+@media only screen and (max-height: 400px) {
+    .btn-top {
+        top: 200px;
+    }
+}
