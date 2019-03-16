@@ -49075,7 +49075,7 @@ if (token) {
 var btnTop = document.querySelector(".btn-top");
 
 window.onscroll = function () {
-  document.documentElement.scrollTop > 1 || document.body.scrollTop > 1 ? btnTop.style.display = "block" : btnTop.style.display = "none";
+  document.documentElement.scrollTop > 500 || document.body.scrollTop > 500 ? btnTop.style.display = "block" : btnTop.style.display = "none";
 };
 
 btnTop.addEventListener("click", function (event) {

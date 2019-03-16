@@ -1,9 +1,8 @@
-@extends('layout.master')
+@extends('layouts.app')
 
 @section('title', 'Eu Sei | Bem vindo')
 
 @section('content')
-
 <!-- Line green above the page -->
 <div class="bg-success pt-1"></div>
 
@@ -27,7 +26,7 @@
     <!----------------------------- Become a member ----------------------------->
     <div class="pt-3 pb-3">
         <h5 class="mb-3">Quer se tornar um membro?</h5>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Sim, eu quero!</a>
+        <a class="btn btn-primary btn-lg" href="{{ route('register') }}" role="button">Sim, eu quero!</a>
     </div>
 
     <div class="row d-flex justify-content-center">
@@ -37,7 +36,7 @@
     <!----------------------------- Is a member ----------------------------->
     <div class="pt-3 pb-3">
         <h5 class="mb-3">Já é membro? Entra aqui.</h5>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Login</a>
+        <a class="btn btn-primary btn-lg" href="{{ route('login') }}" role="button">Login</a>
     </div>
 </section>
 
@@ -220,7 +219,7 @@
 </section>
 
 <!-------------------------------------------------- SECTION TEST -------------------------------------------------->
-<section id="panel-test" class="container-fluid text-center pt-3 mb-5">
+<section id="panel-test" class="container-fluid bg-white text-center pt-3 pb-5">
     <h3 class="pt-4 mb-4">Parabéns por ter chegado até aqui.</h3>
     <h5>Acredito que você teve algum interesse ou alguma curiosidade.</h5>
 
@@ -269,5 +268,4 @@
 
     <h5>Desenvolvido com muito carinho, pensando em <span class="font-weight-bold text-success">você</span>.</h5>
 </section>
-
 @endsection

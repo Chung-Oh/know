@@ -1,7 +1,7 @@
 const btnTop = document.querySelector(".btn-top");
 
 window.onscroll = () => {
-	document.documentElement.scrollTop > 1 || document.body.scrollTop > 1
+	document.documentElement.scrollTop > 500 || document.body.scrollTop > 500
 		? btnTop.style.display = "block"
 		: btnTop.style.display = "none";
 }
