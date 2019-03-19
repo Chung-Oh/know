@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Eu Sei | Bem vindo')
+@section('title', 'EuSei – Bem vindo')
 
 @section('content')
 <!-- Line green above the page -->
@@ -16,7 +16,7 @@
             <a href="#panel-test" class="btn btn-outline-success font-weight-bold btn-lg">Teste</a>
         </ul>
     </nav>
-    <h1 class="mt-5 mb-3">Bem vindo ao <span class="font-italic font-weight-bold text-success">EU SEI</span>.</h1>
+    <h1 class="mt-5 mb-3">Bem vindo ao <span class="font-italic font-weight-bold text-success">EuSei</span>.</h1>
     <h4 class="mt-4 mb-4">Uma plataforma divertida de conhecimentos gerais.</h4>
 
     <div class="row d-flex justify-content-center">
@@ -50,7 +50,7 @@
 
     <!----------------------------- What the platform has to offer ----------------------------->
     <div class="container text-white">
-        <h5><span class="font-italic font-weight-bold text-warning">EU SEI</span> oferece uma incrível experiência, entre elas você irá:</h5>
+        <h5><span class="font-italic font-weight-bold text-warning">EuSei</span> oferece uma incrível experiência, entre elas você irá:</h5>
         <div class="row d-flex justify-content-center">
             <ul class="list-group col-11 col-md-8 col-lg-6 col-xl-6 pr-0">
                 <li class="list-group-item list-group-item-warning border border-warning correct-size"><span class="font-italic font-weight-bold">Rever</span> algo que você já sabe</li>
@@ -228,7 +228,7 @@
     </div>
 
     <!----------------------------- Brief explanation of the test section ----------------------------->
-    <h5>Essa seção tem o intuito de poder testar a plataforma <span class="font-weight-bold text-success">EU SEI</span>.</h5>
+    <h5>Essa seção tem o intuito de poder testar a plataforma <span class="font-weight-bold text-success">EuSei</span>.</h5>
     <h5>Esse teste será de nível Iniciante e você pode realizar quantas vezes que quiser, logo os pontos ganhos aqui <span class="font-weight-bold text-success">não serão contados</span> no seu histórico.</h5>
 
      <div class="row d-flex justify-content-center">

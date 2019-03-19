@@ -1,21 +1,25 @@
 @extends('layouts.app')
 
+@section('title', 'EuSei – Verificação Usuário')
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container screen-auth">
+    <div class="row justify-content-center pt-5">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Verifique seu endereço de e-mail</div>
-
+                <div class="card-header">
+                    <h1>{{ __('Verify Your Email Address') }}</h1>
+                </div>
                 <div class="card-body">
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
-                            {{ __('Um novo link de verificação foi enviado para o seu endereço de e-mail.') }}
+                            <p class="text-center mb-0">{{ __('A fresh verification link has been sent to your email address.') }}/p>
                         </div>
                     @endif
-
-                    {{ __('Antes de prosseguir, verifique seu e-mail em busca de um link de verificação.') }}
-                    {{ __('Se você não recebeu o email') }}, <a href="{{ route('verification.resend') }}">{{ __('clique aqui para solicitar outro') }}</a>.
+                        <div>
+                            <p>{{ __('Before proceeding, please check your email for a verification link.') }}</p>
+                            <p>{{ __('If you did not receive the email') }}, <a href="{{ route('verification.resend') }}">{{ __('click here') }}</a> {{ __('to request another.') }}</p>
+                        </div>
                 </div>
             </div>
         </div>

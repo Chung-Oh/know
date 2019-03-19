@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="author" content="Daniel Chung">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -28,15 +28,15 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <ul class="navbar-nav">
-                            <li><a class="nav-link text-white" href="#">Perfil</a></li>
-                            <li><a class="nav-link text-white" href="#">Desafios</a></li>
-                            <li><a class="nav-link text-white" href="#">Classificação</a></li>
-                            <li><a class="nav-link text-white" href="#">Contribuir</a></li>
+                            <li><a class="nav-link text-white" href="#">Profile</a></li>
+                            <li><a class="nav-link text-white" href="#">Challenge</a></li>
+                            <li><a class="nav-link text-white" href="#">Ranking</a></li>
+                            <li><a class="nav-link text-white" href="#">Contribute</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">Admin</a>
                                 <div class="dropdown-menu bg-success border border-white">
                                     <a class="dropdown-item text-dark font-weight-bold" href="#">Dashboard</a>
-                                    <a class="dropdown-item text-dark font-weight-bold" href="#">Histórico</a>
+                                    <a class="dropdown-item text-dark font-weight-bold" href="#">Historic</a>
                                     <a class="dropdown-item text-dark font-weight-bold" href="#">Feedback</a>
                                 </div>
                             </li>
@@ -48,11 +48,11 @@
                         <!-- Authentication Links -->
                         @guest <!-- Condition for to login members and register member -->
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('login') }}">Entrar</a>
+                                <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register')) <!-- Very important to show the logout button when logged in -->
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ route('register') }}">Cadastrar</a>
+                                    <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else <!-- Condition to view button for logout. Need the above list where you invoke the Request::has () -->
@@ -62,7 +62,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right bg-success border border-white" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item text-dark font-weight-bold" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
+                                    <a class="dropdown-item text-dark font-weight-bold" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
