@@ -3,7 +3,7 @@
 @section('title', 'EuSei – Cadastrar')
 
 @section('content')
-<div class="container screen-auth">
+<section class="container screen-full">
     <div class="row justify-content-center pt-5">
         <div class="col-md-8">
             <div class="card">
@@ -62,5 +62,5 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 @endsection

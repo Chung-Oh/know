@@ -15,3 +15,11 @@
 // Page Welcome
 @import 'pages/welcome';
 @import 'pages/body-form-auth';
+
+// Default class used on all pages
+.screen-full {
+	height: 100vh;
+}
+.btn-cursor {
+	cursor: pointer;
+}

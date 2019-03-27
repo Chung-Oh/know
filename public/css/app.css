@@ -10712,11 +10712,15 @@ a.text-dark:focus {
   color: #333;
 }
 
-.screen-auth {
+.logo-icon {
+  background: url(/images/logo-form.jpg?fb9f517158f6855b6ef3fa7ac064b4e1) no-repeat;
+}
+
+.screen-full {
   height: 100vh;
 }
 
-.logo-icon {
-  background: url(/images/logo-form.jpg?fb9f517158f6855b6ef3fa7ac064b4e1) no-repeat;
+.btn-cursor {
+  cursor: pointer;
 }
 

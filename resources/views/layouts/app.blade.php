@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <body>
-    <div id="app">
+    <section id="app">
     @if (Request::path() != '/') <!-- Condition to not show Welcome Page, only member and future members -->
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel bg-success">
             <div class="container">
@@ -29,14 +29,16 @@
                     <ul class="navbar-nav mr-auto">
                         <ul class="navbar-nav">
                             <li><a class="nav-link text-white" href="#">Profile</a></li>
-                            <li><a class="nav-link text-white" href="#">Challenge</a></li>
+                            <li><a class="nav-link text-white" href="#">Challenges</a></li>
                             <li><a class="nav-link text-white" href="#">Ranking</a></li>
                             <li><a class="nav-link text-white" href="#">Contribute</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">Admin</a>
                                 <div class="dropdown-menu bg-success border border-white">
-                                    <a class="dropdown-item text-dark font-weight-bold" href="#">Dashboard</a>
-                                    <a class="dropdown-item text-dark font-weight-bold" href="#">Historic</a>
+                                    <a class="dropdown-item text-dark font-weight-bold" href="{{ action('Admin\DashboardController@index') }}">Dashboard</a>
+                                    <a class="dropdown-item text-dark font-weight-bold" href="{{ action('Admin\QuestionController@index') }}">Questions</a>
+                                    <a class="dropdown-item text-dark font-weight-bold" href="#">Challenges</a>
+                                    <a class="dropdown-item text-dark font-weight-bold" href="#">History</a>
                                     <a class="dropdown-item text-dark font-weight-bold" href="#">Feedback</a>
                                 </div>
                             </li>
@@ -77,7 +79,7 @@
         <main class="bg-dark">
             @yield('content')
         </main>
-    </div><!-- End of main tag where application is located -->
+    </section><!-- End of main tag where application is located -->
 
     <!-- Button go top -->
     <button class="btn-top" title="Ir para o topo">

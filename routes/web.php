@@ -18,3 +18,9 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+
+Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard')->middleware('verified');
+
+Route::get('/questions', 'Admin\QuestionController@index')->name('question')->middleware('verified');
+
+Route::post('/questions/new', 'Admin\QuestionController@create')->name('new')->middleware('verified');
