@@ -29,6 +29,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
+    public function questions()
+    {
+        return $this->belongsTo('App\Question', 'user_id', 'id');
+    }
+
      /**
      * Send the email verification notification.
      *

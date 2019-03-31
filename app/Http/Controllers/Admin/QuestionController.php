@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Level;
+use App\Category;
 use App\Question;
+use App\Alternative;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\QuestionRequest;
 
 class QuestionController extends Controller
 {
@@ -15,7 +19,18 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return view('admin\question');
+        $levels = Level::all();
+        $categories = Category::all()->sortBy('name');
+        $questions = Question::with(['levels', 'categories', 'users'])->get();
+        $alternatives = Alternative::with('questions')->get();
+
+        return view('admin\question')
+            ->with([
+                'levels' => $levels,
+                'categories' => $categories,
+                'questions' => $questions,
+                'alternatives' => $alternatives
+            ]);
     }
 
     /**
@@ -23,22 +38,38 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(QuestionRequest $request)
     {
-        echo '<pre>';
-        print_r($request->all());
-        die();
-        /*********************************************************/
+        $validated = $request->validated();
         $question = new Question;
         $question->content = $request->input('question');
-        $question->categorys_id = $request->input('category_id');
-        $question->levels_id = $request->input('level_id');
-        $question->users_id = $request->input('user_id');
+        $question->category_id = $request->input('category_id');
+        $question->level_id = $request->input('level_id');
+        $question->user_id = $request->input('user_id');
         $question->save();
 
+        for ($alt = 1; $alt <= 5; $alt++) {
+
+            $alternative = new Alternative;
+
+            if ($alt == $request->input('radioAlternativeCorrect')) {
+                $alternative->content = $request->input('alternative_' . $alt);
+                $alternative->type = true;
+                $question = Question::orderBy('created_at', 'desc')->first();
+                $alternative->question_id = $question->id;
+                $alternative->save();
+            } else {
+                $alternative->content = $request->input('alternative_' . $alt);
+                $question = Question::orderBy('created_at', 'desc')->first();
+                $alternative->question_id = $question->id;
+                $alternative->save();
+            }
+        }
+
+        $request->session()->flash('status', 'Question successfully registered!');
+
         return redirect()
-            ->action('Admin\DashboardController@index')
-            ->withInput();
+            ->action('Admin\QuestionController@index');
     }
 
     /**
