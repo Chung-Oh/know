@@ -17,13 +17,13 @@
 						<select name="category_id" class="form-control btn-cursor" required> <!-- Selecting Categories -->
 							<option id="categoryId" value="" selected disabled>{{ __('Choose a Category') }}</option>
 							@foreach ($categories as $c)
-							<option value="{{ $c->id }}">{{ $c->name }}</option>
+								<option value="{{ $c->id }}">{{ $c->name }}</option>
 							@endforeach
 						</select>
 						<select name="level_id" class="form-control btn-cursor" required> <!-- Selecting Levels -->
 							<option id="levelId" value="" selected disabled>{{ __('Choose a Level') }}</option>
 							@foreach ($levels as $l)
-							<option value="{{ $l->id }}">{{ $l->name }}</option>
+								<option value="{{ $l->id }}">{{ $l->name }}</option>
 							@endforeach
 						</select>
 					</div>

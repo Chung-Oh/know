@@ -29,7 +29,8 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('admin.components.btn-create-question', 'ButtonCreateQuestion');
         // Navegation Tab - Page Question
         Blade::component('admin.components.question-navegation-tab', 'QuestionNavegationTab');
-        Blade::component('admin.components.question-tab-panel', 'QuestionTabPanel');
+        Blade::component('admin.components.question-accordion-tab', 'QuestionAccordionTab');
+        Blade::component('admin.components.question-accordion', 'QuestionAccordion');
     }
 
     /**
