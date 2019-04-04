@@ -40,7 +40,6 @@ class QuestionController extends Controller
      */
     public function create(QuestionRequest $request)
     {
-        $validated = $request->validated();
         $question = new Question;
         $question->content = $request->input('question');
         $question->category_id = $request->input('category_id');
@@ -48,10 +47,11 @@ class QuestionController extends Controller
         $question->user_id = $request->input('user_id');
         $question->save();
 
+        // Loop to know what alternative is correct
         for ($alt = 1; $alt <= 5; $alt++) {
 
             $alternative = new Alternative;
-
+            // Function Eloquent orderBy to get last database row
             if ($alt == $request->input('radioAlternativeCorrect')) {
                 $alternative->content = $request->input('alternative_' . $alt);
                 $alternative->type = true;
@@ -66,7 +66,8 @@ class QuestionController extends Controller
             }
         }
 
-        $request->session()->flash('status', 'Question successfully registered!');
+        $request->session()
+            ->flash('status', 'Question successfully registered!');
 
         return redirect()
             ->action('Admin\QuestionController@index');
@@ -112,9 +113,39 @@ class QuestionController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(QuestionRequest $request, Question $question)
     {
-        //
+        $question = Question::find($request->id_question);
+        $question->content = $request->question;
+        $question->category_id = empty($request->category_id) ? $question->category_id : $request->category_id;
+        $question->level_id = empty($request->level_id) ? $question->level_id : $request->level_id;
+        $question->save();
+
+        // Here it takes Array of the Alternatives of the question to go and treat
+        $alternatives = Alternative::where('question_id', $request->id_question)->get();
+        $running = 1; // This variable is used to cover each alternative
+        foreach ($alternatives as $alt) :
+
+            $alternative = Alternative::find($alt->id);
+
+            if ($running == $request->input('radioAlternativeCorrect')) {
+                $alternative->content = $request->input('alternative_' . $running);
+                $alternative->type = true;
+                $alternative->save();
+            } else {
+                $alternative->content = $request->input('alternative_' . $running);
+                $alternative->type = false;
+                $alternative->save();
+            }
+
+            $running++;
+        endforeach;
+
+        $request->session()
+            ->flash('status', "Question with ID <span class='font-weight-bold'>$request->id_question</span> successfully updated!");
+
+        return redirect()
+            ->action('Admin\QuestionController@index');
     }
 
     /**

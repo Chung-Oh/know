@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 namespace App\Http\Middleware;
 
@@ -15,8 +15,11 @@ class AuthorizationMiddleware
      */
     public function handle($request, Closure $next)
     {
+        /**
+         * I need create logic for Admin section
+         */
         if(!$request->is('auth/login') && \Auth::guest()) {
-            return redirect('app.questions');
+            return redirect('questions');
         }
 
         return $next($request);

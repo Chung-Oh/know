@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class QuestionRequest extends FormRequest
@@ -21,10 +22,10 @@ class QuestionRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
         return [
-            'question' => 'required|unique:questions,content|min:1|max:1000',
+            'question' => 'required|unique:questions,content,' . $request->id_question . '|min:1|max:1000',
 
             'alternative_1' => 'required|different:alternative_2|different:alternative_3|different:alternative_4|different:alternative_5|min:1|max:255',
 

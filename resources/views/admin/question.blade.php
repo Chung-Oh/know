@@ -14,10 +14,10 @@
 	@endif
 
 	<!----------------------------- MODAL FORM CREATE ----------------------------->
-	@FormCreate
+	@FormQuestion
 		@slot('categories', $categories)
 		@slot('levels', $levels)
-	@endFormCreate
+	@endFormQuestion
 
 <!----------------------------- REGISTERED QUESTIONS SECTION WHERE YOU CAN EDIT, VIEW AND REMOVE ----------------------------->
 <section class="container pb-5">
@@ -31,12 +31,10 @@
 	@ButtonCreateQuestion @endButtonCreateQuestion
 
 	<!----------------------------- NAVEGATION TAB ABOUT QUESTIONS ----------------------------->
-	<nav class="pt-2">
-		<div class="nav nav-tabs" id="nav-tab" role="tablist">
-			<a class="nav-item nav-link active" id="nav-waiting-tab" data-toggle="tab" href="#nav-waiting" role="tab" aria-controls="nav-waiting" aria-selected="true">{{ __('Waiting') }}</a>
-			<a class="nav-item nav-link" id="nav-question-in-tab" data-toggle="tab" href="#nav-question-in" role="tab" aria-controls="nav-question-in" aria-selected="false">{{ __('In challenge') }}</a>
-		</div>
-	</nav>
+	@QuestionNavegationTab
+		@slot('option_1', 'Waiting')
+		@slot('option_2', 'In challenge')
+	@endQuestionNavegationTab
 
 	<!----------------------------- CONTENT OF SELECTED QUESTIONS IN THE ABOVE NAVEGATION GUIDE ----------------------------->
 	<div class="tab-content" id="nav-tabContent">
@@ -70,9 +68,9 @@
 													<td>{{ strlen($q->content) > 80 ? (substr($q->content, 0, 80) . "...") : ($q->content) }}</td>
 													<td>{{ $q->categories[0]->name }}</td>
 													<td class="d-flex justify-content-center">
-														<button id="detail" type="button" class="btn btn-info btn-sm fas fa-search icon-search"></button>
-														<button id="edit" type="button" class="btn btn-warning btn-sm fas fa-pencil-alt"></button>
-														<button id="delete" type="button" class="btn btn-danger btn-sm fas fa-trash-alt"></button>
+														<button type="button" class="btn btn-info btn-sm fas fa-search icon-search"></button>
+														<button type="button" class="btn btn-warning btn-sm fas fa-pencil-alt" data-toggle="modal" data-target="#formQuestion" data-question="{{ $q }}" data-alt1="{{ $alternatives->where('question_id', $q->id)->splice(0,1) }}" data-alt2="{{ $alternatives->where('question_id', $q->id)->splice(1,1) }}" data-alt3="{{ $alternatives->where('question_id', $q->id)->splice(2,1) }}" data-alt4="{{ $alternatives->where('question_id', $q->id)->splice(3,1) }}" data-alt5="{{ $alternatives->where('question_id', $q->id)->splice(4,1) }}"></button>
+														<button type="button" class="btn btn-danger btn-sm fas fa-trash-alt"></button>
 													</td>
 												</tr>
 											@endif
@@ -114,7 +112,7 @@
 													<td>{{ $q->categories[0]->name }}</td>
 													<td class="d-flex justify-content-center">
 														<button id="detail" type="button" class="btn btn-info btn-sm fas fa-search icon-search"></button>
-														<button id="edit" type="button" class="btn btn-warning btn-sm fas fa-pencil-alt"></button>
+														<button id="edit" type="button" class="btn btn-warning btn-sm fas fa-pencil-alt" data-toggle="modal" data-target="#formQuestion" data-question="{{ $q }}" data-alt1="{{ $alternatives->where('question_id', $q->id)->splice(0,1) }}" data-alt2="{{ $alternatives->where('question_id', $q->id)->splice(1,1) }}" data-alt3="{{ $alternatives->where('question_id', $q->id)->splice(2,1) }}" data-alt4="{{ $alternatives->where('question_id', $q->id)->splice(3,1) }}" data-alt5="{{ $alternatives->where('question_id', $q->id)->splice(4,1) }}"></button>
 														<button id="delete" type="button" class="btn btn-danger btn-sm fas fa-trash-alt"></button>
 													</td>
 												</tr>
@@ -157,7 +155,7 @@
 													<td>{{ $q->categories[0]->name }}</td>
 													<td class="d-flex justify-content-center">
 														<button id="detail" type="button" class="btn btn-info btn-sm fas fa-search icon-search"></button>
-														<button id="edit" type="button" class="btn btn-warning btn-sm fas fa-pencil-alt"></button>
+														<button id="edit" type="button" class="btn btn-warning btn-sm fas fa-pencil-alt" data-toggle="modal" data-target="#formQuestion" data-question="{{ $q }}" data-alt1="{{ $alternatives->where('question_id', $q->id)->splice(0,1) }}" data-alt2="{{ $alternatives->where('question_id', $q->id)->splice(1,1) }}" data-alt3="{{ $alternatives->where('question_id', $q->id)->splice(2,1) }}" data-alt4="{{ $alternatives->where('question_id', $q->id)->splice(3,1) }}" data-alt5="{{ $alternatives->where('question_id', $q->id)->splice(4,1) }}"></button>
 														<button id="delete" type="button" class="btn btn-danger btn-sm fas fa-trash-alt"></button>
 													</td>
 												</tr>
@@ -200,7 +198,7 @@
 													<td>{{ $q->categories[0]->name }}</td>
 													<td class="d-flex justify-content-center">
 														<button id="detail" type="button" class="btn btn-info btn-sm fas fa-search icon-search"></button>
-														<button id="edit" type="button" class="btn btn-warning btn-sm fas fa-pencil-alt"></button>
+														<button id="edit" type="button" class="btn btn-warning btn-sm fas fa-pencil-alt" data-toggle="modal" data-target="#formQuestion" data-question="{{ $q }}" data-alt1="{{ $alternatives->where('question_id', $q->id)->splice(0,1) }}" data-alt2="{{ $alternatives->where('question_id', $q->id)->splice(1,1) }}" data-alt3="{{ $alternatives->where('question_id', $q->id)->splice(2,1) }}" data-alt4="{{ $alternatives->where('question_id', $q->id)->splice(3,1) }}" data-alt5="{{ $alternatives->where('question_id', $q->id)->splice(4,1) }}"></button>
 														<button id="delete" type="button" class="btn btn-danger btn-sm fas fa-trash-alt"></button>
 													</td>
 												</tr>
@@ -273,7 +271,7 @@
 					</div>
 				</section>
 			</div> <!-- End Accordion -->
-		</div> <!-- End Tab Pane Challenge -->
-	</div> <!-- End Tab Pane Content -->
+		</div> <!-- End Tab Panel Challenge -->
+	</div> <!-- End Tab Panel Content -->
 </section>
 @endsection

@@ -11,7 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix.js('resources/js/*.js', 'public/js')
 	.sass('resources/sass/app.scss', 'public/css')
 	// .extract() // Here extracting all librarys like manifest and vendor(your dependencys)
 	.version(); // This line create hash each modification, this is good because cache clean when modificated
