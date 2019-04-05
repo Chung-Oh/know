@@ -24,13 +24,14 @@ class AppServiceProvider extends ServiceProvider
         // Errors
         Blade::component('admin.components.errors', 'Errors');
         // Forms Modal Question
-        Blade::component('admin.components.form-question', 'FormQuestion');
+        Blade::component('admin.components.question.form-create', 'FormCreateQuestion');
+        Blade::component('admin.components.question.form-detail', 'FormDetailQuestion');
         // Button Create Question
-        Blade::component('admin.components.btn-create-question', 'ButtonCreateQuestion');
+        Blade::component('admin.components.question.btn-create', 'ButtonCreateQuestion');
         // Navegation Tab - Page Question
-        Blade::component('admin.components.question-navegation-tab', 'QuestionNavegationTab');
-        Blade::component('admin.components.question-accordion-tab', 'QuestionAccordionTab');
-        Blade::component('admin.components.question-accordion', 'QuestionAccordion');
+        Blade::component('admin.components.question.navegation-tab', 'QuestionNavegationTab');
+        Blade::component('admin.components.question.accordion-tab', 'QuestionAccordionTab');
+        Blade::component('admin.components.question.accordion', 'QuestionAccordion');
     }
 
     /**
