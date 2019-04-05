@@ -22,7 +22,7 @@
 									<td>{{ strlen($q->content) > 80 ? (substr($q->content, 0, 80) . "...") : ($q->content) }}</td>
 									<td>{{ $q->categories[0]->name }}</td>
 									<td class="d-flex justify-content-center">
-										<button type="button" class="btn btn-info btn-sm fas fa-search icon-search"></button>
+										<button type="button" class="btn btn-info btn-sm fas fa-search icon-search" data-toggle="modal" data-target="#formDetail" data-question="{{ $q }}" data-alt1="{{ $alternatives->where('question_id', $q->id)->splice(0,1) }}" data-alt2="{{ $alternatives->where('question_id', $q->id)->splice(1,1) }}" data-alt3="{{ $alternatives->where('question_id', $q->id)->splice(2,1) }}" data-alt4="{{ $alternatives->where('question_id', $q->id)->splice(3,1) }}" data-alt5="{{ $alternatives->where('question_id', $q->id)->splice(4,1) }}"></button>
 										<button type="button" class="btn btn-warning btn-sm fas fa-pencil-alt" data-toggle="modal" data-target="#formQuestion" data-question="{{ $q }}" data-alt1="{{ $alternatives->where('question_id', $q->id)->splice(0,1) }}" data-alt2="{{ $alternatives->where('question_id', $q->id)->splice(1,1) }}" data-alt3="{{ $alternatives->where('question_id', $q->id)->splice(2,1) }}" data-alt4="{{ $alternatives->where('question_id', $q->id)->splice(3,1) }}" data-alt5="{{ $alternatives->where('question_id', $q->id)->splice(4,1) }}"></button>
 										<button type="button" class="btn btn-danger btn-sm fas fa-trash-alt"></button>
 									</td>

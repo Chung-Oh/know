@@ -14,10 +14,13 @@
 	@endif
 
 	<!----------------------------- MODAL FORM CREATE ----------------------------->
-	@FormQuestion
+	@FormCreateQuestion
 		@slot('categories', $categories)
 		@slot('levels', $levels)
-	@endFormQuestion
+	@endFormCreateQuestion
+
+	<!----------------------------- MODAL FORM DETAILS ----------------------------->
+	@FormDetailQuestion	@endFormDetailQuestion
 
 <!----------------------------- REGISTERED QUESTIONS SECTION WHERE YOU CAN EDIT, VIEW AND REMOVE ----------------------------->
 <section class="container pb-5">
