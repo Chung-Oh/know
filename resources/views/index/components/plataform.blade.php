@@ -46,9 +46,9 @@
         <h5><span class="font-italic font-weight-bold text-danger">Tempo</span> para os seguintes níveis são:</h5>
         <div class="row d-flex justify-content-center">
             <ul class="list-group col-11 col-md-8 col-lg-6 col-xl-6 pr-0">
-                <li class="list-group-item list-group-item-danger border border-danger correct-size"><span class="font-italic font-weight-bold">Iniciante</span> - 10 minutos</li>
-                <li class="list-group-item list-group-item-danger border border-danger correct-size"><span class="font-italic font-weight-bold">Intermediário</span> - 8 minutos</li>
-                <li class="list-group-item list-group-item-danger border border-danger correct-size"><span class="font-italic font-weight-bold">Avançado</span> - 6 minutos</li>
+                <li class="list-group-item list-group-item-danger border border-danger correct-size"><span class="font-italic font-weight-bold">Iniciante</span> - 8 minutos</li>
+                <li class="list-group-item list-group-item-danger border border-danger correct-size"><span class="font-italic font-weight-bold">Intermediário</span> - 6 minutos</li>
+                <li class="list-group-item list-group-item-danger border border-danger correct-size"><span class="font-italic font-weight-bold">Avançado</span> - 5 minutos</li>
                 <li class="list-group-item list-group-item-danger border border-danger correct-size"><span class="font-italic font-weight-bold">Erudito</span> - 4 minutos</li>
             </ul>
         </div>

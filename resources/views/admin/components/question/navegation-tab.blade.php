@@ -7,7 +7,7 @@
 </nav>
 
 <!----------------------------- CONTENT OF SELECTED QUESTIONS IN THE ABOVE NAVEGATION GUIDE ----------------------------->
-<div class="tab-content" id="nav-tabContent">
+<section class="tab-content" id="nav-tabContent">
 	<!----------------------------- Waiting List of Questions to Add to a Challenge ----------------------------->
 	<div class="tab-pane fade show active" id="nav-waiting" role="tabpanel" aria-labelledby="nav-waiting-tab">
 		@QuestionAccordionTab
@@ -25,4 +25,4 @@
 			@slot('alternatives', $alternatives)
 		@endQuestionAccordionTab
 	</div> <!-- End Tab Panel Challenge -->
-</div> <!-- End Tab Panel Content -->
+</section> <!-- End Tab Panel Content -->

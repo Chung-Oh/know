@@ -124,6 +124,7 @@ class QuestionController extends Controller
     public function destroy(Request $request, Question $question)
     {
         $question = Question::find($request->input('id_question'));
+        // This method delete permanently models, for soft delete use delete or destroy
         $question->forceDelete();
 
         $request->session()

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Providers;
-
 /**
  * Importing the Blade class to rename components when using
  */
@@ -17,19 +16,21 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Panel Card - Page Generic
+        /*------------------------------------------------------------------------------------
+        | GENERIC                                                                            |
+        ------------------------------------------------------------------------------------*/
         Blade::component('admin.components.panel-card', 'PanelCard');
-        // Alert
+
+        /*------------------------------------------------------------------------------------
+        | PAGE QUESTION                                                                      |
+        ------------------------------------------------------------------------------------*/
         Blade::component('admin.components.alert', 'Alert');
-        // Errors
         Blade::component('admin.components.errors', 'Errors');
-        // Forms Modal Question
+        Blade::component('admin.components.question.panel-card', 'QuestionPanelCard');
         Blade::component('admin.components.question.form-create', 'FormCreateQuestion');
         Blade::component('admin.components.question.form-detail', 'FormDetailQuestion');
         Blade::component('admin.components.question.form-delete', 'FormDeleteQuestion');
-        // Button Create Question
         Blade::component('admin.components.question.btn-create', 'ButtonCreateQuestion');
-        // Navegation Tab - Page Question
         Blade::component('admin.components.question.navegation-tab', 'QuestionNavegationTab');
         Blade::component('admin.components.question.accordion-tab', 'QuestionAccordionTab');
         Blade::component('admin.components.question.accordion', 'QuestionAccordion');

@@ -8,7 +8,7 @@
 				<table class="table table-sm table-hover text-center bg-light mb-0">
 					<thead class="bg-secondary">
 						<tr class="text-white">
-							<th scope="col">{{ __('Id') }}</th>
+							<th scope="col">#</th>
 							<th scope="col">{{ __('Question') }}</th>
 							<th scope="col">{{ __('Category') }}</th>
 							<th scope="col">{{ __('Functions') }}</th>

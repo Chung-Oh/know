@@ -28,10 +28,13 @@
 <!----------------------------- REGISTERED QUESTIONS SECTION WHERE YOU CAN EDIT, VIEW AND REMOVE ----------------------------->
 <section class="container pb-5">
 	<!----------------------------- A QUESTION SUMMARY PANEL CARD ----------------------------->
-	@PanelCard
+	@QuestionPanelCard
 		@slot('title', 'Elaboration of Questions')
-		@slot('body', 'Here is a brief summary')
-	@endPanelCard
+		@slot('subTitle', 'Click here for see Summary')
+		@slot('questions', $questions)
+		@slot('categories', $categories)
+		@slot('levels', $levels)
+	@endQuestionPanelCard
 
 	<!----------------------------- BUTTON TO CREATE QUESTION ----------------------------->
 	@ButtonCreateQuestion @endButtonCreateQuestion
