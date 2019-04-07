@@ -1,0 +1,28 @@
+// Question Detail Form
+#level::before,
+#category::before,
+#creator::before,
+#created_at::before,
+#updated_at::before {
+	font-weight: bold;
+}
+
+#level::before {
+	content: "Level : ";
+}
+
+#category::before {
+	content: "Category : ";
+}
+
+#creator::before {
+	content: "Creator : ";
+}
+
+#created_at::before {
+	content: "Created At : ";
+}
+
+#updated_at::before {
+	content: "Updated At : ";
+}

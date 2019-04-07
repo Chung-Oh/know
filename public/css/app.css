@@ -10716,6 +10716,34 @@ a.text-dark:focus {
   background: url(/images/logo-form.jpg?fb9f517158f6855b6ef3fa7ac064b4e1) no-repeat;
 }
 
+#level::before,
+#category::before,
+#creator::before,
+#created_at::before,
+#updated_at::before {
+  font-weight: bold;
+}
+
+#level::before {
+  content: "Level : ";
+}
+
+#category::before {
+  content: "Category : ";
+}
+
+#creator::before {
+  content: "Creator : ";
+}
+
+#created_at::before {
+  content: "Created At : ";
+}
+
+#updated_at::before {
+  content: "Updated At : ";
+}
+
 .screen-full {
   height: 100vh;
 }

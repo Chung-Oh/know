@@ -22,6 +22,9 @@
 	<!----------------------------- MODAL FORM DETAILS ----------------------------->
 	@FormDetailQuestion	@endFormDetailQuestion
 
+	<!----------------------------- MODAL FORM DELETE ----------------------------->
+	@FormDeleteQuestion	@endFormDeleteQuestion
+
 <!----------------------------- REGISTERED QUESTIONS SECTION WHERE YOU CAN EDIT, VIEW AND REMOVE ----------------------------->
 <section class="container pb-5">
 	<!----------------------------- A QUESTION SUMMARY PANEL CARD ----------------------------->

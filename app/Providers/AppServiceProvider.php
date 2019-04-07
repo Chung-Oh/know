@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
         // Forms Modal Question
         Blade::component('admin.components.question.form-create', 'FormCreateQuestion');
         Blade::component('admin.components.question.form-detail', 'FormDetailQuestion');
+        Blade::component('admin.components.question.form-delete', 'FormDeleteQuestion');
         // Button Create Question
         Blade::component('admin.components.question.btn-create', 'ButtonCreateQuestion');
         // Navegation Tab - Page Question

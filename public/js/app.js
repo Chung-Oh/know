@@ -49157,6 +49157,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/form-delete.js":
+/*!*************************************!*\
+  !*** ./resources/js/form-delete.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('#formDelete').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget); // Button that triggered the modal
+
+  var question = button.data('question'); // Extract info from data-* attributes
+
+  var modal = $(this);
+  modal.find('#idQuestion').val(question.id);
+  modal.find('#idMessage').text('Question ID : ' + question.id);
+  modal.find('#question').text(question.content);
+});
+
+/***/ }),
+
 /***/ "./resources/js/form-detail.js":
 /*!*************************************!*\
   !*** ./resources/js/form-detail.js ***!
@@ -49176,23 +49196,23 @@ $('#formDetail').on('show.bs.modal', function (event) {
   var alt5 = button.data('alt5');
   var modal = $(this);
   modal.find('#formQuestionModalLabel').text('Question details with ID : ' + question.id);
-  modal.find('#category').val(question.categories[0].name);
-  modal.find('#level').val(question.levels[0].name);
+  modal.find('#level').text(question.levels[0].name);
+  modal.find('#category').text(question.categories[0].name);
   modal.find('#contentQuestion').val(question.content);
   modal.find('#alt1').text(alt1[0].content);
   modal.find('#alt2').text(alt2[0].content);
   modal.find('#alt3').text(alt3[0].content);
   modal.find('#alt4').text(alt4[0].content);
   modal.find('#alt5').text(alt5[0].content);
-  modal.find('#creator').val(question.users[0].name);
-  modal.find('#created_at').val(dateFull(question.created_at));
-  modal.find('#updated_at').val(dateFull(question.updated_at) == dateFull(question.created_at) ? 'No update' : dateFull(question.updated_at)); // Looking by true alternative
+  modal.find('#creator').text(question.users[0].name);
+  modal.find('#created_at').text(dateFull(question.created_at));
+  modal.find('#updated_at').text(dateFull(question.updated_at) == dateFull(question.created_at) ? 'N/D' : dateFull(question.updated_at)); // Looking by true alternative
 
   var alternatives = [];
   alternatives.push(alt1, alt2, alt3, alt4, alt5);
   alternatives.forEach(function (alt) {
     if (alt[0].type === 1) {
-      modal.find('#altTrue').text('True is : ' + alt[0].content);
+      modal.find('#altTrue').text('True is : "' + alt[0].content + '".');
     }
   });
 });
@@ -49229,7 +49249,7 @@ function dateFull(date) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('#formQuestion').on('shown.bs.modal', function (event) {
+$('#formQuestion').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget); // Button that triggered the modal
 
   var question = button.data('question'); // Extract info from data-* attributes
@@ -49245,6 +49265,7 @@ $('#formQuestion').on('shown.bs.modal', function (event) {
 
   if (question) {
     // Modal Form Edit
+    modal.find('#formQuestionModalLabel').text('Update question with ID : ' + question.id);
     modal.find('form').attr('action', '/admin/questions/update');
     modal.find('#idQuestion').val(question.id);
     modal.find('#categoryId').prop('value', question.category_id);
@@ -49264,6 +49285,7 @@ $('#formQuestion').on('shown.bs.modal', function (event) {
     modal.find('#radioAlternative5').prop('checked', alt5[0].type === 1 ? true : false);
   } else {
     // Modal Form Create - here clean form
+    modal.find('#formQuestionModalLabel').text('New question');
     modal.find('form').attr('action', '/admin/questions/new');
     modal.find('#idQuestion').val('');
     modal.find('#categoryId').prop('value', '');
@@ -49310,15 +49332,16 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/btn-top.js ./resources/js/form-detail.js ./resources/js/form-question.js ./resources/js/tooltip-welcome.js ./resources/sass/app.scss ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/btn-top.js ./resources/js/form-delete.js ./resources/js/form-detail.js ./resources/js/form-question.js ./resources/js/tooltip-welcome.js ./resources/sass/app.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\btn-top.js */"./resources/js/btn-top.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\form-delete.js */"./resources/js/form-delete.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\form-detail.js */"./resources/js/form-detail.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\form-question.js */"./resources/js/form-question.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\tooltip-welcome.js */"./resources/js/tooltip-welcome.js");

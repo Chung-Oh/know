@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Question extends Model
 {
+    // To enable soft deletes for a model
+    use SoftDeletes;
     // protected $table = 'question'; // Alter table name
     protected $guarded = ['id'];
     protected $fillable = ['content', 'category_id', 'level_id', 'user_id', 'challenge_id'];
