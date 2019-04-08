@@ -12,6 +12,7 @@ class Question extends Model
     // protected $table = 'question'; // Alter table name
     protected $guarded = ['id'];
     protected $fillable = ['content', 'category_id', 'level_id', 'user_id', 'challenge_id'];
+    protected $dates = ['deleted_at'];
 
     public function alternatives()
     {

@@ -12,6 +12,7 @@ class Challenge extends Model
 
     protected $guarded = ['id'];
     protected $fillable = ['user_id', 'level_challenge_id'];
+    protected $dates = ['deleted_at'];
 
     public function questions()
     {

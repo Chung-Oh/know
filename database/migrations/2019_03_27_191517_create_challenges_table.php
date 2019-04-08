@@ -18,7 +18,7 @@ class CreateChallengesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('level_challenge_id')->unsigned();
             $table->timestamps();
-            // $table->softDeletes(); // To enable soft deletes for a model
+            $table->softDeletes(); // To enable soft deletes for a model
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('level_challenge_id')->references('id')->on('level_challenges')->onDelete('cascade');
