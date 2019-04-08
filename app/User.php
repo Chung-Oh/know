@@ -34,6 +34,26 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo('App\Question', 'user_id', 'id');
     }
 
+    public function contributions()
+    {
+        return $this->belongsTo('App\Question', 'user_id', 'id');
+    }
+
+    public function feedback()
+    {
+        return $this->belongsTo('App\Question', 'user_id', 'id');
+    }
+
+    public function challenges()
+    {
+        return $this->belongsTo('App\Question', 'user_id', 'id');
+    }
+
+    public function results()
+    {
+        return $this->belongsTo('App\Question', 'user_id', 'id');
+    }
+
      /**
      * Send the email verification notification.
      *

@@ -21,11 +21,13 @@ class CreateQuestionsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('challenge_id')->unsigned()->nullable();
             $table->timestamps();
-            $table->softDeletes();
+            // $table->softDeletes(); // To enable soft deletes for a model
+
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            // $table->foreign('challenge_id')->references('id')->on('challenges')->onDelete('cascade');
+            $table->foreign('challenge_id')->references('id')->on('challenges')->onDelete('cascade');
+
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';

@@ -18,6 +18,11 @@ class Question extends Model
     	return $this->belongsTo('App\Alternative', 'question_id', 'id');
     }
 
+    public function contributions()
+    {
+        return $this->belongsTo('App\Contribution', 'question_id', 'id');
+    }
+
     public function categories()
     {
     	return $this->hasMany('App\Category', 'id', 'category_id');
@@ -31,5 +36,10 @@ class Question extends Model
     public function users()
     {
     	return $this->hasMany('App\User', 'id', 'user_id');
+    }
+
+    public function challenges()
+    {
+        return $this->hasMany('App\Challenge', 'id', 'challenge_id');
     }
 }

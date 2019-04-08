@@ -6,7 +6,7 @@
     <section class="container screen-full">
         <!----------------------------- A QUESTION SUMMARY PANEL CARD ----------------------------->
         @PanelCard
-            @slot('title', 'Dashboard')
+            @slot('title', 'Home')
             @slot('body')
                 @if (session('status'))
                     <div class="alert text-center alert-success" role="alert">
