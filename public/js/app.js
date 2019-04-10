@@ -49088,6 +49088,62 @@ btnTop.addEventListener("click", function (event) {
 
 /***/ }),
 
+/***/ "./resources/js/card-ready-question.js":
+/*!*********************************************!*\
+  !*** ./resources/js/card-ready-question.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// All categories cards
+var beginningWait = $('.BeginningWait');
+var intermediateWait = $('.IntermediateWait');
+var advancedWait = $('.AdvancedWait');
+var eruditWait = $('.EruditWait'); // Card Ready
+
+var beginningReady = $('#BeginningReady');
+var intermediateReady = $('#IntermediateReady');
+var advancedReady = $('#AdvancedReady');
+var eruditReady = $('#EruditReady');
+bindCard(beginningWait, beginningReady);
+bindCard(intermediateWait, intermediateReady);
+bindCard(advancedWait, advancedReady);
+bindCard(eruditWait, eruditReady);
+
+function bindCard(current, target) {
+  // Get value of current to work
+  var geo = Number(current[0].textContent);
+  var mat = Number(current[1].textContent);
+  var por = Number(current[2].textContent);
+  var sci = Number(current[3].textContent);
+  var sto = Number(current[4].textContent); // Adding all questions and dividing to loop through
+
+  var all = Math.round((geo + mat + por + sci + sto) / 10); // Variable responsible for to sum and add to in target
+
+  var sum = 0;
+
+  for (var i = 0; i <= all; i++) {
+    // Condition where all questions have two questions
+    if (geo >= 2 && mat >= 2 && por >= 2 && sci >= 2 && sto >= 2) {
+      // If enter this condition, the sum variable will receive the value
+      sum += 10; // All categories will decrements to dont enter this condition again
+
+      geo = geo - 2;
+      mat = mat - 2;
+      por = por - 2;
+      sci = sci - 2;
+      sto = sto - 2; // Here the sum variable will place the value on the target rounded to down
+
+      target[0].textContent = Math.floor(sum / 10);
+    }
+  } // Clean sum variable to next call
+
+
+  sum = 0;
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue ***!
@@ -49265,7 +49321,7 @@ $('#formQuestion').on('show.bs.modal', function (event) {
 
   if (question) {
     // Modal Form Edit
-    modal.find('#formQuestionModalLabel').text('Update question with ID : ' + question.id);
+    modal.find('#formQuestionModalLabel').text('Update Question with ID : ' + question.id);
     modal.find('form').attr('action', '/admin/questions/update');
     modal.find('#idQuestion').val(question.id);
     modal.find('#categoryId').prop('value', question.category_id);
@@ -49285,7 +49341,7 @@ $('#formQuestion').on('show.bs.modal', function (event) {
     modal.find('#radioAlternative5').prop('checked', alt5[0].type === 1 ? true : false);
   } else {
     // Modal Form Create - here clean form
-    modal.find('#formQuestionModalLabel').text('New question');
+    modal.find('#formQuestionModalLabel').text('New Question');
     modal.find('form').attr('action', '/admin/questions/new');
     modal.find('#idQuestion').val('');
     modal.find('#categoryId').prop('value', '');
@@ -49332,15 +49388,16 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!*************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/btn-top.js ./resources/js/form-delete.js ./resources/js/form-detail.js ./resources/js/form-question.js ./resources/js/tooltip-welcome.js ./resources/sass/app.scss ***!
-  \*************************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/btn-top.js ./resources/js/card-ready-question.js ./resources/js/form-delete.js ./resources/js/form-detail.js ./resources/js/form-question.js ./resources/js/tooltip-welcome.js ./resources/sass/app.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\btn-top.js */"./resources/js/btn-top.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\card-ready-question.js */"./resources/js/card-ready-question.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\form-delete.js */"./resources/js/form-delete.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\form-detail.js */"./resources/js/form-detail.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\form-question.js */"./resources/js/form-question.js");

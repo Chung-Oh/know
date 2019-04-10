@@ -12,7 +12,7 @@
     // This condition serve to evite bug when for create questions
     if (question) {
         // Modal Form Edit
-        modal.find('#formQuestionModalLabel').text('Update question with ID : ' + question.id)
+        modal.find('#formQuestionModalLabel').text('Update Question with ID : ' + question.id)
         modal.find('form').attr('action', '/admin/questions/update')
         modal.find('#idQuestion').val(question.id)
         modal.find('#categoryId').prop('value', question.category_id)
@@ -32,7 +32,7 @@
         modal.find('#radioAlternative5').prop('checked', alt5[0].type === 1 ? true : false)
     } else {
         // Modal Form Create - here clean form
-        modal.find('#formQuestionModalLabel').text('New question')
+        modal.find('#formQuestionModalLabel').text('New Question')
         modal.find('form').attr('action', '/admin/questions/new')
         modal.find('#idQuestion').val('')
         modal.find('#categoryId').prop('value', '')

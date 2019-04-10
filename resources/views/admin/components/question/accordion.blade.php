@@ -15,8 +15,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($questions as $q)
-							@if ($q->level_id == $idLevel)
+						@foreach ($questions as $q) <!-- Type true for Admin and false for Contribute -->
+							@if ($q->level_id == $idLevel && $q->type == true)
 								<tr>
 									<td>{{ $q->id }}</td>
 									<td>{{ strlen($q->content) > 80 ? (substr($q->content, 0, 80) . "...") : ($q->content) }}</td>

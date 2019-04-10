@@ -13,6 +13,8 @@
 					<input type="hidden" name="_token" value="{{ csrf_token() }}"> <!-- TOKEN -->
 					<input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> <!-- ID User -->
 					<input id="idQuestion" type="hidden" name="id_question"> <!-- ID Question -->
+					<!-- Input Type to find out if it was created by the Administrator or Contribution -->
+					<input id="type" type="hidden" name="type" value="{{ $type }}">
 					<div class="form-group d-flex justify-content-center">
 						<select name="category_id" class="form-control btn-cursor" required> <!-- Selecting Categories -->
 							<option id="categoryId" value="" selected disabled>{{ __('Choose a Category') }}</option>

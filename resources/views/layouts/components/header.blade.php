@@ -19,8 +19,8 @@
                             <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">{{ __('Admin') }}</a>
                             <div class="dropdown-menu bg-success border border-white">
                                 <a class="dropdown-item text-dark font-weight-bold" href="{{ action('Admin\DashboardController@index') }}">{{ __('Dashboard') }}</a>
-                                <a class="dropdown-item text-dark font-weight-bold" href="{{ action('Admin\QuestionController@index') }}">Questions</a>
-                                <a class="dropdown-item text-dark font-weight-bold" href="#">{{ __('Challenges') }}</a>
+                                <a class="dropdown-item text-dark font-weight-bold" href="{{ action('Admin\QuestionController@index') }}">{{ __('Questions') }}</a>
+                                <a class="dropdown-item text-dark font-weight-bold" href="{{ action('Admin\ChallengeController@index') }}">{{ __('Challenges') }}</a>
                                 <a class="dropdown-item text-dark font-weight-bold" href="#">{{ __('History') }}</a>
                                 <a class="dropdown-item text-dark font-weight-bold" href="#">{{ __('Feedback') }}</a>
                             </div>

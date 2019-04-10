@@ -1,7 +1,7 @@
 <section class="row justify-content-center pt-5">
 	<div class="col-md-12">
 		<div class="card">
-			<div class="card-header">{{ $title }}</div>
+			<div class="card-header font-weight-bold">{{ $title }}</div>
 			<div class="card-body pt-0 pb-0 pr-0 pl-0">
 				<div class="accordion" id="accordionSummaryQuestion">
 					<section class="card rounded-0">
@@ -21,14 +21,16 @@
 														<th>Level</th>
 														<th>Wait</th>
 														<th>Challenge</th>
+														<th>Contribution</th>
 													</tr>
 												</thead>
 												<tbody>
 													@foreach ($levels as $l)
 													<tr>
 														<td>{{ $l->name }}</td>
-														<td>{{ count($questions->where('category_id', $c->id)->where('level_id', $l->id)->where('challenge_id', null)) }}</td>
+														<td class="{{ $l->name }}Wait">{{ count($questions->where('category_id', $c->id)->where('level_id', $l->id)->where('challenge_id', null)->where('type', true)) }}</td>
 														<td>{{ count($questions->where('category_id', $c->id)->where('level_id', $l->id)->where('challenge_id', !null)) }}</td>
+														<td class="{{ $l->name }}Contribute">{{ count($questions->where('category_id', $c->id)->where('level_id', $l->id)->where('type', false)) }}</td>
 													</tr>
 													@endforeach
 												</tbody>
@@ -37,6 +39,12 @@
 									</div>
 								</div>
 								@endforeach
+								<!-- Card bellow showing challenges ready to create -->
+								@CardReady
+									@slot('questions', $questions)
+									@slot('categories', $categories)
+									@slot('levels', $levels)
+								@endCardReady
 							</div>
 						</div>
 					</section>

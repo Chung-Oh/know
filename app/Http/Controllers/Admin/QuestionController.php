@@ -12,11 +12,6 @@ use App\Http\Requests\QuestionRequest;
 
 class QuestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $levels = Level::all();
@@ -33,15 +28,11 @@ class QuestionController extends Controller
             ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(QuestionRequest $request)
     {
         $question = new Question;
         $question->content = $request->input('question');
+        $question->type = $request->input('type');
         $question->category_id = $request->input('category_id');
         $question->level_id = $request->input('level_id');
         $question->user_id = $request->input('user_id');
@@ -55,12 +46,12 @@ class QuestionController extends Controller
             if ($alt == $request->input('radioAlternativeCorrect')) {
                 $alternative->content = $request->input('alternative_' . $alt);
                 $alternative->type = true;
-                $question = Question::orderBy('created_at', 'desc')->first();
+                $question = Question::orderBy('id', 'desc')->first();
                 $alternative->question_id = $question->id;
                 $alternative->save();
             } else {
                 $alternative->content = $request->input('alternative_' . $alt);
-                $question = Question::orderBy('created_at', 'desc')->first();
+                $question = Question::orderBy('id', 'desc')->first();
                 $alternative->question_id = $question->id;
                 $alternative->save();
             }
@@ -73,13 +64,6 @@ class QuestionController extends Controller
             ->action('Admin\QuestionController@index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
     public function update(QuestionRequest $request, Question $question)
     {
         $question = Question::find($request->id_question);
@@ -115,12 +99,6 @@ class QuestionController extends Controller
             ->action('Admin\QuestionController@index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Request $request, Question $question)
     {
         // $question = Question::find($request->input('id_question'));

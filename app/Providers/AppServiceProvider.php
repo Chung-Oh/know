@@ -16,24 +16,42 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /*====================================================================================
+        |                               APPLICATION SECTION                                  |
+        |===================================================================================*/
         /*------------------------------------------------------------------------------------
-        | GENERIC                                                                            |
-        ------------------------------------------------------------------------------------*/
-        Blade::component('admin.components.panel-card', 'PanelCard');
+        | Generic App                                                                        |
+        |-----------------------------------------------------------------------------------*/
+        Blade::component('app.components.panel-card', 'PanelCard');
 
+        /*====================================================================================
+        |                               ADMINISTRATOR SECTION                                |
+        |===================================================================================*/
         /*------------------------------------------------------------------------------------
-        | PAGE QUESTION                                                                      |
-        ------------------------------------------------------------------------------------*/
+        | Generic Admin                                                                      |
+        |-----------------------------------------------------------------------------------*/
         Blade::component('admin.components.alert', 'Alert');
         Blade::component('admin.components.errors', 'Errors');
+        Blade::component('admin.components.btn-create', 'ButtonCreateQuestion');
+        Blade::component('admin.components.fill', 'Fill');
+
+        /*------------------------------------------------------------------------------------
+        | Page Question                                                                      |
+        |-----------------------------------------------------------------------------------*/
         Blade::component('admin.components.question.panel-card', 'QuestionPanelCard');
+        Blade::component('admin.components.question.card-ready', 'CardReady');
         Blade::component('admin.components.question.form-create', 'FormCreateQuestion');
         Blade::component('admin.components.question.form-detail', 'FormDetailQuestion');
         Blade::component('admin.components.question.form-delete', 'FormDeleteQuestion');
-        Blade::component('admin.components.question.btn-create', 'ButtonCreateQuestion');
         Blade::component('admin.components.question.navegation-tab', 'QuestionNavegationTab');
         Blade::component('admin.components.question.accordion-tab', 'QuestionAccordionTab');
         Blade::component('admin.components.question.accordion', 'QuestionAccordion');
+
+        /*------------------------------------------------------------------------------------
+        | Page Challenge                                                                     |
+        |-----------------------------------------------------------------------------------*/
+        Blade::component('admin.components.challenge.panel-card', 'ChallengePanelCard');
+        Blade::component('admin.components.challenge.form-create', 'ChallengeCreateChallenge');
     }
 
     /**
