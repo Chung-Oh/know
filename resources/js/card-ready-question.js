@@ -9,11 +9,6 @@ var intermediateReady = $('#IntermediateReady')
 var advancedReady = $('#AdvancedReady')
 var eruditReady = $('#EruditReady')
 
-bindCard(beginningWait, beginningReady)
-bindCard(intermediateWait, intermediateReady)
-bindCard(advancedWait, advancedReady)
-bindCard(eruditWait, eruditReady)
-
 function bindCard(current, target) {
     // Get value of current to work
     var geo =  Number(current[0].textContent)
@@ -43,4 +38,12 @@ function bindCard(current, target) {
     }
     // Clean sum variable to next call
     sum = 0
+}
+
+// Condition for just the page of questions, no error on other pages
+if (window.location.pathname == '/admin/questions') {
+    bindCard(beginningWait, beginningReady)
+    bindCard(intermediateWait, intermediateReady)
+    bindCard(advancedWait, advancedReady)
+    bindCard(eruditWait, eruditReady)
 }

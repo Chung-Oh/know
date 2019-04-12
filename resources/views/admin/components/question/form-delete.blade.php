@@ -1,6 +1,6 @@
 <!----------------------------- THIS SECTION USES MODAL AS FORM DELETE ----------------------------->
 <section id="formDelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="formQuestionModalLabel" aria-hidden="true" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-success">
                 <h5 id="formQuestionModalLabel" class="modal-title text-white font-weight-bold">{{ __('Remove question') }}</h5>

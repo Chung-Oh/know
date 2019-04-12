@@ -10744,11 +10744,33 @@ a.text-dark:focus {
   content: "Updated At : ";
 }
 
+.con-table-question,
+.cat-table-question {
+  background: #6c757d;
+  transition: 0.7s;
+}
+
+.con-table-question:focus,
+.con-table-question:hover,
+.cat-table-question:focus,
+.cat-table-question:hover {
+  background: #38c172;
+  transition: 0.7s;
+}
+
+.fa-sort {
+  margin-right: 5px;
+}
+
 .screen-full {
   height: 100vh;
 }
 
 .btn-cursor {
   cursor: pointer;
+}
+
+.btn-space {
+  margin-right: 2px;
 }
 

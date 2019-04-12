@@ -30,6 +30,7 @@
         modal.find('#radioAlternative3').prop('checked', alt3[0].type === 1 ? true : false)
         modal.find('#radioAlternative4').prop('checked', alt4[0].type === 1 ? true : false)
         modal.find('#radioAlternative5').prop('checked', alt5[0].type === 1 ? true : false)
+        modal.find('#btnFormQuestion').text('Update')
     } else {
         // Modal Form Create - here clean form
         modal.find('#formQuestionModalLabel').text('New Question')
@@ -46,5 +47,6 @@
         modal.find('#alternative4').val('Alternative 4')
         modal.find('#alternative5').val('Alternative 5')
         modal.find('#radioAlternative1').prop('checked', true)
+        modal.find('#btnFormQuestion').text('To save')
     }
 })

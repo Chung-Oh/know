@@ -33,6 +33,13 @@
 
     <script src="{{ mix('js/app.js') }}"></script>
 
+    <!-- Calling the jQuery Plugin function to sort the tables -->
+    <script>
+        $(function(){
+            $('.tablesorter').tablesorter();
+        });
+    </script>
+
     <!-- Condition in this script only when you have the Welcome page -->
     @if (Request::path() == '/')
         <script>

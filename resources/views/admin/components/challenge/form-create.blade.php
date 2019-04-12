@@ -9,12 +9,18 @@
 				</button>
 			</div>
 			<div class="modal-body bg-dark">
-				<form action="{{ action('Admin\QuestionController@create') }}" method="post"> <!-- Put message about action when modify Route and file JS -->
+				<!-- Put message about action when modify Route and file JS -->
+				<form action="{{ action('Admin\ChallengeController@create') }}" method="post">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}"> <!-- TOKEN -->
 					<input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> <!-- ID User -->
 					<input id="idQuestion" type="hidden" name="id_question"> <!-- ID Question -->
 					<div class="form-group d-flex justify-content-center">
-						
+						<select name="category_id" class="form-control btn-cursor" required> <!-- Selecting Categories -->
+							<option id="levelChallengeId" value="" selected disabled>{{ __('Choose a Level') }}</option>
+							@foreach ($levelChallenges as $l)
+								<option value="{{ $l->id }}">{{ $l->levels[0]->name }}</option>
+							@endforeach
+						</select>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">{{ __('Cancel') }}</button>

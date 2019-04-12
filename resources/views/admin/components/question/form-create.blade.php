@@ -9,7 +9,8 @@
 				</button>
 			</div>
 			<div class="modal-body bg-dark">
-				<form action="{{ action('Admin\QuestionController@create') }}" method="post"> <!-- Put message about action when modify Route and file JS -->
+				<!-- Put message about action when modify Route and file JS -->
+				<form action="{{ action('Admin\QuestionController@create') }}" method="post">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}"> <!-- TOKEN -->
 					<input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> <!-- ID User -->
 					<input id="idQuestion" type="hidden" name="id_question"> <!-- ID Question -->
@@ -74,7 +75,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">{{ __('Cancel') }}</button>
-						<button type="submit" class="btn btn-primary">{{ __('To Save') }}</button>
+						<button id="btnFormQuestion" type="submit" class="btn btn-primary"></button>
 					</div>
 				</form>
 			</div>

@@ -29,27 +29,27 @@
 	<!------------------- SECTION OF QUESTIONS WHERE YOU CAN CREATE, EDIT, DISPLAY AND REMOVE ------------------->
 	<section class="container pb-5">
 		<!----------------------------- A QUESTION SUMMARY PANEL CARD ----------------------------->
-		@QuestionPanelCard
+		@PanelCardQuestion
 			@slot('title', 'Elaboration of Questions')
 			@slot('subTitle', 'Click here for see Summary')
 			@slot('questions', $questions)
 			@slot('categories', $categories)
 			@slot('levels', $levels)
-		@endQuestionPanelCard
+		@endPanelCardQuestion
 
 		<!----------------------------- BUTTON TO CREATE QUESTION ----------------------------->
-		@ButtonCreateQuestion
+		@ButtonCreate
 			@slot('nameModal', 'formQuestion')
 			@slot('buttonName', 'New Question')
-		@endButtonCreateQuestion
+		@endButtonCreate
 
 		<!----------------------------- NAVEGATION TAB ABOUT QUESTIONS ----------------------------->
-		@QuestionNavegationTab
+		@NavegationTabQuestion
 			@slot('option_1', 'Wait')
 			@slot('option_2', 'Challenge')
 			@slot('questions', $questions)
 			@slot('alternatives', $alternatives)
-		@endQuestionNavegationTab
+		@endNavegationTabQuestion
 	</section>
 
 	<!----------------------------- SET HEIGHT ON TABLET TO FILL HOLE ----------------------------->

@@ -32,26 +32,26 @@ class AppServiceProvider extends ServiceProvider
         |-----------------------------------------------------------------------------------*/
         Blade::component('admin.components.alert', 'Alert');
         Blade::component('admin.components.errors', 'Errors');
-        Blade::component('admin.components.btn-create', 'ButtonCreateQuestion');
+        Blade::component('admin.components.btn-create', 'ButtonCreate');
         Blade::component('admin.components.fill', 'Fill');
 
         /*------------------------------------------------------------------------------------
         | Page Question                                                                      |
         |-----------------------------------------------------------------------------------*/
-        Blade::component('admin.components.question.panel-card', 'QuestionPanelCard');
-        Blade::component('admin.components.question.card-ready', 'CardReady');
+        Blade::component('admin.components.question.panel-card', 'PanelCardQuestion');
+        Blade::component('admin.components.question.card-ready', 'CardReadyQuestion');
         Blade::component('admin.components.question.form-create', 'FormCreateQuestion');
         Blade::component('admin.components.question.form-detail', 'FormDetailQuestion');
         Blade::component('admin.components.question.form-delete', 'FormDeleteQuestion');
-        Blade::component('admin.components.question.navegation-tab', 'QuestionNavegationTab');
-        Blade::component('admin.components.question.accordion-tab', 'QuestionAccordionTab');
-        Blade::component('admin.components.question.accordion', 'QuestionAccordion');
+        Blade::component('admin.components.question.navegation-tab', 'NavegationTabQuestion');
+        Blade::component('admin.components.question.accordion-tab', 'AccordionTabQuestion');
+        Blade::component('admin.components.question.accordion', 'AccordionQuestion');
 
         /*------------------------------------------------------------------------------------
         | Page Challenge                                                                     |
         |-----------------------------------------------------------------------------------*/
-        Blade::component('admin.components.challenge.panel-card', 'ChallengePanelCard');
-        Blade::component('admin.components.challenge.form-create', 'ChallengeCreateChallenge');
+        Blade::component('admin.components.challenge.panel-card', 'PanelCardChallenge');
+        Blade::component('admin.components.challenge.form-create', 'FormCreateChallenge');
     }
 
     /**

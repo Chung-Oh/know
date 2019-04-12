@@ -26,3 +26,22 @@
 #updated_at::before {
 	content: "Updated At : ";
 }
+
+// Table inside the Accordion
+.con-table-question,
+.cat-table-question {
+	background: #6c757d;
+	transition: .7s;
+}
+
+.con-table-question:focus,
+.con-table-question:hover,
+.cat-table-question:focus,
+.cat-table-question:hover {
+	background: #38c172;
+	transition: .7s;
+}
+
+.fa-sort {
+	margin-right: 5px;
+}

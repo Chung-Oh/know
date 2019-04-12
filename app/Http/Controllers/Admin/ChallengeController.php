@@ -13,13 +13,16 @@ class ChallengeController extends Controller
 {
     public function index()
     {
-    	$questions = Question::with(['levels', 'categories', 'users'])->get();
-    	$challenges = Challenge::with(['users', 'level_challenges'])->get();
     	$alternatives = Alternative::with(['questions'])->get();
-    	$levelChallenges = LevelChallenge::with(['levels', 'experiences', 'opportunities', 'times'])->get();
+        $questions = Question::with(['levels', 'categories', 'users'])->get();
+        $levelChallenges = LevelChallenge::with(['levels', 'experiences', 'opportunities', 'times'])->get();
+        $challenges = Challenge::with(['users', 'level_challenges'])->get();
 
     	// echo '<pre>';
-    	// print_r($levelChallenges);
+    	// // print_r($levelChallenges[0]->levels[0]->name);
+     //    foreach ($levelChallenges as $l) :
+     //        print_r($l->levels[0]->name);
+     //    endforeach;
     	// die();
 
     	return view('admin\challenge')
@@ -29,5 +32,10 @@ class ChallengeController extends Controller
     			'alternatives' => $alternatives,
     			'levelChallenges' => $levelChallenges,
     		]);
+    }
+
+    public function create(Request $request)
+    {
+        echo 'Challenge successfully registered!';
     }
 }

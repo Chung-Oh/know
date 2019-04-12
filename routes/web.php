@@ -74,3 +74,10 @@ Route::get('/admin/challenges', 'Admin\ChallengeController@index')
 	->name('challenges')
 	->middleware('verified');
 
+Route::post('/admin/challenges/new', 'Admin\ChallengeController@create')
+	->name('challenges.new')
+	->middleware('verified');
+// To manipulate route with GET method to fix errors
+Route::get('/admin/challenges/new', function () {
+	return redirect()->route('challenges');
+})->middleware('verified');

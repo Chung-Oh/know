@@ -40,11 +40,11 @@
 								</div>
 								@endforeach
 								<!-- Card bellow showing challenges ready to create -->
-								@CardReady
+								@CardReadyQuestion
 									@slot('questions', $questions)
 									@slot('categories', $categories)
 									@slot('levels', $levels)
-								@endCardReady
+								@endCardReadyQuestion
 							</div>
 						</div>
 					</section>
