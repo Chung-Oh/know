@@ -9,6 +9,9 @@ class Level extends Model
 	// protected $table = 'level' // Alter table name
 	// public $timestamps = false;
 
+	/*----------------------------------------------------------------------------------------
+    | Relationships with another Models, and too in the Database                             |
+    |---------------------------------------------------------------------------------------*/
 	public function questions()
 	{
 		return $this->belongsTo('App\Question', 'level_id', 'id');

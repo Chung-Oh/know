@@ -49265,8 +49265,8 @@ $('#formDetail').on('show.bs.modal', function (event) {
   modal.find('#alt4').text(alt4[0].content);
   modal.find('#alt5').text(alt5[0].content);
   modal.find('#creator').text(question.users[0].name);
-  modal.find('#created_at').text(dateFull(question.created_at));
-  modal.find('#updated_at').text(dateFull(question.updated_at) == dateFull(question.created_at) ? 'N/D' : dateFull(question.updated_at)); // Looking by true alternative
+  modal.find('#created_at').text(question.created_at);
+  modal.find('#updated_at').text(question.updated_at == question.created_at ? 'N/D' : question.updated_at); // Looking by true alternative
 
   var alternatives = [];
   alternatives.push(alt1, alt2, alt3, alt4, alt5);
@@ -49276,29 +49276,6 @@ $('#formDetail').on('show.bs.modal', function (event) {
     }
   });
 });
-
-function dateHandler(date) {
-  var day = date.slice(8, 10);
-  var month = date.slice(5, 7);
-  var year = date.slice(0, 4);
-  var msg = day + '/' + month + '/' + year;
-  return msg;
-}
-
-function timeHandler(date) {
-  var second = date.slice(17, 19);
-  var minute = date.slice(14, 16);
-  var hour = date.slice(11, 13);
-  var msg = hour + ':' + minute + ':' + second + ' hrs - ';
-  return msg;
-}
-
-function dateFull(date) {
-  var dat = dateHandler(date);
-  var time = timeHandler(date);
-  var msg = time + dat;
-  return msg;
-}
 
 /***/ }),
 

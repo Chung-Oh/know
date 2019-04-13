@@ -33,6 +33,41 @@
 
     <script src="{{ mix('js/app.js') }}"></script>
 
+    <script>
+        // Variables on Form vinculated in Level Challenge
+        var time = $('#times')
+        var experience = $('#experiences')
+        var opportunity = $('#opportunities')
+        var selGeography = $('.questionGeography')
+
+        // Element select on Form, here added event change
+        $('#levelChallengeId').change(function () {
+            // Here is Very Important, where we took the Option that was Selected in the Form
+            var select = $('#levelChallengeId').find(':selected')
+
+            // Convert string to JSON object
+            var contentsLevel = JSON.parse(select[0].dataset.levelChallenge)
+            var questions = JSON.parse(select[0].dataset.questions)
+
+            // About Level Challenge
+            time.text(contentsLevel.times[0].type)
+            experience.text(contentsLevel.experiences[0].type)
+            opportunity.text(contentsLevel.opportunities[0].type)
+
+            // Questions bellow Form
+            questions.forEach(function (item) {
+                selGeography.append("<option value='" + item.id + "'>"  + contentHandler(item.content) + "</option>")
+                console.log(item.content.length)
+            })
+
+            // console.log(selGeography)
+        })
+
+        function contentHandler(item) {
+            return item.length >= 100 ? (item.slice(0, 100) + '...') : item;
+        }
+    </script>
+
     <!-- Calling the jQuery Plugin function to sort the tables -->
     <script>
         $(function(){

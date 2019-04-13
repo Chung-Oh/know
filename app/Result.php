@@ -18,6 +18,9 @@ class Result extends Model
     	'challenge_id',
     ];
 
+    /*----------------------------------------------------------------------------------------
+    | Relationships with another Models, and too in the Database                             |
+    |---------------------------------------------------------------------------------------*/
     public function users()
     {
     	return $this->hasMany('App\User', 'id', 'user_id');

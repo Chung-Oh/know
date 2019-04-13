@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Question;
 use App\Challenge;
 use App\Alternative;
@@ -13,23 +14,18 @@ class ChallengeController extends Controller
 {
     public function index()
     {
+        $categories = Category::all();
     	$alternatives = Alternative::with(['questions'])->get();
         $questions = Question::with(['levels', 'categories', 'users'])->get();
-        $levelChallenges = LevelChallenge::with(['levels', 'experiences', 'opportunities', 'times'])->get();
         $challenges = Challenge::with(['users', 'level_challenges'])->get();
-
-    	// echo '<pre>';
-    	// // print_r($levelChallenges[0]->levels[0]->name);
-     //    foreach ($levelChallenges as $l) :
-     //        print_r($l->levels[0]->name);
-     //    endforeach;
-    	// die();
+        $levelChallenges = LevelChallenge::with(['levels', 'experiences', 'opportunities', 'times'])->get();
 
     	return view('admin\challenge')
     		->with([
-    			'questions' => $questions,
-    			'challenges' => $challenges,
+                'categories' => $categories,
     			'alternatives' => $alternatives,
+                'questions' => $questions,
+                'challenges' => $challenges,
     			'levelChallenges' => $levelChallenges,
     		]);
     }

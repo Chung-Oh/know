@@ -12,8 +12,33 @@ class Question extends Model
     // protected $table = 'question'; // Alter table name
     protected $guarded = ['id'];
     protected $fillable = ['content', 'type', 'category_id', 'level_id', 'user_id', 'challenge_id'];
-    protected $dates = ['deleted_at'];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
+    public function getCreatedAtAttribute()
+    {
+        $date = $this->attributes['created_at'];
+        // Time
+        $time = substr($date, 11, 3) . substr($date, 14, 3) . substr($date, 17, 2) . ' - ';
+        // Date
+        $date = substr($date, 8, 2) . '/' . substr($date, 5, 2) . '/' . $year = substr($date, 0, 4);
+
+        return $time . $date;
+    }
+
+     public function getUpdatedAtAttribute()
+    {
+        $date = $this->attributes['updated_at'];
+        // Time
+        $time = substr($date, 11, 3) . substr($date, 14, 3) . substr($date, 17, 2) . ' - ';
+        // Date
+        $date = substr($date, 8, 2) . '/' . substr($date, 5, 2) . '/' . $year = substr($date, 0, 4);
+
+        return $time . $date;
+    }
+
+    /*----------------------------------------------------------------------------------------
+    | Relationships with another Models, and too in the Database                             |
+    |---------------------------------------------------------------------------------------*/
     public function alternatives()
     {
     	return $this->belongsTo('App\Alternative', 'question_id', 'id');

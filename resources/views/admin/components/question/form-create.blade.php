@@ -17,7 +17,7 @@
 					<!-- Input Type to find out if it was created by the Administrator or Contribution -->
 					<input id="type" type="hidden" name="type" value="{{ $type }}">
 					<div class="form-group d-flex justify-content-center">
-						<select name="category_id" class="form-control btn-cursor" required> <!-- Selecting Categories -->
+						<select name="category_id" class="form-control btn-cursor mr-1" required> <!-- Selecting Categories -->
 							<option id="categoryId" value="" selected disabled>{{ __('Choose a Category') }}</option>
 							@foreach ($categories as $c)
 								<option value="{{ $c->id }}">{{ $c->name }}</option>

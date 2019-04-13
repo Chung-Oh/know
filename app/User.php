@@ -29,6 +29,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
+    /*----------------------------------------------------------------------------------------
+    | Relationships with another Models, and too in the Database                             |
+    |---------------------------------------------------------------------------------------*/
     public function questions()
     {
         return $this->belongsTo('App\Question', 'user_id', 'id');

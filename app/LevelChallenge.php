@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class LevelChallenge extends Model
 {
+	/*----------------------------------------------------------------------------------------
+    | Relationships with another Models, and too in the Database                             |
+    |---------------------------------------------------------------------------------------*/
 	public function challenges()
 	{
 		return $this->belongsTo('App\Challenge', 'level_challenge_id', 'id');

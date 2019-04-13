@@ -10744,22 +10744,45 @@ a.text-dark:focus {
   content: "Updated At : ";
 }
 
-.con-table-question,
-.cat-table-question {
+.col-table-order {
   background: #6c757d;
   transition: 0.7s;
 }
 
-.con-table-question:focus,
-.con-table-question:hover,
-.cat-table-question:focus,
-.cat-table-question:hover {
+.col-table-order:focus,
+.col-table-order:hover {
   background: #38c172;
   transition: 0.7s;
 }
 
 .fa-sort {
-  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.btn-space {
+  margin-right: 2px;
+}
+
+#times::before,
+#experiences::before,
+#opportunities::before {
+  font-weight: bold;
+}
+
+#times::before {
+  content: "Time : ";
+}
+
+#experiences::before {
+  content: "Experience : ";
+}
+
+#opportunities::before {
+  content: "Opportunity : ";
+}
+
+.info-form-challenge {
+  background: #f5f6d3;
 }
 
 .screen-full {
@@ -10768,9 +10791,5 @@ a.text-dark:focus {
 
 .btn-cursor {
   cursor: pointer;
-}
-
-.btn-space {
-  margin-right: 2px;
 }
 

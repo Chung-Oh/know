@@ -11,6 +11,9 @@ class Alternative extends Model
 	protected $guarded = ['id'];
 	protected $fillable = ['content', 'type', 'question_id'];
 
+	/*----------------------------------------------------------------------------------------
+    | Relationships with another Models, and too in the Database                             |
+    |---------------------------------------------------------------------------------------*/
     public function questions()
     {
     	return $this->hasMany('App\Question', 'id', 'question_id');

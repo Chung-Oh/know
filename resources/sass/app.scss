@@ -19,13 +19,13 @@
 // Page Question
 @import 'pages/question';
 
+// Page Challenge
+@import 'pages/challenge';
+
 // Default class used on all pages
 .screen-full {
 	height: 100vh;
 }
 .btn-cursor {
 	cursor: pointer;
-}
-.btn-space {
-	margin-right: 2px;
 }

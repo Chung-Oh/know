@@ -9,9 +9,9 @@
 				<table class="tablesorter table table-sm table-hover text-center bg-light mb-0">
 					<thead class="bg-secondary">
 						<tr class="text-white">
-							<th scope="col">#</th>
-							<th scope="col" class="con-table-question btn-cursor"><i class="fas fa-sort"></i>{{ __('Question') }}</th>
-							<th scope="col" class="cat-table-question btn-cursor"><i class="fas fa-sort"></i>{{ __('Category') }}</th>
+							<th scope="col" class="col-table-order btn-cursor">#<i class="fas fa-sort"></i></th>
+							<th scope="col" class="col-table-order btn-cursor">{{ __('Question') }}<i class="fas fa-sort"></i></th>
+							<th scope="col" class="col-table-order btn-cursor">{{ __('Category') }}<i class="fas fa-sort"></i></th>
 							<th scope="col">{{ __('Functions') }}</th>
 						</tr>
 					</thead>

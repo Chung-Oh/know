@@ -14,6 +14,9 @@ class Challenge extends Model
     protected $fillable = ['user_id', 'level_challenge_id'];
     protected $dates = ['deleted_at'];
 
+    /*----------------------------------------------------------------------------------------
+    | Relationships with another Models, and too in the Database                             |
+    |---------------------------------------------------------------------------------------*/
     public function questions()
     {
         return $this->belongsTo('App\Question', 'challenge_id', 'id');

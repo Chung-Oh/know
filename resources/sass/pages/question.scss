@@ -28,20 +28,21 @@
 }
 
 // Table inside the Accordion
-.con-table-question,
-.cat-table-question {
+.col-table-order {
 	background: #6c757d;
 	transition: .7s;
 }
 
-.con-table-question:focus,
-.con-table-question:hover,
-.cat-table-question:focus,
-.cat-table-question:hover {
+.col-table-order:focus,
+.col-table-order:hover {
 	background: #38c172;
 	transition: .7s;
 }
 
 .fa-sort {
-	margin-right: 5px;
+	margin-left: 5px;
+}
+// Button Table
+.btn-space {
+	margin-right: 2px;
 }

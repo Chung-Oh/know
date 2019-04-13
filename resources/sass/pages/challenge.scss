@@ -1,0 +1,23 @@
+// Form
+#times::before,
+#experiences::before,
+#opportunities::before {
+	font-weight: bold;
+}
+
+#times::before {
+	content: 'Time : ';
+}
+
+#experiences::before {
+	content: 'Experience : ';
+}
+
+#opportunities::before {
+	content: 'Opportunity : ';
+}
+
+// Color of the informations on form above
+.info-form-challenge {
+	background: #f5f6d3;
+}

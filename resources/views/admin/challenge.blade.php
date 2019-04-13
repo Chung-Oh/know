@@ -15,6 +15,8 @@
 
 	<!----------------------------- MODAL FORM CREATE ----------------------------->
 	@FormCreateChallenge
+		@slot('categories', $categories)
+		@slot('questions', $questions)
 		@slot('levelChallenges', $levelChallenges)
 	@endFormCreateChallenge
 
@@ -48,16 +50,16 @@
 							<thead class="bg-secondary">
 								<tr class="text-white">
 									<th scope="col">#</th>
-									<th scope="col">Created By</th>
-									<th scope="col">Created At</th>
+									<th scope="col">By</th>
+									<th scope="col">In</th>
 									<th scope="col">Functions</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>1</td>
+									<td>1551</td>
 									<td>Daniel Chung</td>
-									<td>18:09:07 hrs - 08/04/2019</td>
+									<td>18:09:07 - 08/04/2019</td>
 									<td class="d-flex justify-content-center">
 										<button type="button" class="btn-space btn btn-outline-info btn-sm fas fa-search icon-search"></button>
 										<button type="button" class="btn-space btn btn-outline-success btn-sm fas fa-pencil-alt"></button>
