@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Alternative;
 use App\Question;
 use App\Challenge;
-use App\Alternative;
 use App\LevelChallenge;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,7 +15,6 @@ class ChallengeController extends Controller
     public function index()
     {
         $categories = Category::all();
-    	$alternatives = Alternative::with(['questions'])->get();
         $questions = Question::with(['levels', 'categories', 'users'])->get();
         $challenges = Challenge::with(['users', 'level_challenges'])->get();
         $levelChallenges = LevelChallenge::with(['levels', 'experiences', 'opportunities', 'times'])->get();
@@ -23,7 +22,6 @@ class ChallengeController extends Controller
     	return view('admin\challenge')
     		->with([
                 'categories' => $categories,
-    			'alternatives' => $alternatives,
                 'questions' => $questions,
                 'challenges' => $challenges,
     			'levelChallenges' => $levelChallenges,
@@ -32,6 +30,12 @@ class ChallengeController extends Controller
 
     public function create(Request $request)
     {
-        echo 'Challenge successfully registered!';
+        echo '<pre>';
+        dd($request->all());
+    }
+    // Method for Ajax
+    public function alternatives($idQuestion)
+    {
+        return response()->json(Alternative::all()->where('question_id', $idQuestion));
     }
 }

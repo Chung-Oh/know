@@ -1,4 +1,4 @@
- $('#formDelete').on('show.bs.modal', function (event) {
+ $('#formDelete').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
     var question = button.data('question') // Extract info from data-* attributes
 

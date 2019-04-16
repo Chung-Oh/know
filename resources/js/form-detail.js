@@ -1,4 +1,4 @@
-$('#formDetail').on('show.bs.modal', function (event) {
+$('#formDetail').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
     var question = button.data('question') // Extract info from data-* attributes
     var alt1 = button.data('alt1')
@@ -26,7 +26,7 @@ $('#formDetail').on('show.bs.modal', function (event) {
     // Looking by true alternative
     var alternatives = []
     alternatives.push(alt1, alt2, alt3, alt4, alt5)
-    alternatives.forEach(function (alt) {
+    alternatives.forEach(function(alt) {
         if (alt[0].type === 1) {
             modal.find('#altTrue').text('True is : "' + alt[0].content + '".')
         }

@@ -74,6 +74,9 @@ Route::get('/admin/challenges', 'Admin\ChallengeController@index')
 	->name('challenges')
 	->middleware('verified');
 
+Route::get('/admin/challenges/{idQuestion}', 'Admin\ChallengeController@alternatives')
+	->middleware('verified');
+
 Route::post('/admin/challenges/new', 'Admin\ChallengeController@create')
 	->name('challenges.new')
 	->middleware('verified');
