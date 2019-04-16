@@ -33,7 +33,7 @@
 							<div class="container d-flex justify-content-center">
 								<!-- Selecting questions with details -->
 								<div class="container col-xl-6">
-									<select id="question{{ $i }}" name="question{{ $i }}" class="question{{ $c->name }} form-control btn-cursor" required>
+									<select id="question{{ $i }}" name="question_{{ $i }}" class="question{{ $c->name }} form-control btn-cursor" required>
 										<option value="" selected disabled>{{ __('Choose a Question ') }}{{ $i }}</option>
 									</select>
 									<details class="text-warning mt-2" hidden>
@@ -41,7 +41,7 @@
 										<div class="container rounded-top bg-secondary text-light">
 											<p class="text-break pt-2 pb-1 mb-0"></p>
 										</div>
-										<ol class="rounded-bottom bg-secondary text-light text-left mb-0">
+										<ol class="rounded-bottom bg-secondary text-light text-left pb-1 mb-0">
 											<li></li>
 											<li></li>
 											<li></li>
@@ -52,7 +52,7 @@
 								</div>
 								<!-- Selecting questions with details -->
 								<div class="container col-xl-6">
-									<select id="question{{ $i }}" name="question{{ $i }}" class="question{{ $c->name }} form-control btn-cursor" required>
+									<select id="question{{ $i }}" name="question_{{ $i }}" class="question{{ $c->name }} form-control btn-cursor" required>
 										<option value="" selected disabled>{{ __('Choose a Question ') }}{{ $i }}</option>
 									</select>
 									<details class="text-warning mt-2" hidden>
@@ -60,7 +60,7 @@
 										<div class="container rounded-top bg-secondary text-light">
 											<p class="text-break pt-2 pb-1 mb-0"></p>
 										</div>
-										<ol class="rounded-bottom bg-secondary text-light text-left mb-0">
+										<ol class="rounded-bottom bg-secondary text-light text-left pb-1 mb-0">
 											<li></li>
 											<li></li>
 											<li></li>

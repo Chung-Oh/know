@@ -49088,139 +49088,10 @@ btnTop.addEventListener("click", function (event) {
 
 /***/ }),
 
-/***/ "./resources/js/card-ready-question.js":
-/*!*********************************************!*\
-  !*** ./resources/js/card-ready-question.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// All categories cards
-var beginningWait = $('.BeginningWait');
-var intermediateWait = $('.IntermediateWait');
-var advancedWait = $('.AdvancedWait');
-var eruditWait = $('.EruditWait'); // Card Ready
-
-var beginningReady = $('#BeginningReady');
-var intermediateReady = $('#IntermediateReady');
-var advancedReady = $('#AdvancedReady');
-var eruditReady = $('#EruditReady');
-
-function bindCard(current, target) {
-  // Get value of current to work
-  var geo = Number(current[0].textContent);
-  var mat = Number(current[1].textContent);
-  var por = Number(current[2].textContent);
-  var sci = Number(current[3].textContent);
-  var sto = Number(current[4].textContent); // Adding all questions and dividing to loop through
-
-  var all = Math.round((geo + mat + por + sci + sto) / 10); // Variable responsible for to sum and add to in target
-
-  var sum = 0;
-
-  for (var i = 0; i <= all; i++) {
-    // Condition where all questions have two questions
-    if (geo >= 2 && mat >= 2 && por >= 2 && sci >= 2 && sto >= 2) {
-      // If enter this condition, the sum variable will receive the value
-      sum += 10; // All categories will decrements to dont enter this condition again
-
-      geo = geo - 2;
-      mat = mat - 2;
-      por = por - 2;
-      sci = sci - 2;
-      sto = sto - 2; // Here the sum variable will place the value on the target rounded to down
-
-      target[0].textContent = Math.floor(sum / 10);
-    }
-  } // Clean sum variable to next call
-
-
-  sum = 0;
-} // Condition for just the page of questions, no error on other pages
-
-
-if (window.location.pathname == '/admin/questions') {
-  bindCard(beginningWait, beginningReady);
-  bindCard(intermediateWait, intermediateReady);
-  bindCard(advancedWait, advancedReady);
-  bindCard(eruditWait, eruditReady);
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/ExampleComponent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/form-challenge.js":
-/*!****************************************!*\
-  !*** ./resources/js/form-challenge.js ***!
-  \****************************************/
+/***/ "./resources/js/challenge/form-challenge.js":
+/*!**************************************************!*\
+  !*** ./resources/js/challenge/form-challenge.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -49341,129 +49212,72 @@ function contentHandler(content) {
 
 /***/ }),
 
-/***/ "./resources/js/form-delete.js":
-/*!*************************************!*\
-  !*** ./resources/js/form-delete.js ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./resources/js/components/ExampleComponent.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/ExampleComponent.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-$('#formDelete').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget); // Button that triggered the modal
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
+/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-  var question = button.data('question'); // Extract info from data-* attributes
 
-  var modal = $(this);
-  modal.find('#idQuestion').val(question.id);
-  modal.find('#idMessage').text('Question ID : ' + question.id);
-  modal.find('#question').text(question.content);
-});
 
-/***/ }),
 
-/***/ "./resources/js/form-detail.js":
-/*!*************************************!*\
-  !*** ./resources/js/form-detail.js ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
 
-$('#formDetail').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget); // Button that triggered the modal
+/* normalize component */
 
-  var question = button.data('question'); // Extract info from data-* attributes
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
 
-  var alt1 = button.data('alt1');
-  var alt2 = button.data('alt2');
-  var alt3 = button.data('alt3');
-  var alt4 = button.data('alt4');
-  var alt5 = button.data('alt5');
-  var modal = $(this);
-  modal.find('#formQuestionModalLabel').text('Question details with ID : ' + question.id);
-  modal.find('#level').text(question.levels[0].name);
-  modal.find('#category').text(question.categories[0].name);
-  modal.find('#contentQuestion').val(question.content);
-  modal.find('#alt1').text(alt1[0].content);
-  modal.find('#alt2').text(alt2[0].content);
-  modal.find('#alt3').text(alt3[0].content);
-  modal.find('#alt4').text(alt4[0].content);
-  modal.find('#alt5').text(alt5[0].content);
-  modal.find('#creator').text(question.users[0].name);
-  modal.find('#created_at').text(question.created_at);
-  modal.find('#updated_at').text(question.updated_at == question.created_at ? 'N/D' : question.updated_at); // Looking by true alternative
-
-  var alternatives = [];
-  alternatives.push(alt1, alt2, alt3, alt4, alt5);
-  alternatives.forEach(function (alt) {
-    if (alt[0].type === 1) {
-      modal.find('#altTrue').text('True is : "' + alt[0].content + '".');
-    }
-  });
-});
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ExampleComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/form-question.js":
-/*!***************************************!*\
-  !*** ./resources/js/form-question.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-$('#formQuestion').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget); // Button that triggered the modal
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
-  var question = button.data('question'); // Extract info from data-* attributes
+/***/ }),
 
-  var alt1 = button.data('alt1');
-  var alt2 = button.data('alt2');
-  var alt3 = button.data('alt3');
-  var alt4 = button.data('alt4');
-  var alt5 = button.data('alt5'); // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-  var modal = $(this); // This condition serve to evite bug when for create questions
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-  if (question) {
-    // Modal Form Edit
-    modal.find('#formQuestionModalLabel').text('Update Question with ID : ' + question.id);
-    modal.find('form').attr('action', '/admin/questions/update');
-    modal.find('#idQuestion').val(question.id);
-    modal.find('#categoryId').prop('value', question.category_id);
-    modal.find('#categoryId').text(question.categories[0].name);
-    modal.find('#levelId').prop('value', question.level_id);
-    modal.find('#levelId').text(question.levels[0].name);
-    modal.find('#question').val(question.content);
-    modal.find('#alternative1').val(alt1[0].content);
-    modal.find('#alternative2').val(alt2[0].content);
-    modal.find('#alternative3').val(alt3[0].content);
-    modal.find('#alternative4').val(alt4[0].content);
-    modal.find('#alternative5').val(alt5[0].content);
-    modal.find('#radioAlternative1').prop('checked', alt1[0].type === 1 ? true : false);
-    modal.find('#radioAlternative2').prop('checked', alt2[0].type === 1 ? true : false);
-    modal.find('#radioAlternative3').prop('checked', alt3[0].type === 1 ? true : false);
-    modal.find('#radioAlternative4').prop('checked', alt4[0].type === 1 ? true : false);
-    modal.find('#radioAlternative5').prop('checked', alt5[0].type === 1 ? true : false);
-    modal.find('#btnFormQuestion').text('Update');
-  } else {
-    // Modal Form Create - here clean form
-    modal.find('#formQuestionModalLabel').text('New Question');
-    modal.find('form').attr('action', '/admin/questions/new');
-    modal.find('#idQuestion').val('');
-    modal.find('#categoryId').prop('value', '');
-    modal.find('#categoryId').text('Choose a Category');
-    modal.find('#levelId').prop('value', '');
-    modal.find('#levelId').text('Choose a Level');
-    modal.find('#question').val('Question...');
-    modal.find('#alternative1').val('Alternative 1');
-    modal.find('#alternative2').val('Alternative 2');
-    modal.find('#alternative3').val('Alternative 3');
-    modal.find('#alternative4').val('Alternative 4');
-    modal.find('#alternative5').val('Alternative 5');
-    modal.find('#radioAlternative1').prop('checked', true);
-    modal.find('#btnFormQuestion').text('To save');
-  }
-});
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
@@ -50382,6 +50196,192 @@ $('#formQuestion').on('show.bs.modal', function (event) {
 
 /***/ }),
 
+/***/ "./resources/js/question/card-ready-question.js":
+/*!******************************************************!*\
+  !*** ./resources/js/question/card-ready-question.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// All categories cards
+var beginningWait = $('.BeginningWait');
+var intermediateWait = $('.IntermediateWait');
+var advancedWait = $('.AdvancedWait');
+var eruditWait = $('.EruditWait'); // Card Ready
+
+var beginningReady = $('#BeginningReady');
+var intermediateReady = $('#IntermediateReady');
+var advancedReady = $('#AdvancedReady');
+var eruditReady = $('#EruditReady');
+
+function bindCard(current, target) {
+  // Get value of current to work
+  var geo = Number(current[0].textContent);
+  var mat = Number(current[1].textContent);
+  var por = Number(current[2].textContent);
+  var sci = Number(current[3].textContent);
+  var sto = Number(current[4].textContent); // Adding all questions and dividing to loop through
+
+  var all = Math.round((geo + mat + por + sci + sto) / 10); // Variable responsible for to sum and add to in target
+
+  var sum = 0;
+
+  for (var i = 0; i <= all; i++) {
+    // Condition where all questions have two questions
+    if (geo >= 2 && mat >= 2 && por >= 2 && sci >= 2 && sto >= 2) {
+      // If enter this condition, the sum variable will receive the value
+      sum += 10; // All categories will decrements to dont enter this condition again
+
+      geo = geo - 2;
+      mat = mat - 2;
+      por = por - 2;
+      sci = sci - 2;
+      sto = sto - 2; // Here the sum variable will place the value on the target rounded to down
+
+      target[0].textContent = Math.floor(sum / 10);
+    }
+  } // Clean sum variable to next call
+
+
+  sum = 0;
+} // Condition for just the page of questions, no error on other pages
+
+
+if (window.location.pathname == '/admin/questions') {
+  bindCard(beginningWait, beginningReady);
+  bindCard(intermediateWait, intermediateReady);
+  bindCard(advancedWait, advancedReady);
+  bindCard(eruditWait, eruditReady);
+}
+
+/***/ }),
+
+/***/ "./resources/js/question/form-delete.js":
+/*!**********************************************!*\
+  !*** ./resources/js/question/form-delete.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('#formDelete').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget); // Button that triggered the modal
+
+  var question = button.data('question'); // Extract info from data-* attributes
+
+  var modal = $(this);
+  modal.find('#idQuestion').val(question.id);
+  modal.find('#idMessage').text('Question ID : ' + question.id);
+  modal.find('#question').text(question.content);
+});
+
+/***/ }),
+
+/***/ "./resources/js/question/form-detail.js":
+/*!**********************************************!*\
+  !*** ./resources/js/question/form-detail.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('#formDetail').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget); // Button that triggered the modal
+
+  var question = button.data('question'); // Extract info from data-* attributes
+
+  var alt1 = button.data('alt1');
+  var alt2 = button.data('alt2');
+  var alt3 = button.data('alt3');
+  var alt4 = button.data('alt4');
+  var alt5 = button.data('alt5');
+  var modal = $(this);
+  modal.find('#formQuestionModalLabel').text('Question details with ID : ' + question.id);
+  modal.find('#level').text(question.levels[0].name);
+  modal.find('#category').text(question.categories[0].name);
+  modal.find('#contentQuestion').val(question.content);
+  modal.find('#alt1').text(alt1[0].content);
+  modal.find('#alt2').text(alt2[0].content);
+  modal.find('#alt3').text(alt3[0].content);
+  modal.find('#alt4').text(alt4[0].content);
+  modal.find('#alt5').text(alt5[0].content);
+  modal.find('#creator').text(question.users[0].name);
+  modal.find('#created_at').text(question.created_at);
+  modal.find('#updated_at').text(question.updated_at == question.created_at ? 'N/D' : question.updated_at); // Looking by true alternative
+
+  var alternatives = [];
+  alternatives.push(alt1, alt2, alt3, alt4, alt5);
+  alternatives.forEach(function (alt) {
+    if (alt[0].type === 1) {
+      modal.find('#altTrue').text('True is : "' + alt[0].content + '".');
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/question/form-question.js":
+/*!************************************************!*\
+  !*** ./resources/js/question/form-question.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('#formQuestion').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget); // Button that triggered the modal
+
+  var question = button.data('question'); // Extract info from data-* attributes
+
+  var alt1 = button.data('alt1');
+  var alt2 = button.data('alt2');
+  var alt3 = button.data('alt3');
+  var alt4 = button.data('alt4');
+  var alt5 = button.data('alt5'); // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+
+  var modal = $(this); // This condition serve to evite bug when for create questions
+
+  if (question) {
+    // Modal Form Edit
+    modal.find('#formQuestionModalLabel').text('Update Question with ID : ' + question.id);
+    modal.find('form').attr('action', '/admin/questions/update');
+    modal.find('#idQuestion').val(question.id);
+    modal.find('#categoryId').prop('value', question.category_id);
+    modal.find('#categoryId').text(question.categories[0].name);
+    modal.find('#levelId').prop('value', question.level_id);
+    modal.find('#levelId').text(question.levels[0].name);
+    modal.find('#question').val(question.content);
+    modal.find('#alternative1').val(alt1[0].content);
+    modal.find('#alternative2').val(alt2[0].content);
+    modal.find('#alternative3').val(alt3[0].content);
+    modal.find('#alternative4').val(alt4[0].content);
+    modal.find('#alternative5').val(alt5[0].content);
+    modal.find('#radioAlternative1').prop('checked', alt1[0].type === 1 ? true : false);
+    modal.find('#radioAlternative2').prop('checked', alt2[0].type === 1 ? true : false);
+    modal.find('#radioAlternative3').prop('checked', alt3[0].type === 1 ? true : false);
+    modal.find('#radioAlternative4').prop('checked', alt4[0].type === 1 ? true : false);
+    modal.find('#radioAlternative5').prop('checked', alt5[0].type === 1 ? true : false);
+    modal.find('#btnFormQuestion').text('Update');
+  } else {
+    // Modal Form Create - here clean form
+    modal.find('#formQuestionModalLabel').text('New Question');
+    modal.find('form').attr('action', '/admin/questions/new');
+    modal.find('#idQuestion').val('');
+    modal.find('#categoryId').prop('value', '');
+    modal.find('#categoryId').text('Choose a Category');
+    modal.find('#levelId').prop('value', '');
+    modal.find('#levelId').text('Choose a Level');
+    modal.find('#question').val('Question...');
+    modal.find('#alternative1').val('Alternative 1');
+    modal.find('#alternative2').val('Alternative 2');
+    modal.find('#alternative3').val('Alternative 3');
+    modal.find('#alternative4').val('Alternative 4');
+    modal.find('#alternative5').val('Alternative 5');
+    modal.find('#radioAlternative1').prop('checked', true);
+    modal.find('#btnFormQuestion').text('To save');
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/tooltip-welcome.js":
 /*!*****************************************!*\
   !*** ./resources/js/tooltip-welcome.js ***!
@@ -50410,21 +50410,21 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/btn-top.js ./resources/js/card-ready-question.js ./resources/js/form-challenge.js ./resources/js/form-delete.js ./resources/js/form-detail.js ./resources/js/form-question.js ./resources/js/jquery.tablesorter.min.js ./resources/js/tooltip-welcome.js ./resources/sass/app.scss ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/btn-top.js ./resources/js/challenge/form-challenge.js ./resources/js/jquery.tablesorter.min.js ./resources/js/question/card-ready-question.js ./resources/js/question/form-delete.js ./resources/js/question/form-detail.js ./resources/js/question/form-question.js ./resources/js/tooltip-welcome.js ./resources/sass/app.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\btn-top.js */"./resources/js/btn-top.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\card-ready-question.js */"./resources/js/card-ready-question.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\form-challenge.js */"./resources/js/form-challenge.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\form-delete.js */"./resources/js/form-delete.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\form-detail.js */"./resources/js/form-detail.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\form-question.js */"./resources/js/form-question.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\challenge\form-challenge.js */"./resources/js/challenge/form-challenge.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\jquery.tablesorter.min.js */"./resources/js/jquery.tablesorter.min.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\question\card-ready-question.js */"./resources/js/question/card-ready-question.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\question\form-delete.js */"./resources/js/question/form-delete.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\question\form-detail.js */"./resources/js/question/form-detail.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\question\form-question.js */"./resources/js/question/form-question.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\tooltip-welcome.js */"./resources/js/tooltip-welcome.js");
 module.exports = __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\sass\app.scss */"./resources/sass/app.scss");
 
