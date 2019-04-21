@@ -49106,13 +49106,13 @@ var selectPortuguese = $('.questionPortuguese');
 var selectScience = $('.questionScience');
 var selectStory = $('.questionStory'); // Primary selection element in form, added event change here
 
-$('#levelChallengeId').change(function () {
+$('#primarySelect').change(function () {
   allSelectQuestion(); // Placing event of changes in the Selection of Questions
 
   cleanOptionPrimary(); // Clean All tag Select
   // Here is Very Important, where we took the Option that was Selected in the Form
 
-  var select = $('#levelChallengeId').find(':selected'); // Convert string to JSON object
+  var select = $('#primarySelect').find(':selected'); // Convert string to JSON object
 
   var contentsLevel = JSON.parse(select[0].dataset.levelChallenge);
   var questions = JSON.parse(select[0].dataset.questions); // About Level Challenge
@@ -49123,6 +49123,32 @@ $('#levelChallengeId').change(function () {
 
   var option = Object.entries(questions); // Placing the options in the correct categories
 
+  inputOptions(option);
+}); // Placing Change Events in Select Questions
+
+function allSelectQuestion() {
+  // Generic variable to work with question content
+  var content; // When the question is selected the loop will go through and put the information in detail
+
+  for (var i = 1; i <= 10; i++) {
+    $('#question' + i).change(function (elemSelect) {
+      // Remove attribute hidden of detail tag
+      tagDetail = elemSelect.target.parentNode.children[1];
+      tagDetail.removeAttribute('hidden'); // Getting paragraphy of detail
+
+      content = elemSelect.target.parentNode.children[1].children[1].children[0]; // Put content in paragraphy
+
+      content.innerHTML = elemSelect.target.options[elemSelect.target.options.selectedIndex].dataset.content;
+      idQuestion = elemSelect.target.options[elemSelect.target.options.selectedIndex].value;
+      tagOL = elemSelect.target.parentNode.children[1].children[1].children[1]; // Call AJAX bellow for to get Alternatives
+
+      getAlternatives(tagOL);
+    });
+  }
+} // Putting the options about level challenge
+
+
+function inputOptions(option) {
   option.forEach(function (item) {
     // Condition to know if the category is right and if the question does not have a challenge
     if (item[1].category_id == 1 && item[1].challenge_id == null) {
@@ -49145,43 +49171,6 @@ $('#levelChallengeId').change(function () {
       selectStory.append("<option class='option-sec' data-content='" + item[1].content + "' value='" + item[1].id + "'>" + contentHandler(item[1].content) + "</option>");
     }
   });
-}); // Placing Change Events in Select Questions
-
-function allSelectQuestion() {
-  // Generic variable to work with question content
-  var content; // When the question is selected the loop will go through and put the information in detail
-
-  for (var i = 1; i <= 10; i++) {
-    $('#question' + i).change(function (elemSelect) {
-      // Remove attribute hidden of detail tag
-      tagDetail = elemSelect.target.parentNode.children[1];
-      tagDetail.removeAttribute('hidden'); // Getting paragraphy of detail
-
-      content = elemSelect.target.parentNode.children[1].children[1].children[0]; // Put content in paragraphy
-
-      content.innerHTML = elemSelect.target.options[elemSelect.target.options.selectedIndex].dataset.content;
-      idQuestion = elemSelect.target.options[elemSelect.target.options.selectedIndex].value;
-      tagOL = elemSelect.target.parentNode.children[1].children[2]; // Using Ajax for to get Alternatives
-
-      var xhttp = new XMLHttpRequest();
-
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          // Convert String response to Json
-          alternatives = JSON.parse(this.responseText); // Reusing variable by putting Json to Array
-
-          alternatives = Object.entries(alternatives);
-          alternatives.forEach(function (alt, index) {
-            tagOL.children[index].innerHTML = alt[1].content;
-            tagOL.children[index].setAttribute('class', alt[1].type == 1 ? 'text-warning font-weight-bold' : '');
-          });
-        }
-      };
-
-      xhttp.open("GET", "/admin/challenges/" + idQuestion, true);
-      xhttp.send();
-    });
-  }
 } // Clean options of select tag
 
 
@@ -49208,6 +49197,195 @@ function cleanOptionPrimary() {
 
 function contentHandler(content) {
   return content.length >= 50 ? content.slice(0, 50) + '...' : content;
+} // Function helper to above loop
+
+
+function firstOptionQuestion(category, listQuestions) {
+  // Take the last questions (those of the challenge), and put in the select tag
+  var type = 0; // Variable to distinguish last and penultimate question, to be presented in the select tag
+
+  var selectQuestion = category.children[0]; // Getting element Select
+
+  if (Number(category.name.charAt(category.name.length - 1)) % 2) {
+    type = 2;
+  } else {
+    type = 1;
+  } // Remove and add the selected attribute to stay focused on the first option
+
+
+  selectQuestion.removeAttribute('selected');
+  selectQuestion.setAttribute('selected', true); // Put value ID on Select Tag
+
+  selectQuestion.setAttribute('value', category.children[category.children.length - type].value); // Put question content on data attribute
+
+  insertDataOption(selectQuestion, listQuestions); // Put text of question on Select Tag
+
+  selectQuestion.innerHTML = category.children[category.children.length - type].textContent; // Put question in paragraphy
+
+  category.parentNode.children[1].children[1].children[0].innerHTML = category.children[category.children.length - type].textContent; // Getting id of question to pass on parameter to AJAX
+
+  idQuestion = category.children[category.children.length - type].value; // Getting tag OL to pass alternatives after response of AJAX
+
+  tagOL = category.parentNode.children[1].children[1].children[1]; // Call AJAX bellow for to get Alternatives
+
+  getAlternatives(tagOL); // Removing attribute hidden of Detail Tag
+
+  category.parentNode.children[1].removeAttribute('hidden'); // Remove the options that belong to the challenge from the list
+
+  removeLastOption(category, category.children[category.children.length - 1]);
+  removeLastOption(category, category.children[category.children.length - 1]);
+} // Insert data content in option
+
+
+function insertDataOption(target, args) {
+  args.forEach(function (item) {
+    if (target.value == item.id) {
+      target.setAttribute('data-content', item.content);
+    }
+  });
+} // Removing option of edit the list option bellow
+
+
+function removeLastOption(parent, child) {
+  parent.removeChild(child);
+}
+
+function listAllQuestions(questions, challenge) {
+  // List of questions that do not have challenges
+  // Taken from the select primary to concatenate when you edit the challenge
+  var listQuestions = [];
+  var temp;
+
+  for (var i = 1; i < 5; i++) {
+    if ($('#primarySelect')[0].children[i].dataset.questions.length > 2) {
+      temp = JSON.parse($('#primarySelect')[0].children[i].dataset.questions);
+
+      for (var index in temp) {
+        listQuestions.push(temp[index]);
+      }
+    }
+  } // Fix bug, Array for the first challenge and objects for the others
+
+
+  if (questions.length == 10) {
+    // Placing the questions that will be edited in the list of questions
+    $(questions).each(function (index, question) {
+      listQuestions.push(question);
+    });
+  } else {
+    for (var index in questions) {
+      listQuestions.push(questions[index]);
+    }
+  } // Filtering questions by category and level
+
+
+  var matters = ['Geography', 'Mathematics', 'Portuguese', 'Science', 'Story'];
+  matters.forEach(function (matter, indexCat) {
+    $('.question' + matter).each(function (index, category) {
+      listQuestions.forEach(function (question) {
+        if (question.category_id == indexCat + 1 && question.level_id == challenge.level_challenge_id) {
+          $(category).append("<option class='option-sec' data-content='" + question.content + "' value='" + question.id + "'>" + contentHandler(question.content) + "</option>");
+        }
+      });
+      firstOptionQuestion(category, listQuestions);
+    });
+  });
+} // Clear all sub-categories
+
+
+function cleanSubCategories() {
+  for (var i = 1; i <= 10; i++) {
+    $('#question' + i)[0].children[0].innerHTML = 'Choose a Question ' + i;
+  }
+} // Modal Form for Create and Edit
+
+
+$('#formChallenge').on('show.bs.modal', function (event) {
+  // Invoke function to show Tag Detail
+  allSelectQuestion(); // Clean all categories options
+
+  $('.option-sec').remove(); // Getting data attributes by event change
+
+  var button = $(event.relatedTarget);
+  var challenge = button.data('challenge');
+  var questions = button.data('questions');
+  var modal = $(this);
+
+  if (challenge) {
+    modal.find('#formChallengeModalLabel').text('Update Challenge with ID : ' + challenge.id);
+    modal.find('form').attr('action', '/admin/challenges/update');
+    modal.find('#idChallenge').val(challenge.id);
+    modal.find('#levelChallengeId').prop('value', challenge.level_challenge_id);
+    $('.bool').removeAttr('disabled'); // Removing attribute Disabled for to Update
+
+    modal.find('#btnFormChallenge').text('Update'); // Call AJAX bellow for to get informations about Level Challenges, pass ID on parameter
+
+    getInfoLevelChallenge(challenge.level_challenge_id); // List of questions that do not have challenges
+    // Taken from the select primary to concatenate when you edit the challenge
+
+    listAllQuestions(questions, challenge);
+  } else {
+    modal.find('#formChallengeModalLabel').text('New Challenge');
+    modal.find('form').attr('action', '/admin/challenges/new');
+    modal.find('#idChallenge').val('');
+    modal.find('#levelChallengeId').prop('value', '');
+    modal.find('#levelChallengeId').text('Choose a Level');
+    modal.find('#levelChallengeId').removeAttr('selected');
+    modal.find('#levelChallengeId').attr('selected', true);
+    $(time).text('');
+    $(experience).text('');
+    $(opportunity).text('');
+    cleanOptionPrimary();
+    cleanSubCategories();
+    $('.bool').attr('disabled', true); // Add attribute disabled in all tag select Questions
+
+    modal.find('#btnFormChallenge').text('To save');
+  }
+}); // Using AJAX for to get informations about Level Challenges
+
+function getInfoLevelChallenge(idLevelChallenge) {
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      // Convert String response to Json
+      var levelChallenge = JSON.parse(this.responseText); // Reusing variable by putting Json to Array
+
+      levelChallenge = Object.entries(levelChallenge); // Need remove attribute selected to display the value real when will edit
+
+      $('#levelChallengeId').attr('selected', false);
+      $('#levelChallengeId').attr('selected', true); // Putting return info on form
+
+      $('#levelChallengeId').text(levelChallenge[0][1].levels[0].name);
+      $('#experiences').text(levelChallenge[0][1].experiences[0].type);
+      $('#opportunities').text(levelChallenge[0][1].opportunities[0].type);
+      $('#times').text(levelChallenge[0][1].times[0].type);
+    }
+  };
+
+  xhttp.open("GET", "/admin/challenges/level_challenge/" + idLevelChallenge, true);
+  xhttp.send();
+} // Using AJAX for to get Alternatives
+
+
+function getAlternatives(list) {
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      // Convert String response to Json
+      var alternatives = JSON.parse(this.responseText); // Reusing variable by putting Json to Array
+
+      alternatives = Object.entries(alternatives);
+      alternatives.forEach(function (alt, index) {
+        list.children[index].innerHTML = alt[1].content;
+        list.children[index].setAttribute('class', alt[1].type == 1 ? 'text-warning font-weight-bold' : '');
+      });
+    }
+  };
+
+  xhttp.open("GET", "/admin/challenges/alternatives/" + idQuestion, true);
+  xhttp.send();
 }
 
 /***/ }),
@@ -50343,7 +50521,12 @@ $('#formQuestion').on('show.bs.modal', function (event) {
     // Modal Form Edit
     modal.find('#formQuestionModalLabel').text('Update Question with ID : ' + question.id);
     modal.find('form').attr('action', '/admin/questions/update');
-    modal.find('#idQuestion').val(question.id);
+    modal.find('#idQuestion').val(question.id); // Need remove attribute selected to display the value real when will edit
+
+    modal.find('#categoryId').attr('selected', false);
+    modal.find('#categoryId').attr('selected', true);
+    modal.find('#levelId').attr('selected', false);
+    modal.find('#levelId').attr('selected', true);
     modal.find('#categoryId').prop('value', question.category_id);
     modal.find('#categoryId').text(question.categories[0].name);
     modal.find('#levelId').prop('value', question.level_id);

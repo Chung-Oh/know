@@ -13,7 +13,7 @@
 	<div class="tab-pane fade show active" id="nav-waiting" role="tabpanel" aria-labelledby="nav-waiting-tab">
 		@AccordionTabQuestion
 			@slot('name', 'Waiting') <!-- Attribute name in tag -->
-			@slot('condition', FALSE) <!-- Condition to know if wait or challenge -->
+			@slot('condition', NULL) <!-- Condition to know if wait or challenge -->
 			<!-- Bellow, getting past variables from the Question file, and moving on to the next component -->
 			@slot('questions', $questions)
 			@slot('alternatives', $alternatives)

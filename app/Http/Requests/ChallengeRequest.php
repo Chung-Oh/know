@@ -25,7 +25,6 @@ class ChallengeRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            'level_challenge_id' => 'required|numeric',
             'question_1' => 'required|numeric|different:question_2',
             'question_2' => 'required|numeric',
             'question_3' => 'required|numeric|different:question_4',

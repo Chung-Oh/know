@@ -1,4 +1,4 @@
- $('#formQuestion').on('show.bs.modal', function(event) {
+$('#formQuestion').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
     var question = button.data('question') // Extract info from data-* attributes
     var alt1 = button.data('alt1')
@@ -15,6 +15,12 @@
         modal.find('#formQuestionModalLabel').text('Update Question with ID : ' + question.id)
         modal.find('form').attr('action', '/admin/questions/update')
         modal.find('#idQuestion').val(question.id)
+        // Need remove attribute selected to display the value real when will edit
+        modal.find('#categoryId').attr('selected', false)
+        modal.find('#categoryId').attr('selected', true)
+        modal.find('#levelId').attr('selected', false)
+        modal.find('#levelId').attr('selected', true)
+
         modal.find('#categoryId').prop('value', question.category_id)
         modal.find('#categoryId').text(question.categories[0].name)
         modal.find('#levelId').prop('value', question.level_id)

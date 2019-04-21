@@ -16,29 +16,29 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]); // Verify Email
 
-/*=========================================================================
-| 							APPLIACTION SECTION 						  |
-|========================================================================*/
-/*-------------------------------------------------------------------------
-| Page Home 															  |
-|------------------------------------------------------------------------*/
+/*========================================================================================
+|  									APPLIACTION SECTION				     	             |
+|=======================================================================================*/
+/*----------------------------------------------------------------------------------------
+| Page Home      							               								 |
+|---------------------------------------------------------------------------------------*/
 Route::get('/home', 'HomeController@index')
 	->name('home')
 	->middleware('verified');
 
-/*=========================================================================
-|  								ADMIN SECTION 							  |
-|========================================================================*/
-/*-------------------------------------------------------------------------
-| Page Dashboard 														  |
-|------------------------------------------------------------------------*/
+/*========================================================================================
+|  										ADMIN SECTION 						             |
+|=======================================================================================*/
+/*----------------------------------------------------------------------------------------
+| Page Dashboard 							               								 |
+|---------------------------------------------------------------------------------------*/
 Route::get('/admin/dashboard', 'Admin\DashboardController@index')
 	->name('dashboard')
 	->middleware('verified');
 
-/*-------------------------------------------------------------------------
-| Page Questions 														  |
-|------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------
+| Page Questions 							               								 |
+|---------------------------------------------------------------------------------------*/
 Route::get('/admin/questions', 'Admin\QuestionController@index')
 	->name('questions')
 	->middleware('verified');
@@ -54,6 +54,7 @@ Route::post('/admin/questions/update', 'Admin\QuestionController@update')
 Route::post('/admin/questions/destroy', 'Admin\QuestionController@destroy')
 	->name('questions.destroy')
 	->middleware('verified');
+
 // To manipulate route with GET method to fix errors
 Route::get('/admin/questions/new', function () {
 	return redirect()->route('questions');
@@ -67,20 +68,37 @@ Route::get('/admin/questions/destroy', function () {
 	return redirect()->route('questions');
 })->middleware('verified');
 
-/*-------------------------------------------------------------------------
-| Page Challenges 														  |
-|------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------
+| Page Challenges 																		 |
+|---------------------------------------------------------------------------------------*/
 Route::get('/admin/challenges', 'Admin\ChallengeController@index')
 	->name('challenges')
-	->middleware('verified');
-
-Route::get('/admin/challenges/{idQuestion}', 'Admin\ChallengeController@alternatives')
 	->middleware('verified');
 
 Route::post('/admin/challenges/new', 'Admin\ChallengeController@create')
 	->name('challenges.new')
 	->middleware('verified');
+
+Route::post('/admin/challenges/update', 'Admin\ChallengeController@update')
+	->name('challenges.update')
+	->middleware('verified');
+
 // To manipulate route with GET method to fix errors
 Route::get('/admin/challenges/new', function () {
 	return redirect()->route('challenges');
 })->middleware('verified');
+
+Route::get('/admin/challenges/update', function () {
+	return redirect()->route('challenges');
+})->middleware('verified');
+
+// AJAX to get all alternatives about question id on parameter
+Route::get(
+	'/admin/challenges/alternatives/{idQuestion}',
+	'Admin\ChallengeController@alternatives'
+)->middleware('verified');
+
+Route::get(
+	'/admin/challenges/level_challenge/{idLevelChallenge}',
+	'Admin\ChallengeController@levelChallenge'
+)->middleware('verified');

@@ -67,7 +67,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new Notifications\VerifyEmail);
     }
 
-    /**
+    /*========================================================================================
      * This method is of class Illuminate\Auth\Passwords\CanResetPassword
      * to override the default Laravel email template, the steps were:
      * 1 - command line = "php artisan make:notification MyResetClass"
@@ -104,7 +104,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *     }
      *
      * Edit the email text in resources / views / vendor / notifications / email.blade.php if you want
-    */
+     *=======================================================================================*/
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));

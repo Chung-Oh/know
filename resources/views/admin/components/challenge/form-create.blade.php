@@ -3,7 +3,7 @@
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header bg-success">
-				<h5 id="formChallengeModalLabel" class="modal-title text-light font-weight-bold">New Challenge</h5>
+				<h5 id="formChallengeModalLabel" class="modal-title text-light font-weight-bold"></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -15,8 +15,8 @@
 					<input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> <!-- ID User -->
 					<input id="idChallenge" type="hidden" name="id_challenge" value=""> <!-- ID Question -->
 					<div class="form-group d-flex justify-content-center text-center mb-0 row">
-						<select id="levelChallengeId" name="level_challenge_id" class="form-control btn-cursor float-left col-5 col-xl-3 mb-3 mr-1 ml-1" required>
-							<option value="" selected disabled>{{ __('Choose a Level') }}</option>
+						<select id="primarySelect" name="level_challenge_id" class="form-control btn-cursor float-left col-5 col-xl-3 mb-3 mr-1 ml-1" required>
+							<option id="levelChallengeId" value="" selected disabled>{{ __('Choose a Level') }}</option>
 							@foreach ($levelChallenges as $l)
 								<option value="{{ $l->id }}" data-level-challenge="{{ $l }}" data-questions="{{ $questions->where('level_id', $l->id)->where('challenge_id', NULL) }}">{{ $l->levels[0]->name }}</option>
 							@endforeach
@@ -34,39 +34,39 @@
 								<!-- Selecting questions with details -->
 								<div class="container col-xl-6">
 									<select id="question{{ $i }}" name="question_{{ $i }}" class="question{{ $c->name }} form-control btn-cursor" required>
-										<option value="" selected disabled>{{ __('Choose a Question ') }}{{ $i }}</option>
+										<option class="bool" value="" selected disabled>{{ __('Choose a Question ') }}{{ $i }}</option>
 									</select>
 									<details class="text-warning mt-2" hidden>
 										<summary>{{ __('Question ') }}{{ $i++ }}</summary>
-										<div class="container rounded-top bg-secondary text-light">
+										<div class="border border-light rounded bg-secondary text-light">
 											<p class="text-break pt-2 pb-1 mb-0"></p>
+											<ol class="text-left pb-1 mb-0">
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+											</ol>
 										</div>
-										<ol class="rounded-bottom bg-secondary text-light text-left pb-1 mb-0">
-											<li></li>
-											<li></li>
-											<li></li>
-											<li></li>
-											<li></li>
-										</ol>
 									</details>
 								</div>
 								<!-- Selecting questions with details -->
 								<div class="container col-xl-6">
 									<select id="question{{ $i }}" name="question_{{ $i }}" class="question{{ $c->name }} form-control btn-cursor" required>
-										<option value="" selected disabled>{{ __('Choose a Question ') }}{{ $i }}</option>
+										<option class="bool" value="" selected disabled>{{ __('Choose a Question ') }}{{ $i }}</option>
 									</select>
 									<details class="text-warning mt-2" hidden>
 										<summary>{{ __('Question ') }}{{ $i++ }}</summary>
-										<div class="container rounded-top bg-secondary text-light">
+										<div class="border border-light rounded bg-secondary text-light">
 											<p class="text-break pt-2 pb-1 mb-0"></p>
+											<ol class="text-left pb-1 mb-0">
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+											</ol>
 										</div>
-										<ol class="rounded-bottom bg-secondary text-light text-left pb-1 mb-0">
-											<li></li>
-											<li></li>
-											<li></li>
-											<li></li>
-											<li></li>
-										</ol>
 									</details>
 								</div> <!-- End of Question Selection -->
 							</div>
@@ -74,7 +74,7 @@
 					@endforeach
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">{{ __('Cancel') }}</button>
-						<button type="submit" class="btn btn-primary">{{ __('To Save') }}</button>
+						<button id="btnFormChallenge" type="submit" class="btn btn-primary">{{ __('To Save') }}</button>
 					</div>
 				</form>
 			</div>

@@ -35,19 +35,19 @@
 						<textarea id="question" name="question" class="form-control" onfocus="this.value=''" maxlength="1000" placeholder="{{ __('Question...') }}" required></textarea>
 					</div>
 					<div class="form-group">
-						<input id="alternative1" name="alternative_1" type="text" class="form-control text-center" title="{{ ('Maximum of 255 characters') }}" pattern="^([\w\s\dáâãéêíóõôúç].{0,255})" placeholder="{{ __('Alternative 1') }}" onfocus="this.value=''" required>
+						<input id="alternative1" name="alternative_1" type="text" class="form-control text-center" title="{{ ('Maximum of 255 characters') }}" pattern="^([\w\s\dáâãéêíóõôúçÁ].{0,255})" placeholder="{{ __('Alternative 1') }}" onfocus="this.value=''" required>
 					</div>
 					<div class="form-group">
-						<input id="alternative2" name="alternative_2" type="text" class="form-control text-center" title="{{ ('Maximum of 255 characters') }}" pattern="^([\w\s\dáâãéêíóõôúç].{0,255})" placeholder="{{ __('Alternative 2') }}" onfocus="this.value=''" required>
+						<input id="alternative2" name="alternative_2" type="text" class="form-control text-center" title="{{ ('Maximum of 255 characters') }}" pattern="^([\w\s\dáâãéêíóõôúçÁ].{0,255})" placeholder="{{ __('Alternative 2') }}" onfocus="this.value=''" required>
 					</div>
 					<div class="form-group">
-						<input id="alternative3" name="alternative_3" type="text" class="form-control text-center" title="{{ ('Maximum of 255 characters') }}" pattern="^([\w\s\dáâãéêíóõôúç].{0,255})" placeholder="{{ __('Alternative 3') }}" onfocus="this.value=''" required>
+						<input id="alternative3" name="alternative_3" type="text" class="form-control text-center" title="{{ ('Maximum of 255 characters') }}" pattern="^([\w\s\dáâãéêíóõôúçÁ].{0,255})" placeholder="{{ __('Alternative 3') }}" onfocus="this.value=''" required>
 					</div>
 					<div class="form-group">
-						<input id="alternative4" name="alternative_4" type="text" class="form-control text-center" title="{{ ('Maximum of 255 characters') }}" pattern="^([\w\s\dáâãéêíóõôúç].{0,255})" placeholder="{{ __('Alternative 4') }}" onfocus="this.value=''" required>
+						<input id="alternative4" name="alternative_4" type="text" class="form-control text-center" title="{{ ('Maximum of 255 characters') }}" pattern="^([\w\s\dáâãéêíóõôúçÁ].{0,255})" placeholder="{{ __('Alternative 4') }}" onfocus="this.value=''" required>
 					</div>
 					<div class="form-group">
-						<input id="alternative5" name="alternative_5" type="text" class="form-control text-center" title="{{ ('Maximum of 255 characters') }}" pattern="^([\w\s\dáâãéêíóõôúç].{0,255})" placeholder="{{ __('Alternative 5') }}" onfocus="this.value=''" required>
+						<input id="alternative5" name="alternative_5" type="text" class="form-control text-center" title="{{ ('Maximum of 255 characters') }}" pattern="^([\w\s\dáâãéêíóõôúçÁ].{0,255})" placeholder="{{ __('Alternative 5') }}" onfocus="this.value=''" required>
 					</div>
 					<!----------------------------- Choosing Correct Alternative ----------------------------->
 					<div class="text-center">

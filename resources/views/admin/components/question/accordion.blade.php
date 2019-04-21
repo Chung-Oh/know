@@ -12,12 +12,13 @@
 							<th scope="col" class="col-table-order btn-cursor">#<i class="fas fa-sort"></i></th>
 							<th scope="col" class="col-table-order btn-cursor">{{ __('Question') }}<i class="fas fa-sort"></i></th>
 							<th scope="col" class="col-table-order btn-cursor">{{ __('Category') }}<i class="fas fa-sort"></i></th>
-							<th scope="col">{{ __('Functions') }}</th>
+							<th scope="col">{{ __('Options') }}</th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach ($questions as $q) <!-- Type true for Admin and false for Contribute -->
-							@if ($q->level_id == $idLevel && $q->type == true)
+							<!-- Variable condition was passed by slot, where it is true for questions that have a challenge and null for not ones that do not have -->
+							@if ($q->level_id == $idLevel && $q->type == true && $q->challenge_id == $condition)
 								<tr class="row-question">
 									<td>{{ $q->id }}</td>
 									<td>{{ strlen($q->content) > 80 ? (substr($q->content, 0, 80) . "...") : ($q->content) }}</td>

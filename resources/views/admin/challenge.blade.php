@@ -21,7 +21,6 @@
 	@endFormCreateChallenge
 
 	<!----------------------------- MODAL FORM DETAILS ----------------------------->
-	<!----------------------------- MODAL FORM DELETE ----------------------------->
 
 	<!----------------------------- SECTION OF CHALLENGES WHERE YOU CAN CREATE, EDIT, SEE AND REMOVE ----------------------------->
 	<section class="container pb-5">
@@ -40,37 +39,40 @@
 		<!----------------------------- NAVEGATION TAB ABOUT QUESTIONS ----------------------------->
 		<div class="accordion pt-5" id="accordionChallenge">
 
-			<div class="card">
+			<div class="card"> <!-- Inicio do Slot Acccordion -->
 				<div class="card-header btn-cursor" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 					<h2 class="btn btn-link mb-0">Beginner Challenges</h2>
 				</div>
 				<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionChallenge">
 					<div class="card-body">
-						<table class="table table-sm table-hover text-center bg-light mb-0">
+						<table class="tablesorter table table-sm table-hover text-center bg-light mb-0">
 							<thead class="bg-secondary">
 								<tr class="text-white">
-									<th scope="col">#</th>
-									<th scope="col">By</th>
-									<th scope="col">In</th>
-									<th scope="col">Functions</th>
+									<th class="col-table-order btn-cursor" scope="col">#</th>
+									<th class="col-table-order btn-cursor" scope="col">{{ __('By') }}</th>
+									<th class="col-table-order btn-cursor" scope="col">{{ __('In') }}</th>
+									<th scope="col">{{ __('Options') }}</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>1551</td>
-									<td>Daniel Chung</td>
-									<td>18:09:07 - 08/04/2019</td>
-									<td class="d-flex justify-content-center">
-										<button type="button" class="btn-space btn btn-outline-info btn-sm fas fa-search icon-search"></button>
-										<button type="button" class="btn-space btn btn-outline-success btn-sm fas fa-pencil-alt"></button>
-										<button type="button" class="btn-space btn btn-outline-danger btn-sm fas fa-trash-alt"></button>
-									</td>
-								</tr>
+								@foreach ($challenges as $c)
+									@if ($c->level_challenge_id == 1) <!-- Configurar quando for criar Slot -->
+										<tr>
+											<td>{{ $c->id }}</td>
+											<td>{{ $c->users[0]->name }}</td>
+											<td>{{ $c->created_at }}</td>
+											<td class="d-flex justify-content-center">
+												<button type="button" class="btn-space btn btn-outline-info btn-sm fas fa-search icon-search" data-challenge="{{ $c }}" data-questions="{{ $questions->where('challenge_id', $c->id) }}"></button>
+												<button type="button" class="btn-space btn btn-outline-success btn-sm fas fa-pencil-alt" data-toggle="modal" data-target="#formChallenge" data-challenge="{{ $c }}" data-questions="{{ $questions->where('challenge_id', $c->id) }}"></button>
+											</td>
+										</tr>
+									@endif
+								@endforeach
 							</tbody>
 						</table>
 					</div>
 				</div>
-			</div>
+			</div> <!-- Fim accordion -->
 
 			<div class="card">
 				<div class="card-header btn-cursor" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
