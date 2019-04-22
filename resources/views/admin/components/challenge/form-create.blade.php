@@ -1,5 +1,5 @@
 <!----------------------------- THIS SECTION USES MODAL AS FORM CREATE ----------------------------->
-<section id="formChallenge" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="formChallengeModalLabel" aria-hidden="true" data-backdrop="static">
+<section id="formCreateChallenge" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="formChallengeModalLabel" aria-hidden="true" data-backdrop="static">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header bg-success">
@@ -21,18 +21,18 @@
 								<option value="{{ $l->id }}" data-level-challenge="{{ $l }}" data-questions="{{ $questions->where('level_id', $l->id)->where('challenge_id', NULL) }}">{{ $l->levels[0]->name }}</option>
 							@endforeach
 						</select>
-						<p id="times" class="form-control info-form-challenge float-left col-5 col-xl-2"></p>
-						<p id="experiences" class="form-control info-form-challenge float-left col-5 col-xl-3 mr-1 ml-1"></p>
-						<p id="opportunities" class="form-control info-form-challenge float-left col-5 col-xl-3"></p>
+						<p id="time" class="form-control info-form-challenge float-left col-5 col-xl-2"></p>
+						<p id="experience" class="form-control info-form-challenge float-left col-5 col-xl-3 mr-1 ml-1"></p>
+						<p id="opportunity" class="form-control info-form-challenge float-left col-5 col-xl-3"></p>
 					</div>
 					<input type="hidden" value="{{ $i = 1 }}"> <!-- For represent Questions -->
 					@foreach ($categories as $c)
 						<hr class="bg-light mt-0 mb-1">
 						<div class="form-group d-flex justify-content-center text-center row">
 							<h5 class="container text-light mt-2">{{ $c->name }}</h5>
-							<div class="container d-flex justify-content-center">
+							<div class="container">
 								<!-- Selecting questions with details -->
-								<div class="container col-xl-6">
+								<div class="container float-left col-xl-6 col-12 mb-3">
 									<select id="question{{ $i }}" name="question_{{ $i }}" class="question{{ $c->name }} form-control btn-cursor" required>
 										<option class="bool" value="" selected disabled>{{ __('Choose a Question ') }}{{ $i }}</option>
 									</select>
@@ -51,7 +51,7 @@
 									</details>
 								</div>
 								<!-- Selecting questions with details -->
-								<div class="container col-xl-6">
+								<div class="container float-left col-xl-6 col-12">
 									<select id="question{{ $i }}" name="question_{{ $i }}" class="question{{ $c->name }} form-control btn-cursor" required>
 										<option class="bool" value="" selected disabled>{{ __('Choose a Question ') }}{{ $i }}</option>
 									</select>

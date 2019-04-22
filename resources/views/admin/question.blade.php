@@ -3,6 +3,7 @@
 @section('title', 'EuSei – Questions')
 
 @section('content')
+
 	<!----------------------------- QUESTION MANIPULATION RESPONSE ----------------------------->
 	@if (session('status'))
 		@Alert @endAlert
@@ -28,6 +29,7 @@
 
 	<!------------------- SECTION OF QUESTIONS WHERE YOU CAN CREATE, EDIT, DISPLAY AND REMOVE ------------------->
 	<section class="container pb-5">
+
 		<!----------------------------- A QUESTION SUMMARY PANEL CARD ----------------------------->
 		@PanelCardQuestion
 			@slot('title', 'Elaboration of Questions')
@@ -39,7 +41,7 @@
 
 		<!----------------------------- BUTTON TO CREATE QUESTION ----------------------------->
 		@ButtonCreate
-			@slot('nameModal', 'formQuestion')
+			@slot('nameModal', 'formCreateQuestion')
 			@slot('buttonName', 'New Question')
 		@endButtonCreate
 
@@ -50,10 +52,12 @@
 			@slot('questions', $questions)
 			@slot('alternatives', $alternatives)
 		@endNavegationTabQuestion
+
 	</section>
 
 	<!----------------------------- SET HEIGHT ON TABLET TO FILL HOLE ----------------------------->
 	@Fill
 		@slot('number', 30)
 	@endFill
+
 @endsection

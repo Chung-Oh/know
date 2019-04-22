@@ -1,5 +1,5 @@
 <!----------------------------- THIS SECTION USES MODAL AS FORM CREATE ----------------------------->
-<section id="formQuestion" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="formQuestionModalLabel" aria-hidden="true" data-backdrop="static">
+<section id="formCreateQuestion" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="formQuestionModalLabel" aria-hidden="true" data-backdrop="static">
 	<div class="modal-dialog modal-dialog-scrollable" role="document">
 		<div class="modal-content">
 			<div class="modal-header bg-success">

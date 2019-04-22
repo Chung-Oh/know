@@ -1,7 +1,7 @@
 // Fields in the Form vinculated in Level Challenge
-var time = $('#times')
-var experience = $('#experiences')
-var opportunity = $('#opportunities')
+var time = $('#time')
+var experience = $('#experience')
+var opportunity = $('#opportunity')
 // Element Select of Categories
 var selectGeography = $('.questionGeography')
 var selectMathematics = $('.questionMathematics')
@@ -36,14 +36,14 @@ function allSelectQuestion() {
     for (var i = 1; i <= 10; i++) {
         $('#question' + i).change(function(elemSelect) {
             // Remove attribute hidden of detail tag
-            tagDetail = elemSelect.target.parentNode.children[1]
+            var tagDetail = elemSelect.target.parentNode.children[1]
             tagDetail.removeAttribute('hidden')
             // Getting paragraphy of detail
             content = elemSelect.target.parentNode.children[1].children[1].children[0]
             // Put content in paragraphy
             content.innerHTML = elemSelect.target.options[elemSelect.target.options.selectedIndex].dataset.content
             idQuestion = elemSelect.target.options[elemSelect.target.options.selectedIndex].value
-            tagOL = elemSelect.target.parentNode.children[1].children[1].children[1]
+            var tagOL = elemSelect.target.parentNode.children[1].children[1].children[1]
             // Call AJAX bellow for to get Alternatives
             getAlternatives(tagOL)
         })
@@ -122,11 +122,12 @@ function firstOptionQuestion(category, listQuestions) {
     // Put text of question on Select Tag
     selectQuestion.innerHTML = category.children[category.children.length - type].textContent
     // Put question in paragraphy
-    category.parentNode.children[1].children[1].children[0].innerHTML = category.children[category.children.length - type].textContent
+    var detailParagraphy = category.parentNode.children[1].children[1].children[0]
+    detailParagraphy.innerHTML = category.children[category.children.length - type].dataset.content
     // Getting id of question to pass on parameter to AJAX
     idQuestion = category.children[category.children.length - type].value
     // Getting tag OL to pass alternatives after response of AJAX
-    tagOL = category.parentNode.children[1].children[1].children[1]
+    var tagOL = category.parentNode.children[1].children[1].children[1]
     // Call AJAX bellow for to get Alternatives
     getAlternatives(tagOL)
     // Removing attribute hidden of Detail Tag
@@ -197,7 +198,7 @@ function cleanSubCategories() {
 }
 
 // Modal Form for Create and Edit
-$('#formChallenge').on('show.bs.modal', function(event) {
+$('#formCreateChallenge').on('show.bs.modal', function(event) {
     // Invoke function to show Tag Detail
     allSelectQuestion()
     // Clean all categories options
@@ -212,10 +213,11 @@ $('#formChallenge').on('show.bs.modal', function(event) {
         modal.find('#formChallengeModalLabel').text('Update Challenge with ID : ' + challenge.id)
         modal.find('form').attr('action', '/admin/challenges/update')
         modal.find('#idChallenge').val(challenge.id)
+        modal.find('#primarySelect').attr('disabled', true)
         modal.find('#levelChallengeId').prop('value', challenge.level_challenge_id)
         $('.bool').removeAttr('disabled') // Removing attribute Disabled for to Update
         modal.find('#btnFormChallenge').text('Update')
-        // Call AJAX bellow for to get informations about Level Challenges, pass ID on parameter
+        // Get Level Challenge object and add to Form
         getInfoLevelChallenge(challenge.level_challenge_id)
         // List of questions that do not have challenges
         // Taken from the select primary to concatenate when you edit the challenge
@@ -224,6 +226,7 @@ $('#formChallenge').on('show.bs.modal', function(event) {
         modal.find('#formChallengeModalLabel').text('New Challenge')
         modal.find('form').attr('action', '/admin/challenges/new')
         modal.find('#idChallenge').val('')
+        modal.find('#primarySelect').removeAttr('disabled')
         modal.find('#levelChallengeId').prop('value', '')
         modal.find('#levelChallengeId').text('Choose a Level')
         modal.find('#levelChallengeId').removeAttr('selected')
@@ -240,25 +243,19 @@ $('#formChallenge').on('show.bs.modal', function(event) {
 
 // Using AJAX for to get informations about Level Challenges
 function getInfoLevelChallenge(idLevelChallenge) {
-    var xhttp = new XMLHttpRequest()
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            // Convert String response to Json
-            var levelChallenge = JSON.parse(this.responseText)
-            // Reusing variable by putting Json to Array
-            levelChallenge = Object.entries(levelChallenge)
+    var listInfoLevels = JSON.parse($('#levelChallenge')[0].dataset.levelChallenge)
+    $(listInfoLevels).each(function(index, obj) {
+        if (idLevelChallenge == obj.id) {
             // Need remove attribute selected to display the value real when will edit
             $('#levelChallengeId').attr('selected', false)
             $('#levelChallengeId').attr('selected', true)
-            // Putting return info on form
-            $('#levelChallengeId').text(levelChallenge[0][1].levels[0].name)
-            $('#experiences').text(levelChallenge[0][1].experiences[0].type)
-            $('#opportunities').text(levelChallenge[0][1].opportunities[0].type)
-            $('#times').text(levelChallenge[0][1].times[0].type)
+            // // Putting return info on form
+            $('#levelChallengeId').text(obj.levels[0].name)
+            $('#experience').text(obj.experiences[0].type)
+            $('#opportunity').text(obj.opportunities[0].type)
+            $('#time').text(obj.times[0].type)
         }
-    }
-    xhttp.open("GET", "/admin/challenges/level_challenge/" + idLevelChallenge, true)
-    xhttp.send()
+    })
 }
 
 // Using AJAX for to get Alternatives

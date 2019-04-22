@@ -1,5 +1,5 @@
 <!----------------------------- THIS SECTION USES MODAL AS FORM DELETE ----------------------------->
-<section id="formDelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="formQuestionModalLabel" aria-hidden="true" data-backdrop="static">
+<section id="formDeleteQuestion" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="formQuestionModalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-success">

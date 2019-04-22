@@ -49096,9 +49096,9 @@ btnTop.addEventListener("click", function (event) {
 /***/ (function(module, exports) {
 
 // Fields in the Form vinculated in Level Challenge
-var time = $('#times');
-var experience = $('#experiences');
-var opportunity = $('#opportunities'); // Element Select of Categories
+var time = $('#time');
+var experience = $('#experience');
+var opportunity = $('#opportunity'); // Element Select of Categories
 
 var selectGeography = $('.questionGeography');
 var selectMathematics = $('.questionMathematics');
@@ -49133,14 +49133,14 @@ function allSelectQuestion() {
   for (var i = 1; i <= 10; i++) {
     $('#question' + i).change(function (elemSelect) {
       // Remove attribute hidden of detail tag
-      tagDetail = elemSelect.target.parentNode.children[1];
+      var tagDetail = elemSelect.target.parentNode.children[1];
       tagDetail.removeAttribute('hidden'); // Getting paragraphy of detail
 
       content = elemSelect.target.parentNode.children[1].children[1].children[0]; // Put content in paragraphy
 
       content.innerHTML = elemSelect.target.options[elemSelect.target.options.selectedIndex].dataset.content;
       idQuestion = elemSelect.target.options[elemSelect.target.options.selectedIndex].value;
-      tagOL = elemSelect.target.parentNode.children[1].children[1].children[1]; // Call AJAX bellow for to get Alternatives
+      var tagOL = elemSelect.target.parentNode.children[1].children[1].children[1]; // Call AJAX bellow for to get Alternatives
 
       getAlternatives(tagOL);
     });
@@ -49222,11 +49222,12 @@ function firstOptionQuestion(category, listQuestions) {
 
   selectQuestion.innerHTML = category.children[category.children.length - type].textContent; // Put question in paragraphy
 
-  category.parentNode.children[1].children[1].children[0].innerHTML = category.children[category.children.length - type].textContent; // Getting id of question to pass on parameter to AJAX
+  var detailParagraphy = category.parentNode.children[1].children[1].children[0];
+  detailParagraphy.innerHTML = category.children[category.children.length - type].dataset.content; // Getting id of question to pass on parameter to AJAX
 
   idQuestion = category.children[category.children.length - type].value; // Getting tag OL to pass alternatives after response of AJAX
 
-  tagOL = category.parentNode.children[1].children[1].children[1]; // Call AJAX bellow for to get Alternatives
+  var tagOL = category.parentNode.children[1].children[1].children[1]; // Call AJAX bellow for to get Alternatives
 
   getAlternatives(tagOL); // Removing attribute hidden of Detail Tag
 
@@ -49300,7 +49301,7 @@ function cleanSubCategories() {
 } // Modal Form for Create and Edit
 
 
-$('#formChallenge').on('show.bs.modal', function (event) {
+$('#formCreateChallenge').on('show.bs.modal', function (event) {
   // Invoke function to show Tag Detail
   allSelectQuestion(); // Clean all categories options
 
@@ -49315,10 +49316,11 @@ $('#formChallenge').on('show.bs.modal', function (event) {
     modal.find('#formChallengeModalLabel').text('Update Challenge with ID : ' + challenge.id);
     modal.find('form').attr('action', '/admin/challenges/update');
     modal.find('#idChallenge').val(challenge.id);
+    modal.find('#primarySelect').attr('disabled', true);
     modal.find('#levelChallengeId').prop('value', challenge.level_challenge_id);
     $('.bool').removeAttr('disabled'); // Removing attribute Disabled for to Update
 
-    modal.find('#btnFormChallenge').text('Update'); // Call AJAX bellow for to get informations about Level Challenges, pass ID on parameter
+    modal.find('#btnFormChallenge').text('Update'); // Get Level Challenge object and add to Form
 
     getInfoLevelChallenge(challenge.level_challenge_id); // List of questions that do not have challenges
     // Taken from the select primary to concatenate when you edit the challenge
@@ -49328,6 +49330,7 @@ $('#formChallenge').on('show.bs.modal', function (event) {
     modal.find('#formChallengeModalLabel').text('New Challenge');
     modal.find('form').attr('action', '/admin/challenges/new');
     modal.find('#idChallenge').val('');
+    modal.find('#primarySelect').removeAttr('disabled');
     modal.find('#levelChallengeId').prop('value', '');
     modal.find('#levelChallengeId').text('Choose a Level');
     modal.find('#levelChallengeId').removeAttr('selected');
@@ -49344,27 +49347,19 @@ $('#formChallenge').on('show.bs.modal', function (event) {
 }); // Using AJAX for to get informations about Level Challenges
 
 function getInfoLevelChallenge(idLevelChallenge) {
-  var xhttp = new XMLHttpRequest();
-
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      // Convert String response to Json
-      var levelChallenge = JSON.parse(this.responseText); // Reusing variable by putting Json to Array
-
-      levelChallenge = Object.entries(levelChallenge); // Need remove attribute selected to display the value real when will edit
-
+  var listInfoLevels = JSON.parse($('#levelChallenge')[0].dataset.levelChallenge);
+  $(listInfoLevels).each(function (index, obj) {
+    if (idLevelChallenge == obj.id) {
+      // Need remove attribute selected to display the value real when will edit
       $('#levelChallengeId').attr('selected', false);
-      $('#levelChallengeId').attr('selected', true); // Putting return info on form
+      $('#levelChallengeId').attr('selected', true); // // Putting return info on form
 
-      $('#levelChallengeId').text(levelChallenge[0][1].levels[0].name);
-      $('#experiences').text(levelChallenge[0][1].experiences[0].type);
-      $('#opportunities').text(levelChallenge[0][1].opportunities[0].type);
-      $('#times').text(levelChallenge[0][1].times[0].type);
+      $('#levelChallengeId').text(obj.levels[0].name);
+      $('#experience').text(obj.experiences[0].type);
+      $('#opportunity').text(obj.opportunities[0].type);
+      $('#time').text(obj.times[0].type);
     }
-  };
-
-  xhttp.open("GET", "/admin/challenges/level_challenge/" + idLevelChallenge, true);
-  xhttp.send();
+  });
 } // Using AJAX for to get Alternatives
 
 
@@ -49380,6 +49375,85 @@ function getAlternatives(list) {
       alternatives.forEach(function (alt, index) {
         list.children[index].innerHTML = alt[1].content;
         list.children[index].setAttribute('class', alt[1].type == 1 ? 'text-warning font-weight-bold' : '');
+      });
+    }
+  };
+
+  xhttp.open("GET", "/admin/challenges/alternatives/" + idQuestion, true);
+  xhttp.send();
+}
+
+/***/ }),
+
+/***/ "./resources/js/challenge/form-detail.js":
+/*!***********************************************!*\
+  !*** ./resources/js/challenge/form-detail.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('#formDetailChallenge').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget);
+  var questions = button.data('questions');
+  var challenge = button.data('challenge');
+  var levelChallenge = $('#levelChallenge').data('level-challenge');
+  var modal = $(this);
+  modal.find('#formQuestionModalLabel').text('Challenge details with ID : ' + challenge.id);
+  modal.find('#creator').text(challenge.users[0].name);
+  modal.find('#createdAt').text(challenge.created_at);
+  modal.find('#updatedAt').text(challenge.updated_at);
+  getInfoLevel(challenge, levelChallenge);
+  throwQuestions(questions);
+}); // Get list of all Level Challenge dependencies that are in an element on the page and put in the Form
+
+function getInfoLevel(challenge, levelChallenge) {
+  $(levelChallenge).each(function (index, obj) {
+    if (challenge.level_challenge_id == obj.id) {
+      $('#level').text(obj.levels[0].name);
+      $('#timeDetail').text(obj.times[0].type);
+      $('#experienceDetail').text(obj.experiences[0].type);
+      $('#opportunityDetail').text(obj.opportunities[0].type);
+    }
+  });
+} // Put all information about question on Form
+
+
+function throwQuestions(questions) {
+  var run = 0;
+  var matters = ['Geography', 'Mathematics', 'Portuguese', 'Science', 'Story'];
+  matters.forEach(function (matter, categoryId) {
+    // Running an Object to get your Keys
+    Object.keys(questions).forEach(function (key, index) {
+      if (categoryId + 1 == questions[key].category_id) {
+        // Get elements from the Form Details section
+        run++;
+        $('#detail' + run)[0].children[1].children[0].innerHTML = questions[key].content; // Content
+
+        $('#detail' + run)[0].children[1].children[2].innerHTML = questions[key].users[0].name; // Creator
+
+        $('#detail' + run)[0].children[1].children[3].innerHTML = questions[key].created_at; // Created At
+
+        $('#detail' + run)[0].children[1].children[4].innerHTML = questions[key].updated_at; // Updated At
+
+        getAlternatives($('#detail' + run)[0].children[1].children[1], questions[key].id); // List Alternative tag OL
+      }
+    });
+  });
+} // Using AJAX for to get Alternatives
+
+
+function getAlternatives(target, idQuestion) {
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      // Convert String response to Json
+      var alternatives = JSON.parse(this.responseText);
+      var index = 0;
+      Object.keys(alternatives).forEach(function (key) {
+        target.children[index].innerHTML = alternatives[key].content;
+        target.children[index].setAttribute('class', alternatives[key].type == 1 ? 'text-warning font-weight-bold' : '');
+        index++;
       });
     }
   };
@@ -50441,7 +50515,7 @@ if (window.location.pathname == '/admin/questions') {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('#formDelete').on('show.bs.modal', function (event) {
+$('#formDeleteQuestion').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget); // Button that triggered the modal
 
   var question = button.data('question'); // Extract info from data-* attributes
@@ -50461,7 +50535,7 @@ $('#formDelete').on('show.bs.modal', function (event) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('#formDetail').on('show.bs.modal', function (event) {
+$('#formDetailQuestion').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget); // Button that triggered the modal
 
   var question = button.data('question'); // Extract info from data-* attributes
@@ -50503,7 +50577,7 @@ $('#formDetail').on('show.bs.modal', function (event) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('#formQuestion').on('show.bs.modal', function (event) {
+$('#formCreateQuestion').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget); // Button that triggered the modal
 
   var question = button.data('question'); // Extract info from data-* attributes
@@ -50593,9 +50667,9 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/btn-top.js ./resources/js/challenge/form-challenge.js ./resources/js/jquery.tablesorter.min.js ./resources/js/question/card-ready-question.js ./resources/js/question/form-delete.js ./resources/js/question/form-detail.js ./resources/js/question/form-question.js ./resources/js/tooltip-welcome.js ./resources/sass/app.scss ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/btn-top.js ./resources/js/challenge/form-challenge.js ./resources/js/challenge/form-detail.js ./resources/js/jquery.tablesorter.min.js ./resources/js/question/card-ready-question.js ./resources/js/question/form-delete.js ./resources/js/question/form-detail.js ./resources/js/question/form-question.js ./resources/js/tooltip-welcome.js ./resources/sass/app.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -50603,6 +50677,7 @@ __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\app.js */
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\btn-top.js */"./resources/js/btn-top.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\challenge\form-challenge.js */"./resources/js/challenge/form-challenge.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\challenge\form-detail.js */"./resources/js/challenge/form-detail.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\jquery.tablesorter.min.js */"./resources/js/jquery.tablesorter.min.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\question\card-ready-question.js */"./resources/js/question/card-ready-question.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\question\form-delete.js */"./resources/js/question/form-delete.js");

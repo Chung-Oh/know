@@ -2,8 +2,8 @@
 #level::before,
 #category::before,
 #creator::before,
-#created_at::before,
-#updated_at::before {
+#createdAt::before,
+#updatedAt::before {
 	font-weight: bold;
 }
 
@@ -19,11 +19,11 @@
 	content: "Creator : ";
 }
 
-#created_at::before {
+#createdAt::before {
 	content: "Created At : ";
 }
 
-#updated_at::before {
+#updatedAt::before {
 	content: "Updated At : ";
 }
 

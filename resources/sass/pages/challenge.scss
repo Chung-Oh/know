@@ -1,20 +1,46 @@
 // Form
-#times::before,
-#experiences::before,
-#opportunities::before {
+#time::before,
+#experience::before,
+#opportunity::before,
+#timeDetail::before,
+#experienceDetail::before,
+#opportunityDetail::before,
+.content-question::before,
+.creator::before,
+.created-at::before,
+.updated-at::before {
 	font-weight: bold;
 }
 
-#times::before {
+#time::before,
+#timeDetail::before {
 	content: 'Time : ';
 }
 
-#experiences::before {
+#experience::before,
+#experienceDetail::before {
 	content: 'Experience : ';
 }
 
-#opportunities::before {
+#opportunity::before,
+#opportunityDetail::before {
 	content: 'Opportunity : ';
+}
+
+.content-question::before {
+	content: 'Content : ';
+}
+
+.creator::before {
+	content: 'Creator : ';
+}
+
+.created-at::before {
+	content: 'Created At : ';
+}
+
+.updated-at::before {
+	content: 'Updated At : ';
 }
 
 // Color of the informations on form above

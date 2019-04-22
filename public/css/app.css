@@ -10719,8 +10719,8 @@ a.text-dark:focus {
 #level::before,
 #category::before,
 #creator::before,
-#created_at::before,
-#updated_at::before {
+#createdAt::before,
+#updatedAt::before {
   font-weight: bold;
 }
 
@@ -10736,11 +10736,11 @@ a.text-dark:focus {
   content: "Creator : ";
 }
 
-#created_at::before {
+#createdAt::before {
   content: "Created At : ";
 }
 
-#updated_at::before {
+#updatedAt::before {
   content: "Updated At : ";
 }
 
@@ -10763,22 +10763,48 @@ a.text-dark:focus {
   margin-right: 2px;
 }
 
-#times::before,
-#experiences::before,
-#opportunities::before {
+#time::before,
+#experience::before,
+#opportunity::before,
+#timeDetail::before,
+#experienceDetail::before,
+#opportunityDetail::before,
+.content-question::before,
+.creator::before,
+.created-at::before,
+.updated-at::before {
   font-weight: bold;
 }
 
-#times::before {
+#time::before,
+#timeDetail::before {
   content: "Time : ";
 }
 
-#experiences::before {
+#experience::before,
+#experienceDetail::before {
   content: "Experience : ";
 }
 
-#opportunities::before {
+#opportunity::before,
+#opportunityDetail::before {
   content: "Opportunity : ";
+}
+
+.content-question::before {
+  content: "Content : ";
+}
+
+.creator::before {
+  content: "Creator : ";
+}
+
+.created-at::before {
+  content: "Created At : ";
+}
+
+.updated-at::before {
+  content: "Updated At : ";
 }
 
 .info-form-challenge {

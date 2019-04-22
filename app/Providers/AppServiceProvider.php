@@ -52,6 +52,9 @@ class AppServiceProvider extends ServiceProvider
         |-----------------------------------------------------------------------------------*/
         Blade::component('admin.components.challenge.panel-card', 'PanelCardChallenge');
         Blade::component('admin.components.challenge.form-create', 'FormCreateChallenge');
+        Blade::component('admin.components.challenge.form-detail', 'FormDetailChallenge');
+        Blade::component('admin.components.challenge.accordion-tab', 'AccordionTabChallenge');
+        Blade::component('admin.components.challenge.accordion', 'AccordionChallenge');
     }
 
     /**

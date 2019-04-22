@@ -1,5 +1,5 @@
 <!----------------------------- THIS SECTION USES MODAL AS FORM DETAILS ----------------------------->
-<section id="formDetail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="formQuestionModalLabel" aria-hidden="true" data-backdrop="static">
+<section id="formDetailQuestion" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="formQuestionModalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-success">
@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body bg-dark">
-                <fieldset class="text-center text-light">
+                <div class="text-center text-light">
                     <p id="level" class="form-control bg-secondary text-light"></p>
                     <p id="category" class="form-control bg-secondary text-light"></p>
                     <textarea id="contentQuestion" class="form-control bg-secondary text-center text-light" disabled></textarea>
@@ -29,9 +29,9 @@
                         </div>
                     </details>
                     <p id="creator" class="form-control bg-secondary text-center text-light"></p>
-                    <p id="created_at" class="form-control bg-secondary text-center text-light"></p>
-                    <p id="updated_at" class="form-control bg-secondary text-center text-light"></p>
-                </fieldset>
+                    <p id="createdAt" class="form-control bg-secondary text-center text-light"></p>
+                    <p id="updatedAt" class="form-control bg-secondary text-center text-light"></p>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">{{ __('Cancel') }}</button>
                 </div>

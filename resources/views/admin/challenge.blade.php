@@ -3,6 +3,7 @@
 @section('title', 'EuSei – Challenges')
 
 @section('content')
+
 	<!----------------------------- QUESTION MANIPULATION RESPONSE ----------------------------->
 	@if (session('status'))
 		@Alert @endAlert
@@ -21,9 +22,14 @@
 	@endFormCreateChallenge
 
 	<!----------------------------- MODAL FORM DETAILS ----------------------------->
+	@FormDetailChallenge
+		@slot('categories', $categories)
+		@slot('levelChallenges', $levelChallenges)
+	@endFormDetailChallenge
 
 	<!----------------------------- SECTION OF CHALLENGES WHERE YOU CAN CREATE, EDIT, SEE AND REMOVE ----------------------------->
 	<section class="container pb-5">
+
 		<!----------------------------- A CHALLENGE SUMMARY PANEL CARD ----------------------------->
 		@PanelCardChallenge
 			@slot('title', 'Elaboration of Challenges')
@@ -32,82 +38,16 @@
 
 		<!----------------------------- BUTTON TO CREATE QUESTION ----------------------------->
 		@ButtonCreate
-			@slot('nameModal', 'formChallenge')
+			@slot('nameModal', 'formCreateChallenge')
 			@slot('buttonName', 'New Challenge')
 		@endButtonCreate
 
 		<!----------------------------- NAVEGATION TAB ABOUT QUESTIONS ----------------------------->
-		<div class="accordion pt-5" id="accordionChallenge">
-
-			<div class="card"> <!-- Inicio do Slot Acccordion -->
-				<div class="card-header btn-cursor" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					<h2 class="btn btn-link mb-0">Beginner Challenges</h2>
-				</div>
-				<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionChallenge">
-					<div class="card-body">
-						<table class="tablesorter table table-sm table-hover text-center bg-light mb-0">
-							<thead class="bg-secondary">
-								<tr class="text-white">
-									<th class="col-table-order btn-cursor" scope="col">#</th>
-									<th class="col-table-order btn-cursor" scope="col">{{ __('By') }}</th>
-									<th class="col-table-order btn-cursor" scope="col">{{ __('In') }}</th>
-									<th scope="col">{{ __('Options') }}</th>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach ($challenges as $c)
-									@if ($c->level_challenge_id == 1) <!-- Configurar quando for criar Slot -->
-										<tr>
-											<td>{{ $c->id }}</td>
-											<td>{{ $c->users[0]->name }}</td>
-											<td>{{ $c->created_at }}</td>
-											<td class="d-flex justify-content-center">
-												<button type="button" class="btn-space btn btn-outline-info btn-sm fas fa-search icon-search" data-challenge="{{ $c }}" data-questions="{{ $questions->where('challenge_id', $c->id) }}"></button>
-												<button type="button" class="btn-space btn btn-outline-success btn-sm fas fa-pencil-alt" data-toggle="modal" data-target="#formChallenge" data-challenge="{{ $c }}" data-questions="{{ $questions->where('challenge_id', $c->id) }}"></button>
-											</td>
-										</tr>
-									@endif
-								@endforeach
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div> <!-- Fim accordion -->
-
-			<div class="card">
-				<div class="card-header btn-cursor" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-					<h2 class="btn btn-link mb-0">Intermediate Challenges</button>
-					</h2>
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionChallenge">
-					<div class="card-body">
-						Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-					</div>
-				</div>
-			</div>
-
-			<div class="card">
-				<div class="card-header btn-cursor" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-					<h2 class="btn btn-link mb-0">Advanced Challenges</h2>
-				</div>
-				<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionChallenge">
-					<div class="card-body">
-						Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-					</div>
-				</div>
-			</div>
-
-			<div class="card">
-				<div class="card-header btn-cursor" id="headingFour" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-					<h2 class="btn btn-link mb-0">Erudit Challenges</h2>
-				</div>
-				<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionChallenge">
-					<div class="card-body">
-						Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-					</div>
-				</div>
-			</div>
-		</div>
+		@AccordionTabChallenge
+			@slot('questions', $questions)
+			@slot('levelChallenges', $levelChallenges)
+			@slot('challenges', $challenges)
+		@endAccordionTabChallenge
 
 	</section>
 
@@ -115,4 +55,5 @@
 	@Fill
 		@slot('number', 30)
 	@endFill
+
 @endsection
