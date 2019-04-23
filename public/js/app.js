@@ -49297,6 +49297,8 @@ function listAllQuestions(questions, challenge) {
 function cleanSubCategories() {
   for (var i = 1; i <= 10; i++) {
     $('#question' + i)[0].children[0].innerHTML = 'Choose a Question ' + i;
+    $('#question' + i)[0].children[0].value = '';
+    $('#question' + i)[0].children[0].dataset.content = '';
   }
 } // Modal Form for Create and Edit
 
@@ -49380,8 +49382,30 @@ function getAlternatives(list) {
   };
 
   xhttp.open("GET", "/admin/challenges/alternatives/" + idQuestion, true);
-  xhttp.send();
-}
+  xhttp.send(); // Here it is very important, when the update button is clicked, it will cancel the AJAX request.
+
+  $('#btnFormChallenge').on('click', function (event) {
+    xhttp.abort(); // Because it was not showing the message of success
+  });
+} // Loading Animation when update button be clicked
+
+
+$('#btnFormChallenge').on('click', function (event) {
+  if ($('#btnFormChallenge')[0].textContent == 'Update') {
+    $('.loading').css('display', 'block');
+  } else {
+    var count = 0;
+    $('select').each(function () {
+      if (this.value > 0) {
+        count++;
+
+        if (count == 11) {
+          $('.loading').css('display', 'block');
+        }
+      }
+    });
+  }
+});
 
 /***/ }),
 
@@ -50523,7 +50547,11 @@ $('#formDeleteQuestion').on('show.bs.modal', function (event) {
   var modal = $(this);
   modal.find('#idQuestion').val(question.id);
   modal.find('#idMessage').text('Question ID : ' + question.id);
-  modal.find('#question').text(question.content);
+  modal.find('#question').text(question.content); // Put event of click to show Loading Animation component
+
+  $('#delete').on('click', function () {
+    $('.loading').css('display', 'block');
+  });
 });
 
 /***/ }),
@@ -50626,16 +50654,66 @@ $('#formCreateQuestion').on('show.bs.modal', function (event) {
     modal.find('#categoryId').text('Choose a Category');
     modal.find('#levelId').prop('value', '');
     modal.find('#levelId').text('Choose a Level');
-    modal.find('#question').val('Question...');
-    modal.find('#alternative1').val('Alternative 1');
-    modal.find('#alternative2').val('Alternative 2');
-    modal.find('#alternative3').val('Alternative 3');
-    modal.find('#alternative4').val('Alternative 4');
-    modal.find('#alternative5').val('Alternative 5');
+    modal.find('#question').attr('placeholder', 'Question...');
+    modal.find('#alternative1').attr('placeholder', 'Alternative 1');
+    modal.find('#alternative2').attr('placeholder', 'Alternative 2');
+    modal.find('#alternative3').attr('placeholder', 'Alternative 3');
+    modal.find('#alternative4').attr('placeholder', 'Alternative 4');
+    modal.find('#alternative5').attr('placeholder', 'Alternative 5');
     modal.find('#radioAlternative1').prop('checked', true);
     modal.find('#btnFormQuestion').text('To save');
   }
-});
+}); // Loading Animation
+
+$('#btnFormQuestion').on('click', function () {
+  if ($('#btnFormQuestion')[0].textContent == 'Update') {
+    $('.loading').css('display', 'block');
+  } else {
+    verifyFields();
+  }
+}); // Verify all inputs for to show Loading Animation to Form Create
+
+function verifyFields() {
+  verifySelect();
+} // Checks if Select fields have been triggered, if yes call function to check Text Area
+
+
+function verifySelect() {
+  var count = 0;
+  $('select').each(function () {
+    count += Number(this.value);
+
+    if (count >= 2) {
+      verifyTextArea();
+    }
+  });
+} // Checks if the Text Area fields have been triggered, if yes
+
+
+function verifyTextArea() {
+  // Call the function to check the alternatives Input
+  var arg = $('textArea')[0].value;
+
+  if (arg.length >= 1) {
+    verifyInput();
+  }
+} // Checks all if the Input fields have been triggered, if yes
+
+
+function verifyInput() {
+  var count = 0;
+
+  for (var i = 1; i <= 5; i++) {
+    if ($('#alternative' + i)[0].value != '') {
+      count++;
+
+      if (count == 5) {
+        // Call the function to show Loading Animation
+        $('.loading').css('display', 'block');
+      }
+    }
+  }
+}
 
 /***/ }),
 

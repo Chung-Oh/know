@@ -194,6 +194,8 @@ function listAllQuestions(questions, challenge) {
 function cleanSubCategories() {
     for (var i = 1; i <= 10; i++) {
         $('#question' + i)[0].children[0].innerHTML = 'Choose a Question ' + i
+        $('#question' + i)[0].children[0].value = ''
+        $('#question' + i)[0].children[0].dataset.content = ''
     }
 }
 
@@ -277,4 +279,25 @@ function getAlternatives(list) {
     }
     xhttp.open("GET", "/admin/challenges/alternatives/" + idQuestion, true)
     xhttp.send()
+    // Here it is very important, when the update button is clicked, it will cancel the AJAX request.
+    $('#btnFormChallenge').on('click', function(event) {
+        xhttp.abort() // Because it was not showing the message of success
+    })
 }
+
+// Loading Animation when update button be clicked
+$('#btnFormChallenge').on('click', function(event) {
+    if ($('#btnFormChallenge')[0].textContent == 'Update') {
+        $('.loading').css('display', 'block')
+    } else {
+        var count = 0
+        $('select').each(function() {
+            if (this.value > 0) {
+                count++
+                if (count == 11) {
+                    $('.loading').css('display', 'block')
+                }
+            }
+        })
+    }
+})

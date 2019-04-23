@@ -39,6 +39,9 @@
 			@slot('levels', $levels)
 		@endPanelCardQuestion
 
+		<!----------------------------- lOADING ANIMATION ----------------------------->
+		@Loading @endLoading
+
 		<!----------------------------- BUTTON TO CREATE QUESTION ----------------------------->
 		@ButtonCreate
 			@slot('nameModal', 'formCreateQuestion')

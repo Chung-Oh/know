@@ -36,6 +36,9 @@
 			@slot('body', 'Summary here')
 		@endPanelCardChallenge
 
+		<!----------------------------- lOADING ANIMATION ----------------------------->
+		@Loading @endLoading
+
 		<!----------------------------- BUTTON TO CREATE QUESTION ----------------------------->
 		@ButtonCreate
 			@slot('nameModal', 'formCreateChallenge')

@@ -21,7 +21,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">{{ __('Cancel') }}</button>
-                        <button type="submit" class="btn btn-primary">{{ __('Delete') }}</button>
+                        <button id="delete" type="submit" class="btn btn-primary">{{ __('Delete') }}</button>
                     </div>
                 </form>
             </div>

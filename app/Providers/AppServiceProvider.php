@@ -33,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('admin.components.alert', 'Alert');
         Blade::component('admin.components.errors', 'Errors');
         Blade::component('admin.components.btn-create', 'ButtonCreate');
+        Blade::component('admin.components.loading', 'Loading');
         Blade::component('admin.components.fill', 'Fill');
 
         /*------------------------------------------------------------------------------------

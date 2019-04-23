@@ -10695,6 +10695,73 @@ a.text-dark:focus {
   }
 }
 
+.loading {
+  display: none;
+  position: fixed;
+  z-index: 1100;
+  top: 20vw;
+  left: 47vw;
+}
+
+.load-animation {
+  height: 5em;
+  width: 5em;
+}
+
+@media only screen and (max-width: 800px) {
+  .loading {
+    top: 50vw;
+    left: 45vw;
+  }
+}
+
+@media only screen and (max-width: 740px) and (max-height: 420px) {
+  .loading {
+    top: 22vw;
+    left: 47vw;
+  }
+
+  .load-animation {
+    height: 3em;
+    width: 3em;
+  }
+}
+
+@media only screen and (max-width: 670px) and (max-height: 380px) {
+  .loading {
+    top: 25vw;
+  }
+}
+
+@media only screen and (max-width: 640px) and (max-height: 360px) {
+  .loading {
+    top: 26vw;
+  }
+}
+
+@media only screen and (max-width: 420px) and (max-height: 740px) {
+  .loading {
+    top: 40vw;
+  }
+
+  .load-animation {
+    height: 3em;
+    width: 3em;
+  }
+}
+
+@media only screen and (max-width: 390px) and (max-height: 670px) {
+  .loading {
+    top: 44vw;
+  }
+}
+
+@media only screen and (max-width: 360px) and (max-height: 640px) {
+  .loading {
+    top: 45vw;
+  }
+}
+
 .correct-size {
   font-size: 115%;
 }
