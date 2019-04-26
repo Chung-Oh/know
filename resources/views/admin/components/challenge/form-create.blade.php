@@ -36,7 +36,7 @@
 									<select id="question{{ $i }}" name="question_{{ $i }}" class="question{{ $c->name }} form-control btn-cursor" required>
 										<option class="bool" value="" selected disabled>{{ __('Choose a Question ') }}{{ $i }}</option>
 									</select>
-									<details class="text-warning mt-2" hidden>
+									<details class="info-detail text-warning mt-2" hidden>
 										<summary>{{ __('Question ') }}{{ $i++ }}</summary>
 										<div class="border border-light rounded bg-secondary text-light">
 											<p class="text-break pt-2 pb-1 mb-0"></p>
@@ -55,7 +55,7 @@
 									<select id="question{{ $i }}" name="question_{{ $i }}" class="question{{ $c->name }} form-control btn-cursor" required>
 										<option class="bool" value="" selected disabled>{{ __('Choose a Question ') }}{{ $i }}</option>
 									</select>
-									<details class="text-warning mt-2" hidden>
+									<details class="info-detail text-warning mt-2" hidden>
 										<summary>{{ __('Question ') }}{{ $i++ }}</summary>
 										<div class="border border-light rounded bg-secondary text-light">
 											<p class="text-break pt-2 pb-1 mb-0"></p>

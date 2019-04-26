@@ -10,7 +10,7 @@
 						<tr class="text-white">
 							<th class="col-table-order btn-cursor" scope="col">#<i class="fas fa-sort"></th>
 							<th class="col-table-order btn-cursor" scope="col">{{ __('By') }}<i class="fas fa-sort"></th>
-							<th class="col-table-order btn-cursor" scope="col">{{ __('In') }}<i class="fas fa-sort"></th>
+							<th scope="col">{{ __('In') }}</th>
 							<th scope="col">{{ __('Options') }}</th>
 						</tr>
 					</thead>

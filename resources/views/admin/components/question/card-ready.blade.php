@@ -16,6 +16,10 @@
 							<td id="{{ $l->name }}Ready" class="text-success font-weight-bold"></td>
 						</tr>
 					@endforeach
+					<tr class="bg-light font-weight-bold">
+						<td>Total</td>
+						<td id="totalReady"></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>

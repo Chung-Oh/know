@@ -33,7 +33,10 @@
 		<!----------------------------- A CHALLENGE SUMMARY PANEL CARD ----------------------------->
 		@PanelCardChallenge
 			@slot('title', 'Elaboration of Challenges')
-			@slot('body', 'Summary here')
+			@slot('subTitle', 'Click here for see Summary')
+			@slot('questions', $questions)
+			@slot('levelChallenges', $levelChallenges)
+			@slot('challenges', $challenges)
 		@endPanelCardChallenge
 
 		<!----------------------------- lOADING ANIMATION ----------------------------->

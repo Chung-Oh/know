@@ -33,6 +33,12 @@
 														<td class="{{ $l->name }}Contribute">{{ count($questions->where('category_id', $c->id)->where('level_id', $l->id)->where('type', false)) }}</td>
 													</tr>
 													@endforeach
+													<tr class="bg-light font-weight-bold">
+														<td>Total</td>
+														<td>{{ count($questions->where('category_id', $c->id)->where('challenge_id', null)->where('type', 1)) }}</td>
+														<td>{{ count($questions->where('category_id', $c->id)->where('challenge_id', !null)) }}</td>
+														<td>{{ count($questions->where('category_id', $c->id)->where('type', 0)) }}</td>
+													</tr>
 												</tbody>
 											</table>
 										</div>
@@ -41,8 +47,6 @@
 								@endforeach
 								<!-- Card bellow showing challenges ready to create -->
 								@CardReadyQuestion
-									@slot('questions', $questions)
-									@slot('categories', $categories)
 									@slot('levels', $levels)
 								@endCardReadyQuestion
 							</div>

@@ -90,7 +90,7 @@ function cleanOptionPrimary() {
         selectStory[i][0].selected = true
     }
     // When primary switch is changed it will hide the details
-    var details = $('details')
+    var details = $('.info-detail')
     details.each(function(index, item) {
         item.setAttribute('hidden', true)
         item.removeAttribute('open')

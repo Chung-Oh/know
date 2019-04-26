@@ -33,6 +33,10 @@
 
     <script src="{{ mix('js/app.js') }}"></script>
 
+    <script>
+
+    </script>
+
     <!-- Calling the jQuery Plugin function to sort the tables -->
     <script>
         $(function(){

@@ -1,4 +1,4 @@
-// All categories cards
+// // All categories cards
 var beginningWait = $('.BeginningWait')
 var intermediateWait = $('.IntermediateWait')
 var advancedWait = $('.AdvancedWait')
@@ -46,4 +46,15 @@ if (window.location.pathname == '/admin/questions') {
     bindCard(intermediateWait, intermediateReady)
     bindCard(advancedWait, advancedReady)
     bindCard(eruditWait, eruditReady)
+    sumReady()
+}
+
+// Sum all questions ready
+function sumReady() {
+    sum = 0
+    sum += Number($(beginningReady)[0].textContent)
+    sum += Number($(intermediateReady)[0].textContent)
+    sum += Number($(advancedReady)[0].textContent)
+    sum += Number($(eruditReady)[0].textContent)
+    $('#totalReady')[0].innerHTML = sum
 }

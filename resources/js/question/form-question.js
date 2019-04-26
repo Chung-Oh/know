@@ -46,6 +46,14 @@ $('#formCreateQuestion').on('show.bs.modal', function(event) {
         modal.find('#categoryId').text('Choose a Category')
         modal.find('#levelId').prop('value', '')
         modal.find('#levelId').text('Choose a Level')
+        // Remove content in field
+        modal.find('#question').val('')
+        modal.find('#alternative1').val('')
+        modal.find('#alternative2').val('')
+        modal.find('#alternative3').val('')
+        modal.find('#alternative4').val('')
+        modal.find('#alternative5').val('')
+        // Put message in field
         modal.find('#question').attr('placeholder', 'Question...')
         modal.find('#alternative1').attr('placeholder', 'Alternative 1')
         modal.find('#alternative2').attr('placeholder', 'Alternative 2')

@@ -49088,6 +49088,137 @@ btnTop.addEventListener("click", function (event) {
 
 /***/ }),
 
+/***/ "./resources/js/challenge/card-ready-challenge.js":
+/*!********************************************************!*\
+  !*** ./resources/js/challenge/card-ready-challenge.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Levels list
+var beg = [];
+int = [];
+adv = [];
+eru = []; // Categories List
+
+var geo = [];
+mat = [];
+por = [];
+sci = [];
+sto = []; // Sum all questions of each category
+
+var sumGeo = 0;
+sumMat = 0;
+sumPor = 0;
+sumSci = 0;
+sumSto = 0; // Verify if have a paragraphy with dataset, if has this element
+
+if ($('#questions')[0]) {
+  // so create a list to filtered by level and category
+  var list = JSON.parse($('#questions')[0].dataset.questions);
+  Object.keys(list).forEach(function (key) {
+    // Conditions to filter by Levels
+    if (list[key].level_id == 1) {
+      beg.push(list[key]);
+    } else if (list[key].level_id == 2) {
+      int.push(list[key]);
+    } else if (list[key].level_id == 3) {
+      adv.push(list[key]);
+    } else {
+      eru.push(list[key]);
+    }
+  }); // Function where you set up a call to next, where you will filter categories from a list of levels.
+  // It also calls the function where it performs total sum of prepared challenges
+
+  beginFiltering();
+} // Calls all functions to perform filtering and algorithm when a challenge is ready
+
+
+function beginFiltering() {
+  // After of filtered the levels then call to filter by Categories
+  // First arg is id level, second is the list objects and third is element where will put count
+  getCategory(1, beg, $('#Beginning')[0]);
+  getCategory(2, int, $('#Intermediate')[0]);
+  getCategory(3, adv, $('#Advanced')[0]);
+  getCategory(4, eru, $('#Erudit')[0]); // Calls the function where it performs total sum of prepared challenges
+
+  sumTotal($('#Beginning')[0], $('#Intermediate')[0], $('#Advanced')[0], $('#Erudit')[0], $('#totalReady')[0]);
+} // Filter by Category
+
+
+function getCategory(idLevel, list, target) {
+  // Run the list passed in parameter
+  $(list).each(function () {
+    // The conditions are by category and level(this passed by parameter)
+    if (this.category_id == 1 && this.level_id == idLevel) {
+      geo.push(this);
+    } else if (this.category_id == 2 && this.level_id == idLevel) {
+      mat.push(this);
+    } else if (this.category_id == 3 && this.level_id == idLevel) {
+      por.push(this);
+    } else if (this.category_id == 4 && this.level_id == idLevel) {
+      sci.push(this);
+    } else if (this.category_id == 5 && this.level_id == idLevel) {
+      sto.push(this);
+    }
+  }); // Pass the filtered category count and the element where you will get the final value
+
+  levelSum(geo.length, mat.length, por.length, sci.length, sto.length, target); // Clean all categories to be used the next call
+
+  cleanCategories(geo, mat, por, sci, sto);
+} // Sum of category question
+
+
+function levelSum(geo, mat, por, sci, sto, target) {
+  sumGeo = geo;
+  sumMat = mat;
+  sumPor = por;
+  sumSci = sci;
+  sumSto = sto; // Once you pick up the past values, pass to the next function together with
+  // element target and value 0 to be use in the increment on table
+
+  checkSum(sumGeo, sumMat, sumPor, sumSci, sumSto, target, 0);
+} // Clean all Categories array to next call
+
+
+function cleanCategories(geo, mat, por, sci, sto) {
+  geo.length = 0;
+  mat.length = 0;
+  por.length = 0;
+  sci.length = 0;
+  sto.length = 0;
+} // Check if is a challenge ready
+
+
+function checkSum(sumGeo, sumMat, sumPor, sumSci, sumSto, target, init) {
+  // Total variable will be use to stop the condition
+  var total = sumGeo + sumMat + sumPor + sumSci + sumSto; // Get the value passed in the variable init and put in the variable question
+  // it will be used to represent the value of the challenge that is ready
+
+  var question = init;
+
+  for (var i = 0; i <= total; i++) {
+    if (sumGeo >= 2 && sumMat >= 2 && sumPor >= 2 && sumSci >= 2 && sumSto >= 2) {
+      // If enter this condition, the question variable will be incremented
+      question++;
+      target.innerHTML = question; // All variables that has count of categories will be decremented
+
+      sumGeo -= 2;
+      sumMat -= 2;
+      sumPor -= 2;
+      sumSci -= 2;
+      sumSto -= 2;
+    }
+  }
+} // Sum of all challenges prepared to be created
+
+
+function sumTotal(beg, int, adv, eru, total) {
+  total.innerHTML = Number(beg.textContent) + Number(int.textContent) + Number(adv.textContent) + Number(eru.textContent);
+}
+
+/***/ }),
+
 /***/ "./resources/js/challenge/form-challenge.js":
 /*!**************************************************!*\
   !*** ./resources/js/challenge/form-challenge.js ***!
@@ -49187,7 +49318,7 @@ function cleanOptionPrimary() {
   } // When primary switch is changed it will hide the details
 
 
-  var details = $('details');
+  var details = $('.info-detail');
   details.each(function (index, item) {
     item.setAttribute('hidden', true);
     item.removeAttribute('open');
@@ -50479,7 +50610,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// All categories cards
+// // All categories cards
 var beginningWait = $('.BeginningWait');
 var intermediateWait = $('.IntermediateWait');
 var advancedWait = $('.AdvancedWait');
@@ -50528,6 +50659,17 @@ if (window.location.pathname == '/admin/questions') {
   bindCard(intermediateWait, intermediateReady);
   bindCard(advancedWait, advancedReady);
   bindCard(eruditWait, eruditReady);
+  sumReady();
+} // Sum all questions ready
+
+
+function sumReady() {
+  sum = 0;
+  sum += Number($(beginningReady)[0].textContent);
+  sum += Number($(intermediateReady)[0].textContent);
+  sum += Number($(advancedReady)[0].textContent);
+  sum += Number($(eruditReady)[0].textContent);
+  $('#totalReady')[0].innerHTML = sum;
 }
 
 /***/ }),
@@ -50653,7 +50795,15 @@ $('#formCreateQuestion').on('show.bs.modal', function (event) {
     modal.find('#categoryId').prop('value', '');
     modal.find('#categoryId').text('Choose a Category');
     modal.find('#levelId').prop('value', '');
-    modal.find('#levelId').text('Choose a Level');
+    modal.find('#levelId').text('Choose a Level'); // Remove content in field
+
+    modal.find('#question').val('');
+    modal.find('#alternative1').val('');
+    modal.find('#alternative2').val('');
+    modal.find('#alternative3').val('');
+    modal.find('#alternative4').val('');
+    modal.find('#alternative5').val(''); // Put message in field
+
     modal.find('#question').attr('placeholder', 'Question...');
     modal.find('#alternative1').attr('placeholder', 'Alternative 1');
     modal.find('#alternative2').attr('placeholder', 'Alternative 2');
@@ -50745,15 +50895,16 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/btn-top.js ./resources/js/challenge/form-challenge.js ./resources/js/challenge/form-detail.js ./resources/js/jquery.tablesorter.min.js ./resources/js/question/card-ready-question.js ./resources/js/question/form-delete.js ./resources/js/question/form-detail.js ./resources/js/question/form-question.js ./resources/js/tooltip-welcome.js ./resources/sass/app.scss ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/btn-top.js ./resources/js/challenge/card-ready-challenge.js ./resources/js/challenge/form-challenge.js ./resources/js/challenge/form-detail.js ./resources/js/jquery.tablesorter.min.js ./resources/js/question/card-ready-question.js ./resources/js/question/form-delete.js ./resources/js/question/form-detail.js ./resources/js/question/form-question.js ./resources/js/tooltip-welcome.js ./resources/sass/app.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\btn-top.js */"./resources/js/btn-top.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\challenge\card-ready-challenge.js */"./resources/js/challenge/card-ready-challenge.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\challenge\form-challenge.js */"./resources/js/challenge/form-challenge.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\challenge\form-detail.js */"./resources/js/challenge/form-detail.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\jquery.tablesorter.min.js */"./resources/js/jquery.tablesorter.min.js");
