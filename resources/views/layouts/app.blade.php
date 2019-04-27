@@ -19,6 +19,9 @@
             @component('layouts.components.header') @endcomponent <!-- Navegation Bar -->
         @endif
 
+        <!----------------------------- lOADING ANIMATION ----------------------------->
+        @Loading @endLoading
+
         <main class="bg-dark">
             @yield('content') <!-- Principal content -->
         </main>
@@ -32,10 +35,6 @@
     @component('layouts.components.footer') @endcomponent
 
     <script src="{{ mix('js/app.js') }}"></script>
-
-    <script>
-
-    </script>
 
     <!-- Calling the jQuery Plugin function to sort the tables -->
     <script>

@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         | Generic Admin                                                                      |
         |-----------------------------------------------------------------------------------*/
         Blade::component('admin.components.alert', 'Alert');
+        Blade::component('admin.components.toast-challenge', 'ToastChallenge');
         Blade::component('admin.components.errors', 'Errors');
         Blade::component('admin.components.btn-create', 'ButtonCreate');
         Blade::component('admin.components.loading', 'Loading');

@@ -9,6 +9,11 @@
 		@Alert @endAlert
 	@endif
 
+	<!----------------------------- TOAST OF INFORMATIONS ABOUT CHALLENGES ----------------------------->
+	@ToastChallenge
+		@slot('questions', $questions)
+	@endToastChallenge
+
 	<!----------------------------- ERRORS VALIDATION LIST ----------------------------->
 	@if ($errors->any())
 		@Errors @endErrors
@@ -38,9 +43,6 @@
 			@slot('levelChallenges', $levelChallenges)
 			@slot('challenges', $challenges)
 		@endPanelCardChallenge
-
-		<!----------------------------- lOADING ANIMATION ----------------------------->
-		@Loading @endLoading
 
 		<!----------------------------- BUTTON TO CREATE QUESTION ----------------------------->
 		@ButtonCreate

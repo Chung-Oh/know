@@ -10657,41 +10657,26 @@ a.text-dark:focus {
 
 /*** My styles ***/
 
-.btn-top {
-  position: fixed;
-  cursor: pointer;
-  transition: 0.7s;
-  height: 40px;
-  width: 40px;
-  display: none;
-  background-color: #0ab73d;
-  border: 1px solid #0cf905;
-  box-shadow: 1px 1px 3px black;
-  opacity: 0.5;
-  top: 490px;
-  left: 10px;
-  z-index: 99;
-  border-radius: 50px;
+.toast-child {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 0.5em;
 }
 
-.btn-top:focus,
-.btn-top:hover {
-  transition: 0.7s;
-  background-color: #72b0ec;
-  border: 1px solid #66bf7a;
-  opacity: 1;
+@media only screen and (max-width: 740px) and (max-height: 420px) {
+  .toast-child {
+    position: unset;
+    margin: auto;
+    width: 45vw;
+  }
 }
 
-.icon-up {
-  font-size: 25px;
-  color: lavender;
-}
-
-/** MAX HEIGHT 400PX **/
-
-@media only screen and (max-height: 400px) {
-  .btn-top {
-    top: 200px;
+@media only screen and (max-width: 420px) and (max-height: 740px) {
+  .toast-child {
+    position: unset;
+    margin: auto;
+    width: 80vw;
   }
 }
 
@@ -10759,6 +10744,44 @@ a.text-dark:focus {
 @media only screen and (max-width: 360px) and (max-height: 640px) {
   .loading {
     top: 45vw;
+  }
+}
+
+.btn-top {
+  position: fixed;
+  cursor: pointer;
+  transition: 0.7s;
+  height: 40px;
+  width: 40px;
+  display: none;
+  background-color: #0ab73d;
+  border: 1px solid #0cf905;
+  box-shadow: 1px 1px 3px black;
+  opacity: 0.5;
+  top: 490px;
+  left: 10px;
+  z-index: 99;
+  border-radius: 50px;
+}
+
+.btn-top:focus,
+.btn-top:hover {
+  transition: 0.7s;
+  background-color: #72b0ec;
+  border: 1px solid #66bf7a;
+  opacity: 1;
+}
+
+.icon-up {
+  font-size: 25px;
+  color: lavender;
+}
+
+/** MAX HEIGHT 400PX **/
+
+@media only screen and (max-height: 400px) {
+  .btn-top {
+    top: 200px;
   }
 }
 

@@ -11,7 +11,7 @@
 						<div id="collapseSummaryQuestion" class="collapse" aria-labelledby="headingSummaryQuestion" data-parent="#accordionSummaryQuestion">
 							<div class="card-body container d-flex align-content-around flex-wrap pt-0">
 								@foreach ($categories as $c)
-								<div class="col-md-4 pt-4 pr-1 pl-1">
+								<div class="col-12 col-md-6 col-lg-6 col-xl-4 pt-4 pr-1 pl-1">
 									<div class="card text-center">
 										<div class="card-header bg-secondary text-white font-weight-bold">{{ $c->name }}</div>
 										<div class="card-body pt-0 pr-0 pl-0 pb-0">

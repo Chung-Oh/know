@@ -17,9 +17,9 @@ var sumGeo = 0
     sumSto = 0
 
 // Verify if have a paragraphy with dataset, if has this element
-if ($('#questions')[0]) {
+if ($('#questions-panel')[0]) {
     // so create a list to filtered by level and category
-    var list = JSON.parse($('#questions')[0].dataset.questions)
+    var list = JSON.parse($('#questions-panel')[0].dataset.questions)
     Object.keys(list).forEach(function(key) {
         // Conditions to filter by Levels
         if (list[key].level_id == 1) {
