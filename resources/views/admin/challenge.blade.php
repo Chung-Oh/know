@@ -39,9 +39,10 @@
 		@PanelCardChallenge
 			@slot('title', 'Elaboration of Challenges')
 			@slot('subTitle', 'Click here for see Summary')
+			@slot('categories', $categories)
 			@slot('questions', $questions)
-			@slot('levelChallenges', $levelChallenges)
 			@slot('challenges', $challenges)
+			@slot('levelChallenges', $levelChallenges)
 		@endPanelCardChallenge
 
 		<!----------------------------- BUTTON TO CREATE QUESTION ----------------------------->
@@ -52,9 +53,10 @@
 
 		<!----------------------------- NAVEGATION TAB ABOUT QUESTIONS ----------------------------->
 		@AccordionTabChallenge
+			@slot('alternatives', $alternatives)
 			@slot('questions', $questions)
-			@slot('levelChallenges', $levelChallenges)
 			@slot('challenges', $challenges)
+			@slot('levelChallenges', $levelChallenges)
 		@endAccordionTabChallenge
 
 	</section>

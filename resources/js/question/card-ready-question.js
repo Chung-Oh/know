@@ -1,10 +1,10 @@
-// // All categories cards
-var beginningWait = $('.BeginningWait')
+// All categories cards
+var beginningWait = $('.BeginnerWait')
 var intermediateWait = $('.IntermediateWait')
 var advancedWait = $('.AdvancedWait')
 var eruditWait = $('.EruditWait')
 // Card Ready
-var beginningReady = $('#BeginningReady')
+var beginningReady = $('#BeginnerReady')
 var intermediateReady = $('#IntermediateReady')
 var advancedReady = $('#AdvancedReady')
 var eruditReady = $('#EruditReady')

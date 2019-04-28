@@ -18,8 +18,8 @@ $('#formDetailQuestion').on('show.bs.modal', function(event) {
     modal.find('#alt4').text(alt4[0].content)
     modal.find('#alt5').text(alt5[0].content)
     modal.find('#creator').text(question.users[0].name)
-    modal.find('#created_at').text(question.created_at)
-    modal.find('#updated_at').text(question.updated_at == question.created_at
+    modal.find('#createdAt').text(question.created_at)
+    modal.find('#updatedAt').text(question.updated_at == question.created_at
         ? 'N/D'
         : question.updated_at)
 

@@ -16,38 +16,41 @@ var sumGeo = 0
     sumSci = 0
     sumSto = 0
 
-// Verify if have a paragraphy with dataset, if has this element
-if ($('#questions-panel')[0]) {
-    // so create a list to filtered by level and category
-    var list = JSON.parse($('#questions-panel')[0].dataset.questions)
-    Object.keys(list).forEach(function(key) {
-        // Conditions to filter by Levels
-        if (list[key].level_id == 1) {
-            beg.push(list[key])
-        } else if (list[key].level_id == 2) {
-            int.push(list[key])
-        } else if (list[key].level_id == 3) {
-            adv.push(list[key])
-        } else {
-            eru.push(list[key])
-        }
-    })
-    // Function where you set up a call to next, where you will filter categories from a list of levels.
-    // It also calls the function where it performs total sum of prepared challenges
-    beginFiltering()
+// This function is only for Challenge page
+if (window.location.pathname == '/admin/challenges') {
+    // Verify if have a paragraphy with dataset, if has this element
+    if ($('#questions-panel')[0].dataset.questions.length > 2) {
+        // so create a list to filtered by level and category
+        var list = JSON.parse($('#questions-panel')[0].dataset.questions)
+        Object.keys(list).forEach(function(key) {
+            // Conditions to filter by Levels
+            if (list[key].level_id == 1) {
+                beg.push(list[key])
+            } else if (list[key].level_id == 2) {
+                int.push(list[key])
+            } else if (list[key].level_id == 3) {
+                adv.push(list[key])
+            } else {
+                eru.push(list[key])
+            }
+        })
+        // Function where you set up a call to next, where you will filter categories from a list of levels.
+        // It also calls the function where it performs total sum of prepared challenges
+        beginFiltering()
+    }
 }
 
 // Calls all functions to perform filtering and algorithm when a challenge is ready
 function beginFiltering() {
     // After of filtered the levels then call to filter by Categories
     // First arg is id level, second is the list objects and third is element where will put count
-    getCategory(1, beg, $('#Beginning')[0])
+    getCategory(1, beg, $('#Beginner')[0])
     getCategory(2, int, $('#Intermediate')[0])
     getCategory(3, adv, $('#Advanced')[0])
     getCategory(4, eru, $('#Erudit')[0])
     // Calls the function where it performs total sum of prepared challenges
     sumTotal(
-        $('#Beginning')[0],
+        $('#Beginner')[0],
         $('#Intermediate')[0],
         $('#Advanced')[0],
         $('#Erudit')[0],

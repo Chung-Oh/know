@@ -39,22 +39,22 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function contributions()
     {
-        return $this->belongsTo('App\Question', 'user_id', 'id');
+        return $this->belongsTo('App\Contribution', 'user_id', 'id');
     }
 
     public function feedback()
     {
-        return $this->belongsTo('App\Question', 'user_id', 'id');
+        return $this->belongsTo('App\Feedback', 'user_id', 'id');
     }
 
     public function challenges()
     {
-        return $this->belongsTo('App\Question', 'user_id', 'id');
+        return $this->belongsTo('App\Challenge', 'user_id', 'id');
     }
 
     public function results()
     {
-        return $this->belongsTo('App\Question', 'user_id', 'id');
+        return $this->belongsTo('App\Result', 'user_id', 'id');
     }
 
      /**

@@ -14,7 +14,7 @@
                     <p id="category" class="form-control bg-secondary text-light"></p>
                     <textarea id="contentQuestion" class="form-control bg-secondary text-center text-light" disabled></textarea>
                     <details class="pt-3 pb-3">
-                        <summary class="text-warning font-weight-bold">Alternatives (click here)</summary>
+                        <summary class="text-warning font-weight-bold">{{ __('Alternatives (click here)') }}</summary>
                         <div class="border border-light rounded bg-secondary">
                             <ol class="text-light mb-0">
                                 <li id="alt1" class="text-left pt-2"></li>

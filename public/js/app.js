@@ -49096,8 +49096,31 @@ btnTop.addEventListener("click", function (event) {
 /***/ (function(module, exports) {
 
 if ($('.alert-admin')) {
-  $('.alert-admin').fadeOut(15000);
+  setTimeout(function () {
+    $('.alert-admin').fadeOut(10000);
+  }, 5000);
 }
+
+/***/ }),
+
+/***/ "./resources/js/challenge/card-graph.js":
+/*!**********************************************!*\
+  !*** ./resources/js/challenge/card-graph.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+if (window.innerWidth <= 485) {
+  $('.text-warning').removeAttr('hidden');
+}
+
+window.addEventListener('orientationchange', function () {
+  if (window.innerWidth <= 485) {
+    $('.text-warning').attr('hidden', true);
+  } else {
+    $('.text-warning').removeAttr('hidden');
+  }
+});
 
 /***/ }),
 
@@ -49124,38 +49147,41 @@ var sumGeo = 0;
 sumMat = 0;
 sumPor = 0;
 sumSci = 0;
-sumSto = 0; // Verify if have a paragraphy with dataset, if has this element
+sumSto = 0; // This function is only for Challenge page
 
-if ($('#questions-panel')[0]) {
-  // so create a list to filtered by level and category
-  var list = JSON.parse($('#questions-panel')[0].dataset.questions);
-  Object.keys(list).forEach(function (key) {
-    // Conditions to filter by Levels
-    if (list[key].level_id == 1) {
-      beg.push(list[key]);
-    } else if (list[key].level_id == 2) {
-      int.push(list[key]);
-    } else if (list[key].level_id == 3) {
-      adv.push(list[key]);
-    } else {
-      eru.push(list[key]);
-    }
-  }); // Function where you set up a call to next, where you will filter categories from a list of levels.
-  // It also calls the function where it performs total sum of prepared challenges
+if (window.location.pathname == '/admin/challenges') {
+  // Verify if have a paragraphy with dataset, if has this element
+  if ($('#questions-panel')[0].dataset.questions.length > 2) {
+    // so create a list to filtered by level and category
+    var list = JSON.parse($('#questions-panel')[0].dataset.questions);
+    Object.keys(list).forEach(function (key) {
+      // Conditions to filter by Levels
+      if (list[key].level_id == 1) {
+        beg.push(list[key]);
+      } else if (list[key].level_id == 2) {
+        int.push(list[key]);
+      } else if (list[key].level_id == 3) {
+        adv.push(list[key]);
+      } else {
+        eru.push(list[key]);
+      }
+    }); // Function where you set up a call to next, where you will filter categories from a list of levels.
+    // It also calls the function where it performs total sum of prepared challenges
 
-  beginFiltering();
+    beginFiltering();
+  }
 } // Calls all functions to perform filtering and algorithm when a challenge is ready
 
 
 function beginFiltering() {
   // After of filtered the levels then call to filter by Categories
   // First arg is id level, second is the list objects and third is element where will put count
-  getCategory(1, beg, $('#Beginning')[0]);
+  getCategory(1, beg, $('#Beginner')[0]);
   getCategory(2, int, $('#Intermediate')[0]);
   getCategory(3, adv, $('#Advanced')[0]);
   getCategory(4, eru, $('#Erudit')[0]); // Calls the function where it performs total sum of prepared challenges
 
-  sumTotal($('#Beginning')[0], $('#Intermediate')[0], $('#Advanced')[0], $('#Erudit')[0], $('#totalReady')[0]);
+  sumTotal($('#Beginner')[0], $('#Intermediate')[0], $('#Advanced')[0], $('#Erudit')[0], $('#totalReady')[0]);
 } // Filter by Category
 
 
@@ -50623,13 +50649,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// // All categories cards
-var beginningWait = $('.BeginningWait');
+// All categories cards
+var beginningWait = $('.BeginnerWait');
 var intermediateWait = $('.IntermediateWait');
 var advancedWait = $('.AdvancedWait');
 var eruditWait = $('.EruditWait'); // Card Ready
 
-var beginningReady = $('#BeginningReady');
+var beginningReady = $('#BeginnerReady');
 var intermediateReady = $('#IntermediateReady');
 var advancedReady = $('#AdvancedReady');
 var eruditReady = $('#EruditReady');
@@ -50739,8 +50765,8 @@ $('#formDetailQuestion').on('show.bs.modal', function (event) {
   modal.find('#alt4').text(alt4[0].content);
   modal.find('#alt5').text(alt5[0].content);
   modal.find('#creator').text(question.users[0].name);
-  modal.find('#created_at').text(question.created_at);
-  modal.find('#updated_at').text(question.updated_at == question.created_at ? 'N/D' : question.updated_at); // Looking by true alternative
+  modal.find('#createdAt').text(question.created_at);
+  modal.find('#updatedAt').text(question.updated_at == question.created_at ? 'N/D' : question.updated_at); // Looking by true alternative
 
   var alternatives = [];
   alternatives.push(alt1, alt2, alt3, alt4, alt5);
@@ -50906,7 +50932,7 @@ sumSci = 0;
 sumSto = 0;
 incToast = 0; // Verify if have a paragraphy with dataset, if has this element
 
-if ($('#questions-toast')[0]) {
+if ($('#questions-toast')[0].dataset.questions.length > 2) {
   // so create a list to filtered by level and category
   var list = JSON.parse($('#questions-toast')[0].dataset.questions);
   Object.keys(list).forEach(function (key) {
@@ -50938,25 +50964,27 @@ function beginFiltering() {
 
 
 function getCategory(idLevel, list, msg, lastRegister) {
-  // Run the list passed in parameter
-  $(list).each(function () {
-    // The conditions are by category and level(this passed by parameter)
-    if (this.category_id == 1 && this.level_id == idLevel) {
-      geo.push(this);
-    } else if (this.category_id == 2 && this.level_id == idLevel) {
-      mat.push(this);
-    } else if (this.category_id == 3 && this.level_id == idLevel) {
-      por.push(this);
-    } else if (this.category_id == 4 && this.level_id == idLevel) {
-      sci.push(this);
-    } else if (this.category_id == 5 && this.level_id == idLevel) {
-      sto.push(this);
-    }
-  }); // Pass the filtered category count and the element where you will get the final value
+  if (list.length > 0) {
+    // Run the list passed in parameter
+    $(list).each(function () {
+      // The conditions are by category and level(this passed by parameter)
+      if (this.category_id == 1 && this.level_id == idLevel) {
+        geo.push(this);
+      } else if (this.category_id == 2 && this.level_id == idLevel) {
+        mat.push(this);
+      } else if (this.category_id == 3 && this.level_id == idLevel) {
+        por.push(this);
+      } else if (this.category_id == 4 && this.level_id == idLevel) {
+        sci.push(this);
+      } else if (this.category_id == 5 && this.level_id == idLevel) {
+        sto.push(this);
+      }
+    }); // Pass the filtered category count and the element where you will get the final value
 
-  levelSum(geo.length, mat.length, por.length, sci.length, sto.length, msg, lastRegister); // Clean all categories to be used the next call
+    levelSum(geo.length, mat.length, por.length, sci.length, sto.length, msg, lastRegister); // Clean all categories to be used the next call
 
-  cleanCategories(geo, mat, por, sci, sto);
+    cleanCategories(geo, mat, por, sci, sto);
+  }
 } // Sum of category question
 
 
@@ -51020,7 +51048,7 @@ function getLastRegister(obj) {
 
 
 function newToast(inc, time, msg) {
-  $('.container-toast').append("\n        <div class=\"toast-parent" + inc + "\" aria-live=\"polite\" aria-atomic=\"true\" style=\"position: relative; min-height: 100px;\">\n            <!-- Position it -->\n            <div class=\"toast-child\">\n                <!-- Then put toasts within -->\n                <div class=\"toast\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\" data-autohide=\"false\">\n                    <div class=\"toast-header\">\n                        <img src=\"../../favicon.ico\" class=\"rounded mr-2\" alt=\"Logo Eu Sei\">\n                        <strong class=\"mr-auto\">Challenge ready</strong>\n                        <small class=\"text-muted ml-1\">" + time + "</small>\n                        <button type=\"button\" class=\"ml-2 mb-1 close close-toast\" data-dismiss=\"toast\" aria-label=\"Close\">\n                            <span aria-hidden=\"true\">&times;</span>\n                        </button>\n                    </div>\n                    <div class=\"toast-body\">\n                        <span class=\"font-weight-bold\">" + msg + "</span> challenge ready to create\n                    </div>\n                </div>\n            </div>\n        </div>\n    ");
+  $('.container-toast').append("\n        <div class=\"toast-parent" + inc + "\" aria-live=\"polite\" aria-atomic=\"true\" style=\"position: relative; min-height: 100px;\">\n            <!-- Position it -->\n            <div class=\"toast-child pt-0\">\n                <!-- Then put toasts within -->\n                <div class=\"toast\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\" data-autohide=\"false\">\n                    <div class=\"toast-header\">\n                        <img src=\"../../favicon.ico\" class=\"rounded mr-2\" alt=\"Logo Eu Sei\">\n                        <strong class=\"mr-auto\">Challenge ready</strong>\n                        <small class=\"text-muted ml-1\">" + time + "</small>\n                        <button type=\"button\" class=\"ml-2 mb-1 close close-toast\" data-dismiss=\"toast\" aria-label=\"Close\">\n                            <span aria-hidden=\"true\">&times;</span>\n                        </button>\n                    </div>\n                    <div class=\"toast-body\">\n                        <span class=\"font-weight-bold\">" + msg + "</span> challenge ready to create\n                    </div>\n                </div>\n            </div>\n        </div>\n    ");
 } // Toasts must be initialized with jQuery: select the specified element and call the toast() method
 
 
@@ -51030,9 +51058,10 @@ $(document).ready(function () {
     $('.container-toast').fadeOut(10000);
   }, 5000); // Initialized with jQuery method
 
-  $('.toast').toast('show');
-});
-closeToast(); // Close Toast when click
+  $('.toast').toast('show'); // Putting event listener on buttons to close Toast
+
+  closeToast();
+}); // Close Toast when click
 
 function closeToast() {
   // Run all objects that has class of toast button to close, and putting events of click for close
@@ -51074,9 +51103,9 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/btn-top.js ./resources/js/callback-alert-admin.js ./resources/js/challenge/card-ready-challenge.js ./resources/js/challenge/form-challenge.js ./resources/js/challenge/form-detail.js ./resources/js/jquery.tablesorter.min.js ./resources/js/question/card-ready-question.js ./resources/js/question/form-delete.js ./resources/js/question/form-detail.js ./resources/js/question/form-question.js ./resources/js/toast-admin.js ./resources/js/tooltip-welcome.js ./resources/sass/app.scss ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/btn-top.js ./resources/js/callback-alert-admin.js ./resources/js/challenge/card-graph.js ./resources/js/challenge/card-ready-challenge.js ./resources/js/challenge/form-challenge.js ./resources/js/challenge/form-detail.js ./resources/js/jquery.tablesorter.min.js ./resources/js/question/card-ready-question.js ./resources/js/question/form-delete.js ./resources/js/question/form-detail.js ./resources/js/question/form-question.js ./resources/js/toast-admin.js ./resources/js/tooltip-welcome.js ./resources/sass/app.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -51084,6 +51113,7 @@ __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\app.js */
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\btn-top.js */"./resources/js/btn-top.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\callback-alert-admin.js */"./resources/js/callback-alert-admin.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\challenge\card-graph.js */"./resources/js/challenge/card-graph.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\challenge\card-ready-challenge.js */"./resources/js/challenge/card-ready-challenge.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\challenge\form-challenge.js */"./resources/js/challenge/form-challenge.js");
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\challenge\form-detail.js */"./resources/js/challenge/form-detail.js");

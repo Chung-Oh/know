@@ -12,36 +12,18 @@
 						</div>
 						<div id="collapseSummaryQuestion" class="collapse" aria-labelledby="headingSummaryQuestion" data-parent="#accordionSummaryQuestion">
 							<div class="card-body container d-flex align-content-around flex-wrap pt-0">
-								<div class="col-12 col-md-6 col-lg-6 col-xl-4 pt-4 pr-1 pl-1">
-									<div class="card text-center">
-										<div class="card-header bg-secondary text-white font-weight-bold">{{ __('Challenges') }}</div>
-										<div class="card-body pt-0 pr-0 pl-0 pb-0">
-											<table class="table table-sm table-md-10 table-hover mb-0">
-												<thead>
-													<tr class="bg-light">
-														<th>Level</th>
-														<th>Ready</th>
-														<th>Done</th>
-													</tr>
-												</thead>
-												<tbody>
-													@foreach ($levelChallenges as $l)
-														<tr>
-															<td>{{ $l->levels[0]->name }}</td>
-															<td id="{{ $l->levels[0]->name }}" class="text-success font-weight-bold"></td>
-															<td>{{ count($challenges->where('level_challenge_id', $l->id)) }}</td>
-														</tr>
-													@endforeach
-													<tr class="bg-light font-weight-bold">
-														<td>Total</td>
-														<td id="totalReady"></td>
-														<td>{{ count($challenges) }}</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
+								<!----------------------------- TABLE OF CHALLENGES READY AND MADE ----------------------------->
+								@CardChallenge
+									@slot('challenges', $challenges)
+									@slot('levelChallenges', $levelChallenges)
+								@endCardChallenge
+
+								<!----------------------------- TABLE OF QUESTIONS ALMOST READY ----------------------------->
+								@CardGraph
+									@slot('categories', $categories)
+									@slot('questions', $questions)
+									@slot('levelChallenges', $levelChallenges)
+								@endCardGraph
 							</div>
 						</div>
 					</section>

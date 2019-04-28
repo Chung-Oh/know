@@ -18,7 +18,7 @@ var sumGeo = 0
     incToast = 0
 
 // Verify if have a paragraphy with dataset, if has this element
-if ($('#questions-toast')[0]) {
+if ($('#questions-toast')[0].dataset.questions.length > 2) {
     // so create a list to filtered by level and category
     var list = JSON.parse($('#questions-toast')[0].dataset.questions)
     Object.keys(list).forEach(function(key) {
@@ -50,25 +50,27 @@ function beginFiltering() {
 
 // Filter by Category
 function getCategory(idLevel, list, msg, lastRegister) {
-    // Run the list passed in parameter
-    $(list).each(function() {
-        // The conditions are by category and level(this passed by parameter)
-        if (this.category_id == 1 && this.level_id == idLevel) {
-            geo.push(this)
-        } else if (this.category_id == 2 && this.level_id == idLevel) {
-            mat.push(this)
-        } else if (this.category_id == 3 && this.level_id == idLevel) {
-            por.push(this)
-        } else if (this.category_id == 4 && this.level_id == idLevel) {
-            sci.push(this)
-        } else if (this.category_id == 5 && this.level_id == idLevel) {
-            sto.push(this)
-        }
-    })
-    // Pass the filtered category count and the element where you will get the final value
-    levelSum(geo.length, mat.length, por.length, sci.length, sto.length, msg, lastRegister)
-    // Clean all categories to be used the next call
-    cleanCategories(geo, mat, por, sci, sto)
+    if (list.length > 0) {
+        // Run the list passed in parameter
+        $(list).each(function() {
+            // The conditions are by category and level(this passed by parameter)
+            if (this.category_id == 1 && this.level_id == idLevel) {
+                geo.push(this)
+            } else if (this.category_id == 2 && this.level_id == idLevel) {
+                mat.push(this)
+            } else if (this.category_id == 3 && this.level_id == idLevel) {
+                por.push(this)
+            } else if (this.category_id == 4 && this.level_id == idLevel) {
+                sci.push(this)
+            } else if (this.category_id == 5 && this.level_id == idLevel) {
+                sto.push(this)
+            }
+        })
+        // Pass the filtered category count and the element where you will get the final value
+        levelSum(geo.length, mat.length, por.length, sci.length, sto.length, msg, lastRegister)
+        // Clean all categories to be used the next call
+        cleanCategories(geo, mat, por, sci, sto)
+    }
 }
 
 // Sum of category question
@@ -131,7 +133,7 @@ function newToast(inc, time, msg) {
     $('.container-toast').append(`
         <div class="toast-parent` + inc + `" aria-live="polite" aria-atomic="true" style="position: relative; min-height: 100px;">
             <!-- Position it -->
-            <div class="toast-child">
+            <div class="toast-child pt-0">
                 <!-- Then put toasts within -->
                 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
                     <div class="toast-header">
@@ -159,8 +161,10 @@ $(document).ready(function(){
     }, 5000)
     // Initialized with jQuery method
     $('.toast').toast('show');
+    // Putting event listener on buttons to close Toast
+    closeToast()
 })
-closeToast()
+
 // Close Toast when click
 function closeToast() {
     // Run all objects that has class of toast button to close, and putting events of click for close

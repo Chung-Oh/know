@@ -9,8 +9,10 @@
 		@slot('accordionName', 'One') <!-- Attribute name in tag -->
 		@slot('condition', 1) <!-- Condition to know if wait or challenge -->
 		@slot('nameLevel', 'Beginner Challenges') <!-- Name in the element in the view -->
-		@slot('questions', $questions) <!-- Passing of variable in parameter to work in Accordion component -->
-		@slot('challenges', $challenges) <!-- To work in Challenge component -->
+		<!-- Variables bellow is required in the Accordion (table) and Forms (Creation / Editing and Detail) components -->
+		@slot('alternatives', $alternatives)
+		@slot('questions', $questions)
+		@slot('challenges', $challenges)
 	@endAccordionChallenge
 
 	<!----------------------------- Second Intermediate Level ----------------------------->
@@ -18,6 +20,7 @@
 		@slot('accordionName', 'Two')
 		@slot('condition', 2)
 		@slot('nameLevel', 'Intermediate Challenges')
+		@slot('alternatives', $alternatives)
 		@slot('questions', $questions)
 		@slot('challenges', $challenges)
 	@endAccordionChallenge
@@ -27,6 +30,7 @@
 		@slot('accordionName', 'Three')
 		@slot('condition', 3)
 		@slot('nameLevel', 'Advanced Challenges')
+		@slot('alternatives', $alternatives)
 		@slot('questions', $questions)
 		@slot('challenges', $challenges)
 	@endAccordionChallenge
@@ -36,6 +40,7 @@
 		@slot('accordionName', 'Four')
 		@slot('condition', 4)
 		@slot('nameLevel', 'Erudit Challenges')
+		@slot('alternatives', $alternatives)
 		@slot('questions', $questions)
 		@slot('challenges', $challenges)
 	@endAccordionChallenge

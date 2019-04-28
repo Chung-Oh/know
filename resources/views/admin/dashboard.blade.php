@@ -15,7 +15,7 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                    <p class="mb-0">You are logged in <span class="font-weight-bold">{{ Auth::user()->name }}</span>!</p>
+                    <p class="mb-0">{{ __('You are logged in') }} <span class="font-weight-bold">{{ Auth::user()->name }}</span>!</p>
             @endslot
         @endPanelCard
 

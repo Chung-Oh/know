@@ -1,3 +1,5 @@
 if ($('.alert-admin')) {
-	$('.alert-admin').fadeOut(15000)
+	setTimeout(function() {
+		$('.alert-admin').fadeOut(10000)
+	}, 5000)
 }
