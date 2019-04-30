@@ -19,9 +19,9 @@ var sumGeo = 0
 // This function is only for Challenge page
 if (window.location.pathname == '/admin/challenges') {
     // Verify if have a paragraphy with dataset, if has this element
-    if ($('#questions-panel')[0].dataset.questions.length > 2) {
+    if ($('#questionsPanel')[0].dataset.questions.length > 2) {
         // so create a list to filtered by level and category
-        var list = JSON.parse($('#questions-panel')[0].dataset.questions)
+        var list = JSON.parse($('#questionsPanel')[0].dataset.questions)
         Object.keys(list).forEach(function(key) {
             // Conditions to filter by Levels
             if (list[key].level_id == 1) {
@@ -120,6 +120,7 @@ function checkSum(sumGeo, sumMat, sumPor, sumSci, sumSto, target, init) {
             sumPor -= 2
             sumSci -= 2
             sumSto -= 2
+            total -= 10
         }
     }
 }

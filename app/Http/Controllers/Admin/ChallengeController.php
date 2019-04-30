@@ -31,7 +31,6 @@ class ChallengeController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $alternatives = Alternative::with(['questions'])->get();
         $questions = Question::with(['levels', 'categories', 'users'])->get();
         $challenges = Challenge::with(['users', 'level_challenges'])->get();
         $levelChallenges = LevelChallenge::with(['levels', 'experiences', 'opportunities', 'times'])->get();
@@ -39,7 +38,6 @@ class ChallengeController extends Controller
         return view('admin\challenge')
             ->with([
                 'categories' => $categories,
-                'alternatives' => $alternatives,
                 'questions' => $questions,
                 'challenges' => $challenges,
                 'levelChallenges' => $levelChallenges,

@@ -1,6 +1,6 @@
 <section class="row justify-content-center pt-5">
 	<!-- All questions bellow for to treat -->
-	<p id="questions-panel" data-questions="{{ $questions->where('type', 1)->where('challenge_id', null) }}" hidden></p>
+	<p id="questionsPanel" data-questions="{{ $questions->where('type', 1)->where('challenge_id', null) }}" hidden></p>
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header font-weight-bold">{{ $title }}</div>

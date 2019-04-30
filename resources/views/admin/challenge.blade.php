@@ -53,7 +53,6 @@
 
 		<!----------------------------- NAVEGATION TAB ABOUT QUESTIONS ----------------------------->
 		@AccordionTabChallenge
-			@slot('alternatives', $alternatives)
 			@slot('questions', $questions)
 			@slot('challenges', $challenges)
 			@slot('levelChallenges', $levelChallenges)

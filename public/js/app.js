@@ -49110,9 +49110,11 @@ if ($('.alert-admin')) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+// Condition for Mobile when page reload, will show message on Card Graph
 if (window.innerWidth <= 485) {
   $('.text-warning').removeAttr('hidden');
-}
+} // Condition for Mobile when change screen between Portrait and Landscape
+
 
 window.addEventListener('orientationchange', function () {
   if (window.innerWidth <= 485) {
@@ -49120,7 +49122,134 @@ window.addEventListener('orientationchange', function () {
   } else {
     $('.text-warning').removeAttr('hidden');
   }
-});
+}); // Variables where will separated questions
+
+var beg = [];
+int = [];
+adv = [];
+eru = []; // List Categories
+
+var geo = [];
+mat = [];
+por = [];
+sci = [];
+sto = []; // Verify path, only Challenge page
+
+if (window.location.pathname == '/admin/challenges') {
+  var list = []; // Getting list questions
+
+  var questions = JSON.parse($('#questionGraph')[0].dataset.questions);
+  Object.keys(questions).forEach(function (key) {
+    list.push(questions[key]);
+  });
+  getLevel(list);
+} // Separates questions by level
+
+
+function getLevel(list) {
+  $(list).each(function (index, question) {
+    if (question.level_id == 1) {
+      beg.push(question);
+    } else if (question.level_id == 2) {
+      int.push(question);
+    } else if (question.level_id == 3) {
+      adv.push(question);
+    } else {
+      eru.push(question);
+    }
+  });
+  getCategory(beg, $('.beginner'));
+  getCategory(int, $('.intermediate'));
+  getCategory(adv, $('.advanced'));
+  getCategory(eru, $('.erudit'));
+} // Separates questions by category
+
+
+function getCategory(level, target) {
+  $(level).each(function (index, question) {
+    if (question.category_id == 1) {
+      geo.push(question);
+    } else if (question.category_id == 2) {
+      mat.push(question);
+    } else if (question.category_id == 3) {
+      por.push(question);
+    } else if (question.category_id == 4) {
+      sci.push(question);
+    } else {
+      sto.push(question);
+    }
+  });
+  isChallenge(geo, mat, por, sci, sto, target);
+  cleanCategory();
+} // Clean all variables to pass again
+
+
+function cleanCategory() {
+  geo.length = 0;
+  mat.length = 0;
+  por.length = 0;
+  sci.length = 0;
+  sto.length = 0;
+} // Check if it is a challenge, any remaining values ​​will be filled in the Card Graph
+
+
+function isChallenge(geo, mat, por, sci, sto, target) {
+  sumGeo = geo.length;
+  sumMat = mat.length;
+  sumPor = por.length;
+  sumSci = sci.length;
+  sumSto = sto.length;
+  total = sumGeo + sumMat + sumPor + sumSci + sumSto;
+
+  for (var i = 0; i <= total; i++) {
+    if (sumGeo >= 2 && sumMat >= 2 && sumPor >= 2 && sumSci >= 2 && sumSto >= 2) {
+      sumGeo -= 2;
+      sumMat -= 2;
+      sumPor -= 2;
+      sumSci -= 2;
+      sumSto -= 2;
+      total -= 10;
+    }
+  }
+
+  checkCount(sumGeo, sumMat, sumPor, sumSci, sumSto, target);
+} // Check each category and pass to next function to fill the circle
+
+
+function checkCount(geo, mat, por, sci, sto, target) {
+  target.each(function (index, obj) {
+    if (index == 0) {
+      fill(geo, this);
+    } else if (index == 1) {
+      fill(mat, this);
+    } else if (index == 2) {
+      fill(por, this);
+    } else if (index == 3) {
+      fill(sci, this);
+    } else if (index == 4) {
+      fill(sto, this);
+    }
+  });
+} // Fill values getted in the Card Graph
+
+
+function fill(category, target) {
+  if (category == 1) {
+    changeColor(target, 1);
+  } else if (category >= 2) {
+    changeColor(target, 2);
+  }
+} // Change the color of Card Graph
+
+
+function changeColor(target, type) {
+  if (type == 1) {
+    $(target.children[0]).removeClass('bg-secondary').addClass('bg-success');
+  } else if (type == 2) {
+    $(target.children[0]).removeClass('bg-secondary').addClass('bg-success');
+    $(target.children[1]).removeClass('bg-secondary').addClass('bg-success');
+  }
+}
 
 /***/ }),
 
@@ -49151,9 +49280,9 @@ sumSto = 0; // This function is only for Challenge page
 
 if (window.location.pathname == '/admin/challenges') {
   // Verify if have a paragraphy with dataset, if has this element
-  if ($('#questions-panel')[0].dataset.questions.length > 2) {
+  if ($('#questionsPanel')[0].dataset.questions.length > 2) {
     // so create a list to filtered by level and category
-    var list = JSON.parse($('#questions-panel')[0].dataset.questions);
+    var list = JSON.parse($('#questionsPanel')[0].dataset.questions);
     Object.keys(list).forEach(function (key) {
       // Conditions to filter by Levels
       if (list[key].level_id == 1) {
@@ -49247,6 +49376,7 @@ function checkSum(sumGeo, sumMat, sumPor, sumSci, sumSto, target, init) {
       sumPor -= 2;
       sumSci -= 2;
       sumSto -= 2;
+      total -= 10;
     }
   }
 } // Sum of all challenges prepared to be created
@@ -50930,36 +51060,44 @@ sumMat = 0;
 sumPor = 0;
 sumSci = 0;
 sumSto = 0;
-incToast = 0; // Verify if have a paragraphy with dataset, if has this element
+incToast = 0; // Checks if this is the administrator section, function only for this section
 
-if ($('#questions-toast')[0].dataset.questions.length > 2) {
-  // so create a list to filtered by level and category
-  var list = JSON.parse($('#questions-toast')[0].dataset.questions);
-  Object.keys(list).forEach(function (key) {
-    // Conditions to filter by Levels
-    if (list[key].level_id == 1) {
-      beg.push(list[key]);
-    } else if (list[key].level_id == 2) {
-      int.push(list[key]);
-    } else if (list[key].level_id == 3) {
-      adv.push(list[key]);
-    } else {
-      eru.push(list[key]);
-    }
-  }); // Function where you set up a call to next, where you will filter categories from a list of levels.
-  // It also calls the function where it performs total sum of prepared challenges
+if (window.location.pathname == '/admin/dashboard' || window.location.pathname == '/admin/questions' || window.location.pathname == '/admin/challenges' || window.location.pathname == '/admin/history' || window.location.pathname == '/admin/feedback') {
+  initToast();
+} // Main function of Toast where call the all dependencies
 
-  beginFiltering();
+
+function initToast() {
+  // Verify if have a paragraphy with dataset, if has this element
+  if ($('#questionsToast')[0].dataset.questions.length > 2) {
+    // so create a list to filtered by level and category
+    var list = JSON.parse($('#questionsToast')[0].dataset.questions);
+    Object.keys(list).forEach(function (key) {
+      // Conditions to filter by Levels
+      if (list[key].level_id == 1) {
+        beg.push(list[key]);
+      } else if (list[key].level_id == 2) {
+        int.push(list[key]);
+      } else if (list[key].level_id == 3) {
+        adv.push(list[key]);
+      } else {
+        eru.push(list[key]);
+      }
+    }); // Function where you set up a call to next, where you will filter categories from a list of levels.
+    // It also calls the function where it performs total sum of prepared challenges
+
+    beginFiltering();
+  }
 } // Calls all functions to perform filtering and algorithm when a challenge is ready
 
 
 function beginFiltering() {
   // After of filtered the levels then call to filter by Categories
   // First arg is id level, second is the list objects, third message and fourth last register
-  getCategory(1, beg, 'Beginner', $('#questions-beg')[0].dataset.questions);
-  getCategory(2, int, 'Intermediate', $('#questions-int')[0].dataset.questions);
-  getCategory(3, adv, 'Advanced', $('#questions-adv')[0].dataset.questions);
-  getCategory(4, eru, 'Erudit', $('#questions-eru')[0].dataset.questions);
+  getCategory(1, beg, 'Beginner', $('#questionsBeg')[0].dataset.questions);
+  getCategory(2, int, 'Intermediate', $('#questionsInt')[0].dataset.questions);
+  getCategory(3, adv, 'Advanced', $('#questionsAdv')[0].dataset.questions);
+  getCategory(4, eru, 'Erudit', $('#questionsEru')[0].dataset.questions);
 } // Filter by Category
 
 

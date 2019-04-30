@@ -4,6 +4,11 @@
 
 @section('content')
 
+    <!----------------------------- TOAST OF INFORMATIONS ABOUT CHALLENGES ----------------------------->
+    @ToastChallenge
+        @slot('questions', $questions)
+    @endToastChallenge
+
     <section class="container screen-full">
 
         <!----------------------------- A QUESTION SUMMARY PANEL CARD ----------------------------->

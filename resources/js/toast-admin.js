@@ -17,35 +17,47 @@ var sumGeo = 0
     sumSto = 0
     incToast = 0
 
-// Verify if have a paragraphy with dataset, if has this element
-if ($('#questions-toast')[0].dataset.questions.length > 2) {
-    // so create a list to filtered by level and category
-    var list = JSON.parse($('#questions-toast')[0].dataset.questions)
-    Object.keys(list).forEach(function(key) {
-        // Conditions to filter by Levels
-        if (list[key].level_id == 1) {
-            beg.push(list[key])
-        } else if (list[key].level_id == 2) {
-            int.push(list[key])
-        } else if (list[key].level_id == 3) {
-            adv.push(list[key])
-        } else {
-            eru.push(list[key])
-        }
-    })
-    // Function where you set up a call to next, where you will filter categories from a list of levels.
-    // It also calls the function where it performs total sum of prepared challenges
-    beginFiltering()
+// Checks if this is the administrator section, function only for this section
+if (window.location.pathname == '/admin/dashboard'
+    || window.location.pathname == '/admin/questions'
+    || window.location.pathname == '/admin/challenges'
+    || window.location.pathname == '/admin/history'
+    || window.location.pathname == '/admin/feedback') {
+    initToast()
+}
+
+// Main function of Toast where call the all dependencies
+function initToast() {
+    // Verify if have a paragraphy with dataset, if has this element
+    if ($('#questionsToast')[0].dataset.questions.length > 2) {
+        // so create a list to filtered by level and category
+        var list = JSON.parse($('#questionsToast')[0].dataset.questions)
+        Object.keys(list).forEach(function(key) {
+            // Conditions to filter by Levels
+            if (list[key].level_id == 1) {
+                beg.push(list[key])
+            } else if (list[key].level_id == 2) {
+                int.push(list[key])
+            } else if (list[key].level_id == 3) {
+                adv.push(list[key])
+            } else {
+                eru.push(list[key])
+            }
+        })
+        // Function where you set up a call to next, where you will filter categories from a list of levels.
+        // It also calls the function where it performs total sum of prepared challenges
+        beginFiltering()
+    }
 }
 
 // Calls all functions to perform filtering and algorithm when a challenge is ready
 function beginFiltering() {
     // After of filtered the levels then call to filter by Categories
     // First arg is id level, second is the list objects, third message and fourth last register
-    getCategory(1, beg, 'Beginner', $('#questions-beg')[0].dataset.questions)
-    getCategory(2, int, 'Intermediate', $('#questions-int')[0].dataset.questions)
-    getCategory(3, adv, 'Advanced', $('#questions-adv')[0].dataset.questions)
-    getCategory(4, eru, 'Erudit', $('#questions-eru')[0].dataset.questions)
+    getCategory(1, beg, 'Beginner', $('#questionsBeg')[0].dataset.questions)
+    getCategory(2, int, 'Intermediate', $('#questionsInt')[0].dataset.questions)
+    getCategory(3, adv, 'Advanced', $('#questionsAdv')[0].dataset.questions)
+    getCategory(4, eru, 'Erudit', $('#questionsEru')[0].dataset.questions)
 }
 
 // Filter by Category

@@ -57,8 +57,10 @@ class QuestionController extends Controller
             }
         }
 
+        $category = Category::find($request->input('category_id'));
+
         $request->session()
-            ->flash('status', 'Question successfully registered!');
+            ->flash('status', $category->name . " question successfully registered!");
 
         return redirect()
             ->action('Admin\QuestionController@index');
