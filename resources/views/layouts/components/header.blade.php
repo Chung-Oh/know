@@ -12,7 +12,7 @@
                 <ul class="navbar-nav mr-auto">
                     <ul class="navbar-nav">
                         <li>
-                            <a class="nav-link text-white" onclick="$('.loading').css('display', 'block')" href="#">{{ __('Profile') }}</a>
+                            <a class="nav-link text-white" onclick="$('.loading').css('display', 'block')"  href="{{ action('ProfileController@index') }}">{{ __('Profile') }}</a>
                         </li>
                         <li>
                             <a class="nav-link text-white" onclick="$('.loading').css('display', 'block')" href="#">{{ __('Challenges') }}</a>
@@ -24,14 +24,20 @@
                             <a class="nav-link text-white" onclick="$('.loading').css('display', 'block')" href="#">{{ __('Contribute') }}</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">{{ __('Admin') }}</a>
-                            <div class="dropdown-menu bg-success border border-white">
-                                <a class="dropdown-item text-dark font-weight-bold" onclick="$('.loading').css('display', 'block')" href="{{ action('Admin\DashboardController@index') }}">{{ __('Dashboard') }}</a>
-                                <a class="dropdown-item text-dark font-weight-bold" onclick="$('.loading').css('display', 'block')" href="{{ action('Admin\QuestionController@index') }}">{{ __('Questions') }}</a>
-                                <a class="dropdown-item text-dark font-weight-bold" onclick="$('.loading').css('display', 'block')" href="{{ action('Admin\ChallengeController@index') }}">{{ __('Challenges') }}</a>
-                                <a class="dropdown-item text-dark font-weight-bold" onclick="$('.loading').css('display', 'block')" href="#">{{ __('History') }}</a>
-                                <a class="dropdown-item text-dark font-weight-bold" onclick="$('.loading').css('display', 'block')" href="#">{{ __('Feedback') }}</a>
-                            </div>
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">{{ __('Admin') }}</a> <!-- Condition to show just enter button when in the app section -->
+                            @if ($_SERVER["REQUEST_URI"] == 'home' || 'challenges' || 'profile' || 'ranking' || 'contribute')
+                                <div class="dropdown-menu bg-success border border-white">
+                                    <a class="dropdown-item text-dark font-weight-bold" onclick="$('.loading').css('display', 'block')" href="{{ action('Admin\DashboardController@index') }}"><i class="fas fa-sign-in-alt mr-2"></i>{{ __('Enter') }}</a>
+                                </div>
+                            @else <!-- If you have administrator privileges will show the buttons below -->
+                                <div class="dropdown-menu bg-success border border-white">
+                                    <a class="dropdown-item text-dark font-weight-bold" onclick="$('.loading').css('display', 'block')" href="{{ action('Admin\DashboardController@index') }}">{{ __('Dashboard') }}</a>
+                                    <a class="dropdown-item text-dark font-weight-bold" onclick="$('.loading').css('display', 'block')" href="{{ action('Admin\QuestionController@index') }}">{{ __('Questions') }}</a>
+                                    <a class="dropdown-item text-dark font-weight-bold" onclick="$('.loading').css('display', 'block')" href="{{ action('Admin\ChallengeController@index') }}">{{ __('Challenges') }}</a>
+                                    <a class="dropdown-item text-dark font-weight-bold" onclick="$('.loading').css('display', 'block')" href="#">{{ __('History') }}</a>
+                                    <a class="dropdown-item text-dark font-weight-bold" onclick="$('.loading').css('display', 'block')" href="#">{{ __('Feedback') }}</a>
+                                </div>
+                            @endif
                         </li>
                     </ul>
                 </ul>
@@ -52,7 +58,7 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right bg-success border border-white" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item text-dark font-weight-bold" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit(); $('.loading').css('display', 'block')">{{ __('Logout') }}</a>
+                            <a class="dropdown-item text-dark font-weight-bold" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit(); $('.loading').css('display', 'block')"><i class="fas fa-sign-out-alt mr-2"></i>{{ __('Logout') }}</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>

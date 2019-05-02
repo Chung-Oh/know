@@ -32,6 +32,11 @@ class User extends Authenticatable implements MustVerifyEmail
     /*----------------------------------------------------------------------------------------
     | Relationships with another Models, and too in the Database                             |
     |---------------------------------------------------------------------------------------*/
+    public function profiles()
+    {
+        return $this->hasOne('App\Profile', 'id', 'profile_id');
+    }
+
     public function questions()
     {
         return $this->belongsTo('App\Question', 'user_id', 'id');

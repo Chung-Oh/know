@@ -1,14 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'EuSei – Home')
+@section('title', 'EuSei – Profile')
 
 @section('content')
 
+	<!----------------------------- A QUESTION SUMMARY PANEL CARD ----------------------------->
     <section class="container screen-full">
 
         <!----------------------------- A QUESTION SUMMARY PANEL CARD ----------------------------->
         @PanelCard
-            @slot('title', 'Home')
+            @slot('title', 'Profile')
             @slot('body')
                 @if (session('status'))
                     <div class="alert text-center alert-success" role="alert">

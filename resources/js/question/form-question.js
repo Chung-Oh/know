@@ -31,11 +31,11 @@ $('#formCreateQuestion').on('show.bs.modal', function(event) {
         modal.find('#alternative3').val(alt3[0].content)
         modal.find('#alternative4').val(alt4[0].content)
         modal.find('#alternative5').val(alt5[0].content)
-        modal.find('#radioAlternative1').prop('checked', alt1[0].type === 1 ? true : false)
-        modal.find('#radioAlternative2').prop('checked', alt2[0].type === 1 ? true : false)
-        modal.find('#radioAlternative3').prop('checked', alt3[0].type === 1 ? true : false)
-        modal.find('#radioAlternative4').prop('checked', alt4[0].type === 1 ? true : false)
-        modal.find('#radioAlternative5').prop('checked', alt5[0].type === 1 ? true : false)
+        modal.find('#radioAlternative1').prop('checked', alt1[0].type == 1 ? true : false)
+        modal.find('#radioAlternative2').prop('checked', alt2[0].type == 1 ? true : false)
+        modal.find('#radioAlternative3').prop('checked', alt3[0].type == 1 ? true : false)
+        modal.find('#radioAlternative4').prop('checked', alt4[0].type == 1 ? true : false)
+        modal.find('#radioAlternative5').prop('checked', alt5[0].type == 1 ? true : false)
         modal.find('#btnFormQuestion').text('Update')
     } else {
         // Modal Form Create - here clean form

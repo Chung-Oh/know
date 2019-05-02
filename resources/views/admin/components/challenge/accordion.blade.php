@@ -8,8 +8,8 @@
 				<table class="tablesorter table table-sm table-hover text-center bg-light mb-0">
 					<thead class="bg-secondary">
 						<tr class="text-white">
-							<th class="col-table-order btn-cursor" scope="col">#<i class="fas fa-sort"></th>
-							<th class="col-table-order btn-cursor" scope="col">{{ __('By') }}<i class="fas fa-sort"></th>
+							<th class="col-table-order btn-cursor" data-toggle="tooltip" data-placement="top" title="Click the column to sort." scope="col">#<i class="fas fa-sort"></th>
+							<th class="col-table-order btn-cursor" data-toggle="tooltip" data-placement="top" title="Click the column to sort." scope="col">{{ __('By') }}<i class="fas fa-sort"></th>
 							<th scope="col">{{ __('In') }}</th>
 							<th scope="col">{{ __('Options') }}</th>
 						</tr>

@@ -1,7 +1,7 @@
 <section class="col-12 col-md-8 col-lg-8 col-xl-8 pt-4 pr-1 pl-1">
 	<div class="card text-center"> <!-- All questions bellow for to treat -->
 		<p id="questionGraph" data-questions="{{ $questions->where('type', 1)->where('challenge_id', null) }}" hidden></p>
-		<div class="card-header bg-secondary text-white font-weight-bold" data-toggle="tooltip" data-placement="top" title="Green circles are questions created, Wait status">{{ __('Questions') }}
+		<div class="card-header bg-secondary text-white font-weight-bold" data-toggle="tooltip" data-placement="top" title="Green circles are questions created to form a challenge, Wait status.">{{ __('Questions') }}
 			<!-- Warning when the device has a lower display -->
 			<span class="text-warning" hidden>{{ __('- Scroll to vertical to see more') }}</span></div>
 		<div class="card-body table-responsive pt-0 pr-0 pl-0 pb-0">

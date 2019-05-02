@@ -27,7 +27,7 @@ $('#formDetailQuestion').on('show.bs.modal', function(event) {
     var alternatives = []
     alternatives.push(alt1, alt2, alt3, alt4, alt5)
     alternatives.forEach(function(alt) {
-        if (alt[0].type === 1) {
+        if (alt[0].type == 1) {
             modal.find('#altTrue').text('True is : "' + alt[0].content + '".')
         }
     })

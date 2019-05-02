@@ -50901,7 +50901,7 @@ $('#formDetailQuestion').on('show.bs.modal', function (event) {
   var alternatives = [];
   alternatives.push(alt1, alt2, alt3, alt4, alt5);
   alternatives.forEach(function (alt) {
-    if (alt[0].type === 1) {
+    if (alt[0].type == 1) {
       modal.find('#altTrue').text('True is : "' + alt[0].content + '".');
     }
   });
@@ -50950,11 +50950,11 @@ $('#formCreateQuestion').on('show.bs.modal', function (event) {
     modal.find('#alternative3').val(alt3[0].content);
     modal.find('#alternative4').val(alt4[0].content);
     modal.find('#alternative5').val(alt5[0].content);
-    modal.find('#radioAlternative1').prop('checked', alt1[0].type === 1 ? true : false);
-    modal.find('#radioAlternative2').prop('checked', alt2[0].type === 1 ? true : false);
-    modal.find('#radioAlternative3').prop('checked', alt3[0].type === 1 ? true : false);
-    modal.find('#radioAlternative4').prop('checked', alt4[0].type === 1 ? true : false);
-    modal.find('#radioAlternative5').prop('checked', alt5[0].type === 1 ? true : false);
+    modal.find('#radioAlternative1').prop('checked', alt1[0].type == 1 ? true : false);
+    modal.find('#radioAlternative2').prop('checked', alt2[0].type == 1 ? true : false);
+    modal.find('#radioAlternative3').prop('checked', alt3[0].type == 1 ? true : false);
+    modal.find('#radioAlternative4').prop('checked', alt4[0].type == 1 ? true : false);
+    modal.find('#radioAlternative5').prop('checked', alt5[0].type == 1 ? true : false);
     modal.find('#btnFormQuestion').text('Update');
   } else {
     // Modal Form Create - here clean form

@@ -9,9 +9,9 @@
 				<table class="tablesorter table table-sm table-hover text-center bg-light mb-0">
 					<thead class="bg-secondary">
 						<tr class="text-white">
-							<th scope="col" class="col-table-order btn-cursor">#<i class="fas fa-sort"></i></th>
-							<th scope="col" class="col-table-order btn-cursor">{{ __('Question') }}<i class="fas fa-sort"></i></th>
-							<th scope="col" class="col-table-order btn-cursor">{{ __('Category') }}<i class="fas fa-sort"></i></th>
+							<th class="col-table-order btn-cursor" data-toggle="tooltip" data-placement="top" title="Click the column to sort." scope="col">#<i class="fas fa-sort"></i></th>
+							<th class="col-table-order btn-cursor" data-toggle="tooltip" data-placement="top" title="Click the column to sort." scope="col">{{ __('Question') }}<i class="fas fa-sort"></i></th>
+							<th class="col-table-order btn-cursor" data-toggle="tooltip" data-placement="top" title="Click the column to sort." scope="col">{{ __('Category') }}<i class="fas fa-sort"></i></th>
 							<th scope="col">{{ __('Options') }}</th>
 						</tr>
 					</thead>

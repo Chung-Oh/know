@@ -26,6 +26,13 @@ Route::get('/home', 'HomeController@index')
 	->name('home')
 	->middleware('verified');
 
+/*----------------------------------------------------------------------------------------
+| Page Profile     							               								 |
+|---------------------------------------------------------------------------------------*/
+Route::get('/profile', 'ProfileController@index')
+	->name('profile')
+	->middleware('verified');
+
 /*========================================================================================
 |  										ADMIN SECTION 						             |
 |=======================================================================================*/
@@ -34,26 +41,26 @@ Route::get('/home', 'HomeController@index')
 |---------------------------------------------------------------------------------------*/
 Route::get('/admin/dashboard', 'Admin\DashboardController@index')
 	->name('dashboard')
-	->middleware('verified');
+	->middleware('verified', 'can:/admin/dashboard');
 
 /*----------------------------------------------------------------------------------------
 | Page Questions 							               								 |
 |---------------------------------------------------------------------------------------*/
 Route::get('/admin/questions', 'Admin\QuestionController@index')
 	->name('questions')
-	->middleware('verified');
+	->middleware('verified', 'can:/admin/questions');
 
 Route::post('/admin/questions/new', 'Admin\QuestionController@create')
 	->name('questions.new')
-	->middleware('verified');
+	->middleware('verified', 'can:/admin/questions');
 
 Route::post('/admin/questions/update', 'Admin\QuestionController@update')
 	->name('questions.update')
-	->middleware('verified');
+	->middleware('verified', 'can:/admin/questions');
 
 Route::post('/admin/questions/destroy', 'Admin\QuestionController@destroy')
 	->name('questions.destroy')
-	->middleware('verified');
+	->middleware('verified', 'can:/admin/questions');
 
 // To manipulate route with GET method to fix errors
 Route::get('/admin/questions/new', function () {
@@ -73,15 +80,15 @@ Route::get('/admin/questions/destroy', function () {
 |---------------------------------------------------------------------------------------*/
 Route::get('/admin/challenges', 'Admin\ChallengeController@index')
 	->name('challenges')
-	->middleware('verified');
+	->middleware('verified', 'can:/admin/challenges');
 
 Route::post('/admin/challenges/new', 'Admin\ChallengeController@create')
 	->name('challenges.new')
-	->middleware('verified');
+	->middleware('verified', 'can:/admin/challenges');
 
 Route::post('/admin/challenges/update', 'Admin\ChallengeController@update')
 	->name('challenges.update')
-	->middleware('verified');
+	->middleware('verified', 'can:/admin/challenges');
 
 // To manipulate route with GET method to fix errors
 Route::get('/admin/challenges/new', function () {
