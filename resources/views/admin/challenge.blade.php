@@ -4,7 +4,7 @@
 
 @section('content')
 
-	<!----------------------------- QUESTION MANIPULATION RESPONSE ----------------------------->
+	<!----------------------------- CHALLENGE MANIPULATION RESPONSE ----------------------------->
 	@if (session('status'))
 		@Alert @endAlert
 	@endif

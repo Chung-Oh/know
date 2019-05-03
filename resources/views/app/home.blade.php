@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <section class="container screen-full">
+    <section class="container screen-full"> <!-- Ficar atento com classe SCREEN-FULL, talvez tenha que remover -->
 
         <!----------------------------- A QUESTION SUMMARY PANEL CARD ----------------------------->
         @PanelCard

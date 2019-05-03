@@ -15,7 +15,7 @@
                             <a class="nav-link text-white" onclick="$('.loading').css('display', 'block')"  href="{{ action('ProfileController@index') }}">{{ __('Profile') }}</a>
                         </li>
                         <li>
-                            <a class="nav-link text-white" onclick="$('.loading').css('display', 'block')" href="#">{{ __('Challenges') }}</a>
+                            <a class="nav-link text-white" onclick="$('.loading').css('display', 'block')" href="{{ action('ChallengeController@index') }}">{{ __('Challenges') }}</a>
                         </li>
                         <li>
                             <a class="nav-link text-white" onclick="$('.loading').css('display', 'block')" href="#">{{ __('Ranking') }}</a>
@@ -24,8 +24,11 @@
                             <a class="nav-link text-white" onclick="$('.loading').css('display', 'block')" href="#">{{ __('Contribute') }}</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">{{ __('Admin') }}</a> <!-- Condition to show just enter button when in the app section -->
-                            @if ($_SERVER["REQUEST_URI"] == 'home' || 'challenges' || 'profile' || 'ranking' || 'contribute')
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">{{ __('Admin') }}</a>
+                            <!-- Condition to show just enter button when in the app section -->
+                            @if ($_SERVER["REQUEST_URI"] == '/home' || $_SERVER["REQUEST_URI"] == '/profile'
+                                || $_SERVER["REQUEST_URI"] == '/challenges' || $_SERVER["REQUEST_URI"] == '/ranking'
+                                || $_SERVER["REQUEST_URI"] == '/contribute')
                                 <div class="dropdown-menu bg-success border border-white">
                                     <a class="dropdown-item text-dark font-weight-bold" onclick="$('.loading').css('display', 'block')" href="{{ action('Admin\DashboardController@index') }}"><i class="fas fa-sign-in-alt mr-2"></i>{{ __('Enter') }}</a>
                                 </div>

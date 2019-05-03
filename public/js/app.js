@@ -50780,12 +50780,12 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 // All categories cards
-var beginningWait = $('.BeginnerWait');
+var beginnerWait = $('.BeginnerWait');
 var intermediateWait = $('.IntermediateWait');
 var advancedWait = $('.AdvancedWait');
 var eruditWait = $('.EruditWait'); // Card Ready
 
-var beginningReady = $('#BeginnerReady');
+var beginnerReady = $('#BeginnerReady');
 var intermediateReady = $('#IntermediateReady');
 var advancedReady = $('#AdvancedReady');
 var eruditReady = $('#EruditReady');
@@ -50824,7 +50824,7 @@ function bindCard(current, target) {
 
 
 if (window.location.pathname == '/admin/questions') {
-  bindCard(beginningWait, beginningReady);
+  bindCard(beginnerWait, beginnerReady);
   bindCard(intermediateWait, intermediateReady);
   bindCard(advancedWait, advancedReady);
   bindCard(eruditWait, eruditReady);
@@ -50834,7 +50834,7 @@ if (window.location.pathname == '/admin/questions') {
 
 function sumReady() {
   sum = 0;
-  sum += Number($(beginningReady)[0].textContent);
+  sum += Number($(beginnerReady)[0].textContent);
   sum += Number($(intermediateReady)[0].textContent);
   sum += Number($(advancedReady)[0].textContent);
   sum += Number($(eruditReady)[0].textContent);

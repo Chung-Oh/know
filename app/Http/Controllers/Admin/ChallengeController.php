@@ -60,8 +60,9 @@ class ChallengeController extends Controller
             $question->save();
         }
 
+        $level = LevelChallenge::find($request->input('level_challenge_id'));
         $request->session()
-            ->flash('status', 'Challenge successfully registered!');
+            ->flash('status', $level->levels[0]->name . ' challenge successfully registered!');
 
         return redirect()
             ->action('Admin\ChallengeController@index');

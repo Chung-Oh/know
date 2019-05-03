@@ -33,6 +33,13 @@ Route::get('/profile', 'ProfileController@index')
 	->name('profile')
 	->middleware('verified');
 
+/*----------------------------------------------------------------------------------------
+| Page Challenges  							               								 |
+|---------------------------------------------------------------------------------------*/
+Route::get('/challenges', 'ChallengeController@index')
+	->name('challenges')
+	->middleware('verified');
+
 /*========================================================================================
 |  										ADMIN SECTION 						             |
 |=======================================================================================*/
@@ -40,63 +47,63 @@ Route::get('/profile', 'ProfileController@index')
 | Page Dashboard 							               								 |
 |---------------------------------------------------------------------------------------*/
 Route::get('/admin/dashboard', 'Admin\DashboardController@index')
-	->name('dashboard')
+	->name('admin.dashboard')
 	->middleware('verified', 'can:/admin/dashboard');
 
 /*----------------------------------------------------------------------------------------
 | Page Questions 							               								 |
 |---------------------------------------------------------------------------------------*/
 Route::get('/admin/questions', 'Admin\QuestionController@index')
-	->name('questions')
+	->name('admin.questions')
 	->middleware('verified', 'can:/admin/questions');
 
 Route::post('/admin/questions/new', 'Admin\QuestionController@create')
-	->name('questions.new')
+	->name('admin.questions.new')
 	->middleware('verified', 'can:/admin/questions');
 
 Route::post('/admin/questions/update', 'Admin\QuestionController@update')
-	->name('questions.update')
+	->name('admin.questions.update')
 	->middleware('verified', 'can:/admin/questions');
 
 Route::post('/admin/questions/destroy', 'Admin\QuestionController@destroy')
-	->name('questions.destroy')
+	->name('admin.questions.destroy')
 	->middleware('verified', 'can:/admin/questions');
 
 // To manipulate route with GET method to fix errors
 Route::get('/admin/questions/new', function () {
-	return redirect()->route('questions');
+	return redirect()->route('admin.questions');
 })->middleware('verified');
 
 Route::get('/admin/questions/update', function () {
-	return redirect()->route('questions');
+	return redirect()->route('admin.questions');
 })->middleware('verified');
 
 Route::get('/admin/questions/destroy', function () {
-	return redirect()->route('questions');
+	return redirect()->route('admin.questions');
 })->middleware('verified');
 
 /*----------------------------------------------------------------------------------------
 | Page Challenges 																		 |
 |---------------------------------------------------------------------------------------*/
 Route::get('/admin/challenges', 'Admin\ChallengeController@index')
-	->name('challenges')
+	->name('admin.challenges')
 	->middleware('verified', 'can:/admin/challenges');
 
 Route::post('/admin/challenges/new', 'Admin\ChallengeController@create')
-	->name('challenges.new')
+	->name('admin.challenges.new')
 	->middleware('verified', 'can:/admin/challenges');
 
 Route::post('/admin/challenges/update', 'Admin\ChallengeController@update')
-	->name('challenges.update')
+	->name('admin.challenges.update')
 	->middleware('verified', 'can:/admin/challenges');
 
 // To manipulate route with GET method to fix errors
 Route::get('/admin/challenges/new', function () {
-	return redirect()->route('challenges');
+	return redirect()->route('admin.challenges');
 })->middleware('verified');
 
 Route::get('/admin/challenges/update', function () {
-	return redirect()->route('challenges');
+	return redirect()->route('admin.challenges');
 })->middleware('verified');
 
 // AJAX to get all alternatives about question id on parameter
