@@ -9,7 +9,7 @@
 		@Alert @endAlert
 	@endif
 
-	<section class="container screen-full"> <!-- Ficar atento com classe SCREEN-FULL, talvez tenha que remover -->
+	<section class="container"> <!-- Ficar atento com classe SCREEN-FULL, talvez tenha que remover -->
 
         <!----------------------------- A CHALLENGE SUMMARY PANEL CARD ----------------------------->
         @PanelCard
@@ -18,18 +18,15 @@
         @endPanelCard
 
         <!----------------------------- USING ACCORDION TO SEPARATE LEVELS ----------------------------->
-		<div class="accordion" id="accordionName">
+		@AccordionTabChallenge
 
-			<!----------------------------- First Beginning Level like option ----------------------------->
-
-			<!----------------------------- Second Intermediate Level ----------------------------->
-
-			<!----------------------------- Third Advanced Level ----------------------------->
-
-			<!----------------------------- Fourth Erudit Level ----------------------------->
-
-		</div> <!-- End Accordion -->
+		@endAccordionTabChallenge
 
     </section>
+
+    <!----------------------------- SET HEIGHT ON TABLET TO FILL HOLE ----------------------------->
+	@Fill
+		@slot('number', 30)
+	@endFill
 
 @endsection

@@ -12,6 +12,30 @@ use App\Http\Requests\QuestionRequest;
 
 class QuestionController extends Controller
 {
+    // Using AJAX for to get informations about Questions
+    public function search($content = null)
+    {
+        // List of questions you will return after searching
+        $list = [];
+        // If paramater was empty will return a array empty
+        if ($content == '') {
+            return response()->json([]);
+        // If it is not empty, it will enter this condition and running the questions in the list
+        // find the content passed in the paramater
+        } else {
+            // Gettin all the Questions and your relationships
+            $questions = Question::with(['users', 'categories', 'levels', 'challenges'])->get();
+            foreach ($questions as $q) {
+                // STRISTR function is not case sensite
+                if (stristr($q->content, $content)) {
+                    array_push($list, $q);
+                }
+            }
+        }
+        // Here will return a list of questions of second condition
+        return response()->json($list);
+    }
+
     public function index()
     {
         $levels = Level::all();

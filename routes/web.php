@@ -82,6 +82,12 @@ Route::get('/admin/questions/destroy', function () {
 	return redirect()->route('admin.questions');
 })->middleware('verified');
 
+// Using AJAX to search the questoin more fast
+Route::get(
+	'/admin/questions/show/{content?}',
+	'Admin\QuestionController@search'
+)->middleware('verified');
+
 /*----------------------------------------------------------------------------------------
 | Page Challenges 																		 |
 |---------------------------------------------------------------------------------------*/

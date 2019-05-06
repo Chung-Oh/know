@@ -6,6 +6,7 @@
 				<div class="accordion" id="accordionSummaryQuestion">
 					<section class="card rounded-0">
 						<div class="card-header btn-cursor pl-1" id="headingSummaryQuestion" data-toggle="collapse" data-target="#collapseSummaryQuestion" aria-expanded="true" aria-controls="collapseSummaryQuestion">
+							<i class="fas fa-tasks icon-challenge align-middle text-primary ml-3"></i>
 							<h2 class="btn btn-link mb-0">{{ $subTitle }}</h2>
 						</div>
 						<div id="collapseSummaryQuestion" class="collapse" aria-labelledby="headingSummaryQuestion" data-parent="#accordionSummaryQuestion">

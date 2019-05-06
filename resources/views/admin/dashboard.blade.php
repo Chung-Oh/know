@@ -5,9 +5,9 @@
 @section('content')
 
     <!----------------------------- TOAST OF INFORMATIONS ABOUT CHALLENGES ----------------------------->
-    @ToastChallenge
+    @ToastChallengeAdmin
         @slot('questions', $questions)
-    @endToastChallenge
+    @endToastChallengeAdmin
 
     <section class="container screen-full">
 

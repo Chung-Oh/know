@@ -10,9 +10,9 @@
 	@endif
 
 	<!----------------------------- TOAST OF INFORMATIONS ABOUT CHALLENGES ----------------------------->
-	@ToastChallenge
+	@ToastChallengeAdmin
 		@slot('questions', $questions)
-	@endToastChallenge
+	@endToastChallengeAdmin
 
 	<!----------------------------- ERRORS VALIDATION LIST ----------------------------->
 	@if ($errors->any())
@@ -52,8 +52,9 @@
 
 		<!----------------------------- NAVEGATION TAB ABOUT QUESTIONS ----------------------------->
 		@NavegationTabQuestion
-			@slot('option_1', 'Wait')
+			@slot('option_1', 'Wait') <!-- Tabs name -->
 			@slot('option_2', 'Challenge')
+			@slot('option_3', 'Search')
 			@slot('questions', $questions)
 			@slot('alternatives', $alternatives)
 		@endNavegationTabQuestion

@@ -8,27 +8,47 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-/*** My styles ***/
-// Modules
-@import 'module/toast';
-@import 'module/loading';
-@import 'module/btn-top';
-@import 'module/card-graph';
-
+/*====================================================================
+| 						    	MY STYLES  							 |
+====================================================================*/
 // Page Welcome
 @import 'pages/welcome';
-@import 'pages/body-form-auth';
+@import 'module/body-form-auth';
 
-// Page Question
-@import 'pages/question';
+/*--------------------------------------------------------------------
+| Modules Generic													 |
+--------------------------------------------------------------------*/
+@import 'module/loading';
+@import 'module/btn-top';
 
-// Page Challenge
-@import 'pages/challenge';
+/*--------------------------------------------------------------------
+| Section App														 |
+--------------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------------
+| Section Admin														 |
+--------------------------------------------------------------------*/
+// Page Question Admin
+@import 'module/admin-form-question';
+
+// Page Challenge Admin
+@import 'module/admin-form-challenge';
+@import 'module/card-graph';
+
+// Generic
+@import 'module/toast';
 
 // Default class used on all pages
 .screen-full {
 	height: 100vh;
 }
+// Generic class when we want to represent a button
 .btn-cursor {
 	cursor: pointer;
+}
+// Changes size of icon about Challenges
+// Page AppChallenge, AdminQuestions and AdminChallenges
+.icon-challenge {
+	font-size: 1.5em;
 }

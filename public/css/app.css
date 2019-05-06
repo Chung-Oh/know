@@ -10655,30 +10655,34 @@ a.text-dark:focus {
   }
 }
 
-/*** My styles ***/
+/*====================================================================
+| 						    	MY STYLES  							 |
+====================================================================*/
 
-.toast-child {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding-top: 0.5em;
+.correct-size {
+  font-size: 115%;
 }
 
-@media only screen and (max-width: 740px) and (max-height: 420px) {
-  .toast-child {
-    position: unset;
-    margin: auto;
-    width: 45vw;
-  }
+.sec-plataform {
+  background-color: #c5c9cd;
 }
 
-@media only screen and (max-width: 420px) and (max-height: 740px) {
-  .toast-child {
-    position: unset;
-    margin: auto;
-    width: 80vw;
-  }
+.icon-home {
+  font-size: 2em;
 }
+
+.icon-network {
+  font-size: 2em;
+  color: #333;
+}
+
+.logo-icon {
+  background: url(/images/logo-form.jpg?fb9f517158f6855b6ef3fa7ac064b4e1) no-repeat;
+}
+
+/*--------------------------------------------------------------------
+| Modules Generic													 |
+--------------------------------------------------------------------*/
 
 .loading {
   display: none;
@@ -10785,33 +10789,13 @@ a.text-dark:focus {
   }
 }
 
-.dot {
-  height: 15px;
-  width: 15px;
-  border-radius: 50%;
-  display: inline-block;
-}
+/*--------------------------------------------------------------------
+| Section App														 |
+--------------------------------------------------------------------*/
 
-.correct-size {
-  font-size: 115%;
-}
-
-.sec-plataform {
-  background-color: #c5c9cd;
-}
-
-.icon-home {
-  font-size: 2em;
-}
-
-.icon-network {
-  font-size: 2em;
-  color: #333;
-}
-
-.logo-icon {
-  background: url(/images/logo-form.jpg?fb9f517158f6855b6ef3fa7ac064b4e1) no-repeat;
-}
+/*--------------------------------------------------------------------
+| Section Admin														 |
+--------------------------------------------------------------------*/
 
 #level::before,
 #category::before,
@@ -10908,11 +10892,45 @@ a.text-dark:focus {
   background: #f5f6d3;
 }
 
+.dot {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.toast-child {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 0.5em;
+}
+
+@media only screen and (max-width: 740px) and (max-height: 420px) {
+  .toast-child {
+    position: unset;
+    margin: auto;
+    width: 45vw;
+  }
+}
+
+@media only screen and (max-width: 420px) and (max-height: 740px) {
+  .toast-child {
+    position: unset;
+    margin: auto;
+    width: 80vw;
+  }
+}
+
 .screen-full {
   height: 100vh;
 }
 
 .btn-cursor {
   cursor: pointer;
+}
+
+.icon-challenge {
+  font-size: 1.5em;
 }
 

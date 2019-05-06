@@ -22,7 +22,16 @@ class AppServiceProvider extends ServiceProvider
         /*------------------------------------------------------------------------------------
         | Generic App                                                                        |
         |-----------------------------------------------------------------------------------*/
+        Blade::component('app.components.alert', 'Alert');
+        Blade::component('app.components.loading', 'Loading');
         Blade::component('app.components.panel-card', 'PanelCard');
+        Blade::component('app.components.fill', 'Fill');
+
+        /*------------------------------------------------------------------------------------
+        | Page Challenge                                                                     |
+        |-----------------------------------------------------------------------------------*/
+        Blade::component('app.components.challenge.accordion-tab', 'AccordionTabChallenge');
+        Blade::component('app.components.challenge.accordion', 'AccordionChallenge');
 
         /*====================================================================================
         |                               ADMINISTRATOR SECTION                                |
@@ -30,12 +39,9 @@ class AppServiceProvider extends ServiceProvider
         /*------------------------------------------------------------------------------------
         | Generic Admin                                                                      |
         |-----------------------------------------------------------------------------------*/
-        Blade::component('admin.components.alert', 'Alert');
-        Blade::component('admin.components.toast-challenge', 'ToastChallenge');
+        Blade::component('admin.components.toast-challenge', 'ToastChallengeAdmin');
         Blade::component('admin.components.errors', 'Errors');
         Blade::component('admin.components.btn-create', 'ButtonCreate');
-        Blade::component('admin.components.loading', 'Loading');
-        Blade::component('admin.components.fill', 'Fill');
 
         /*------------------------------------------------------------------------------------
         | Page Question                                                                      |
@@ -49,6 +55,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('admin.components.question.navegation-tab', 'NavegationTabQuestion');
         Blade::component('admin.components.question.accordion-tab', 'AccordionTabQuestion');
         Blade::component('admin.components.question.accordion', 'AccordionQuestion');
+        Blade::component('admin.components.question.search-question', 'SearchQuestion');
 
         /*------------------------------------------------------------------------------------
         | Page Challenge                                                                     |
@@ -58,8 +65,8 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('admin.components.challenge.card-graph', 'CardGraph');
         Blade::component('admin.components.challenge.form-create', 'FormCreateChallenge');
         Blade::component('admin.components.challenge.form-detail', 'FormDetailChallenge');
-        Blade::component('admin.components.challenge.accordion-tab', 'AccordionTabChallenge');
-        Blade::component('admin.components.challenge.accordion', 'AccordionChallenge');
+        Blade::component('admin.components.challenge.accordion-tab', 'AccordionTabChallengeAdmin');
+        Blade::component('admin.components.challenge.accordion', 'AccordionChallengeAdmin');
     }
 
     /**

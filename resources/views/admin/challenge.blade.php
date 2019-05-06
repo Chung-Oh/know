@@ -10,9 +10,9 @@
 	@endif
 
 	<!----------------------------- TOAST OF INFORMATIONS ABOUT CHALLENGES ----------------------------->
-	@ToastChallenge
+	@ToastChallengeAdmin
 		@slot('questions', $questions)
-	@endToastChallenge
+	@endToastChallengeAdmin
 
 	<!----------------------------- ERRORS VALIDATION LIST ----------------------------->
 	@if ($errors->any())
@@ -52,11 +52,11 @@
 		@endButtonCreate
 
 		<!----------------------------- NAVEGATION TAB ABOUT QUESTIONS ----------------------------->
-		@AccordionTabChallenge
+		@AccordionTabChallengeAdmin
 			@slot('questions', $questions)
 			@slot('challenges', $challenges)
 			@slot('levelChallenges', $levelChallenges)
-		@endAccordionTabChallenge
+		@endAccordionTabChallengeAdmin
 
 	</section>
 

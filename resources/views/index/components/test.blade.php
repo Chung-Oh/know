@@ -38,7 +38,7 @@
     <div class="container">
         <h5>Tudo pronto, agora que você já sabe das regras vamos lá!</h5>
         <div class="row d-flex justify-content-center"><!------- Button TEST ------->
-            <a class="btn btn-primary btn-lg btn-block col-11 col-xl-6" href="#" role="button">Iniciar Teste</a>
+            <a class="btn btn-primary btn-lg btn-block col-11 col-sm-10 col-md-5 col-lg-4 col-xl-3" href="#" role="button">Iniciar Teste</a>
         </div>
     </div>
 
