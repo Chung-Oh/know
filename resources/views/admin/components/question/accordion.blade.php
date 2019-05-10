@@ -1,4 +1,4 @@
-<section class="card rounded-0">
+<section class="card {{ $border }}">
 	<div class="card-header btn-cursor" id="heading{{ $accordionName }}" data-toggle="collapse" data-target="#collapse{{ $accordionName }}" aria-expanded="true" aria-controls="collapse{{ $accordionName }}">
 		<i class="fas fa-{{ $nameIcon }} icon-challenge text-primary align-middle"></i>
 		<h2 class="btn btn-link mb-0">{{ $nameLevel }}</h2>

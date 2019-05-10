@@ -35,7 +35,7 @@ class ChallengeController extends Controller
         $challenges = Challenge::with(['users', 'level_challenges'])->get();
         $levelChallenges = LevelChallenge::with(['levels', 'experiences', 'opportunities', 'times'])->get();
 
-        return view('admin\challenge')
+        return view('admin\challenges')
             ->with([
                 'categories' => $categories,
                 'questions' => $questions,

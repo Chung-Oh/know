@@ -49095,9 +49095,9 @@ btnTop.addEventListener("click", function (event) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-if ($('.alert-admin')) {
+if ($('.alert-temporary')) {
   setTimeout(function () {
-    $('.alert-admin').fadeOut(10000);
+    $('.alert-temporary').fadeOut(10000);
   }, 5000);
 }
 
@@ -51426,10 +51426,10 @@ function verifyInput() {
 function checkDevice() {
   if (window.location.pathname == '/admin/questions') {
     if (window.innerWidth >= 995) {
-      $('.fa-sort').removeAttr('hidden');
+      $('.sort-icon').removeAttr('hidden');
     } else if (window.innerWidth <= 485) {
       // Hidden icon sort
-      $('.fa-sort').attr('hidden', true); // Hidden columns
+      $('.sort-icon').attr('hidden', true); // Hidden columns
 
       $('.more-info').attr('hidden', true); // Message to see more information Landscape
 
@@ -51437,7 +51437,7 @@ function checkDevice() {
 
       $('#infoColumn').removeAttr('hidden');
     } else {
-      $('.fa-sort').attr('hidden', true);
+      $('.sort-icon').attr('hidden', true);
       $('.more-info').removeAttr('hidden');
       $('#infoLand').attr('hidden', true);
       $('#infoColumn').removeAttr('hidden');
@@ -51451,22 +51451,22 @@ checkDevice(); // initialize the table manipulation
 window.addEventListener('orientationchange', function () {
   if (window.innerWidth >= 995) {
     // Condition to Tablet
-    $('.fa-sort').attr('hidden', true);
+    $('.sort-icon').attr('hidden', true);
     $('.more-info').removeAttr('hidden');
     $('#infoColumn').removeAttr('hidden');
   } else if (window.innerWidth >= 765) {
     // Condition to Tablet
-    $('.fa-sort').removeAttr('hidden');
+    $('.sort-icon').removeAttr('hidden');
     $('#infoColumn').attr('hidden', true);
   } else if (window.innerWidth >= 736) {
     // Condition to Mobile
-    $('.fa-sort').attr('hidden', true);
+    $('.sort-icon').attr('hidden', true);
     $('.more-info').attr('hidden', true);
     $('#infoLand').removeAttr('hidden');
     $('#infoColumn').removeAttr('hidden');
   } else if (window.innerWidth <= 485) {
     // Condition to Mobile
-    $('.fa-sort').attr('hidden', true);
+    $('.sort-icon').attr('hidden', true);
     $('.more-info').removeAttr('hidden');
     $('#infoLand').attr('hidden', true);
     $('#infoColumn').removeAttr('hidden');

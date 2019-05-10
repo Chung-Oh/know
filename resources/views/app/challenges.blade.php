@@ -9,7 +9,7 @@
 		@Alert @endAlert
 	@endif
 
-	<section class="container"> <!-- Ficar atento com classe SCREEN-FULL, talvez tenha que remover -->
+	<section class="container">
 
         <!----------------------------- A CHALLENGE SUMMARY PANEL CARD ----------------------------->
         @PanelCard
@@ -17,16 +17,23 @@
             @slot('body', 'Here will have a some informations about all challenges.')
         @endPanelCard
 
-        <!----------------------------- USING ACCORDION TO SEPARATE LEVELS ----------------------------->
-		@AccordionTabChallenge
-
-		@endAccordionTabChallenge
+        <!----------------------------- NAVEGATION TAB ABOUT CHALLENGES ----------------------------->
+        @NavegationTabChallenge
+        	<!-- Name of the navigation tab -->
+			@slot('option_1', 'To do')
+			@slot('option_2', 'Done')
+			<!-- Variables of business model -->
+			@slot('levels', $levels)
+			@slot('results', $results)
+			@slot('challenges', $challenges)
+			@slot('levelChallenge', $levelChallenge)
+        @endNavegationTabChallenge
 
     </section>
 
     <!----------------------------- SET HEIGHT ON TABLET TO FILL HOLE ----------------------------->
 	@Fill
-		@slot('number', 30)
+		@slot('number', 50)
 	@endFill
 
 @endsection

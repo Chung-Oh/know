@@ -32,7 +32,7 @@
 		@slot('levelChallenges', $levelChallenges)
 	@endFormDetailChallenge
 
-	<!----------------------------- SECTION OF CHALLENGES WHERE YOU CAN CREATE, EDIT, SEE AND REMOVE ----------------------------->
+	<!-------------- SECTION OF CHALLENGES WHERE YOU CAN CREATE, EDIT, SEE AND REMOVE -------------->
 	<section class="container pb-5">
 
 		<!----------------------------- A CHALLENGE SUMMARY PANEL CARD ----------------------------->
@@ -62,7 +62,7 @@
 
 	<!----------------------------- SET HEIGHT ON TABLET TO FILL HOLE ----------------------------->
 	@Fill
-		@slot('number', 30)
+		@slot('number', 50)
 	@endFill
 
 @endsection

@@ -63,7 +63,7 @@
 
 	<!----------------------------- SET HEIGHT ON TABLET TO FILL HOLE ----------------------------->
 	@Fill
-		@slot('number', 30)
+		@slot('number', 50)
 	@endFill
 
 @endsection

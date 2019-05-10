@@ -12,7 +12,7 @@
                 <ul class="navbar-nav mr-auto">
                     <ul class="navbar-nav">
                         <li>
-                            <a class="nav-link text-white" onclick="$('.loading').css('display', 'block')"  href="{{ action('ProfileController@index') }}">{{ __('Profile') }}</a>
+                            <a class="nav-link text-white" onclick="$('.loading').css('display', 'block')" href="{{ action('ProfileController@index') }}">{{ __('Profile') }}</a>
                         </li>
                         <li>
                             <a class="nav-link text-white" onclick="$('.loading').css('display', 'block')" href="{{ action('ChallengeController@index') }}">{{ __('Challenges') }}</a>
@@ -28,7 +28,7 @@
                             <!-- Condition to show just enter button when in the app section -->
                             @if ($_SERVER["REQUEST_URI"] == '/home' || $_SERVER["REQUEST_URI"] == '/profile'
                                 || $_SERVER["REQUEST_URI"] == '/challenges' || $_SERVER["REQUEST_URI"] == '/ranking'
-                                || $_SERVER["REQUEST_URI"] == '/contribute')
+                                || $_SERVER["REQUEST_URI"] == '/contribute' || $_SERVER["REQUEST_URI"] == '/challenges/accept')
                                 <div class="dropdown-menu bg-success border border-white">
                                     <a class="dropdown-item text-dark font-weight-bold" onclick="$('.loading').css('display', 'block')" href="{{ action('Admin\DashboardController@index') }}"><i class="fas fa-sign-in-alt mr-2"></i>{{ __('Enter') }}</a>
                                 </div>

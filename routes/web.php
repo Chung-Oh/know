@@ -40,6 +40,10 @@ Route::get('/challenges', 'ChallengeController@index')
 	->name('challenges')
 	->middleware('verified');
 
+Route::post('/challenges/accept', 'ChallengeController@accept')
+	->name('challenges.accept')
+	->middleware('verified');
+
 /*========================================================================================
 |  										ADMIN SECTION 						             |
 |=======================================================================================*/

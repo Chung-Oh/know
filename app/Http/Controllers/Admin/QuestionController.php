@@ -43,7 +43,7 @@ class QuestionController extends Controller
         $questions = Question::with(['levels', 'categories', 'users'])->get();
         $alternatives = Alternative::with('questions')->get();
 
-        return view('admin\question')
+        return view('admin\questions')
             ->with([
                 'levels' => $levels,
                 'categories' => $categories,

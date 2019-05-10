@@ -27,11 +27,11 @@
 		<table id="tbSearch" class="tablesorter table table-sm table-hover text-center bg-light mb-0" hidden>
 			<thead class="bg-secondary">
 				<tr class="text-white">
-					<th class="col-table-order btn-cursor" data-toggle="tooltip" data-placement="top" title="Click the column to sort." scope="col">#<i class="fas fa-sort"></i></th>
-					<th class="col-table-order btn-cursor" data-toggle="tooltip" data-placement="top" title="Click the column to sort." scope="col">{{ __('Question') }}<i class="fas fa-sort"></i></th>
-					<th class="col-table-order btn-cursor" data-toggle="tooltip" data-placement="top" title="Click the column to sort." scope="col">{{ __('Category') }}<i class="fas fa-sort"></i></th>
-					<th class="col-table-order more-info btn-cursor" data-toggle="tooltip" data-placement="top" title="Click the column to sort." scope="col">{{ __('Level') }}<i class="fas fa-sort"></i></th>
-					<th class="col-table-order more-info btn-cursor" data-toggle="tooltip" data-placement="top" title="Click the column to sort." scope="col">{{ __('Challenge') }}<i class="fas fa-sort"></i></th>
+					<th class="col-table-order btn-cursor" data-toggle="tooltip" data-placement="top" title="Click the column to sort." scope="col">#<i class="sort-icon fas fa-sort"></i></th>
+					<th class="col-table-order btn-cursor" data-toggle="tooltip" data-placement="top" title="Click the column to sort." scope="col">{{ __('Question') }}<i class="sort-icon fas fa-sort"></i></th>
+					<th class="col-table-order btn-cursor" data-toggle="tooltip" data-placement="top" title="Click the column to sort." scope="col">{{ __('Category') }}<i class="sort-icon fas fa-sort"></i></th>
+					<th class="col-table-order more-info btn-cursor" data-toggle="tooltip" data-placement="top" title="Click the column to sort." scope="col">{{ __('Level') }}<i class="sort-icon fas fa-sort"></i></th>
+					<th class="col-table-order more-info btn-cursor" data-toggle="tooltip" data-placement="top" title="Click the column to sort." scope="col">{{ __('Challenge') }}<i class="sort-icon fas fa-sort"></i></th>
 					<th scope="col">{{ __('Options') }}</th>
 				</tr>
 			</thead>

@@ -1,5 +1,5 @@
-if ($('.alert-admin')) {
+if ($('.alert-temporary')) {
 	setTimeout(function() {
-		$('.alert-admin').fadeOut(10000)
+		$('.alert-temporary').fadeOut(10000)
 	}, 5000)
 }

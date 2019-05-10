@@ -7,6 +7,7 @@
 		@slot('condition', $condition) <!-- Condition to know if wait or challenge -->
 		@slot('accordionName', 'One' . $name) <!-- Attribute name in tag -->
 		@slot('nameIcon', 'book-open') <!-- Name of icon -->
+		@slot('border', 'rounded-0') <!-- Bootstrap class to handle border of accordion -->
 		@slot('nameLevel', 'Beginner Questions') <!-- Name in the element in the view -->
 		@slot('idLevel', '1') <!-- Level id pass in parameter, where it will be used in the loop -->
 		@slot('questions', $questions) <!-- Passing of variable in parameter to work in another component -->
@@ -19,6 +20,7 @@
 		@slot('condition', $condition)
 		@slot('accordionName', 'Two' . $name)
 		@slot('nameIcon', 'book-reader')
+		@slot('border', 'rounded-0')
 		@slot('nameLevel', 'Intermediate Questions')
 		@slot('idLevel', '2')
 		@slot('questions', $questions)
@@ -31,6 +33,7 @@
 		@slot('condition', $condition)
 		@slot('accordionName', 'Three' . $name)
 		@slot('nameIcon', 'graduation-cap')
+		@slot('border', 'rounded-0')
 		@slot('nameLevel', 'Advanced Questions')
 		@slot('idLevel', '3')
 		@slot('questions', $questions)
@@ -43,6 +46,7 @@
 		@slot('condition', $condition)
 		@slot('accordionName', 'Four' . $name)
 		@slot('nameIcon', 'brain')
+		@slot('border', 'rounded-bottom')
 		@slot('nameLevel', 'Erudit Questions')
 		@slot('idLevel', '4')
 		@slot('questions', $questions)

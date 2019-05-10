@@ -1,4 +1,4 @@
-// Loading Animation
+/* Loading Animation */
 .loading {
 	display: none;
 	position: fixed;
@@ -11,14 +11,14 @@
 	height: 5em;
 	width: 5em;
 }
-// Tablet iPad
+/* Tablet iPad */
 @media only screen and (max-width: 800px) {
 	.loading {
 		top: 50vw;
 		left: 45vw;
 	}
 }
-// iPhone 6/7/8 PLUS Landscape
+/* iPhone 6/7/8 PLUS Landscape */
 @media only screen and (max-width: 740px) and (max-height: 420px) {
 	.loading {
 		top: 22vw;
@@ -29,19 +29,19 @@
 		width: 3em;
 	}
 }
-// iPhone 6/7/8 Landscape
+/* iPhone 6/7/8 Landscape */
 @media only screen and (max-width: 670px) and (max-height: 380px) {
 	.loading {
 		top: 25vw;
 	}
 }
-// Samsung S5 Landscape
+/* Samsung S5 Landscape */
 @media only screen and (max-width: 640px) and (max-height: 360px) {
 	.loading {
 		top: 26vw;
 	}
 }
-// iPhone 6/7/8 PLUS Portrait
+/* iPhone 6/7/8 PLUS Portrait */
 @media only screen and (max-width: 420px) and (max-height: 740px) {
 	.loading {
 		top: 40vw;
@@ -51,13 +51,13 @@
 		width: 3em;
 	}
 }
-// iPhone 6/7/8 Portrait
+/* iPhone 6/7/8 Portrait */
 @media only screen and (max-width: 390px) and (max-height: 670px) {
 	.loading {
 		top: 44vw;
 	}
 }
-// Samsung S5 Portrait
+/* Samsung S5 Portrait */
 @media only screen and (max-width: 360px) and (max-height: 640px) {
 	.loading {
 		top: 45vw;

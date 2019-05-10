@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         /*------------------------------------------------------------------------------------
         | Page Challenge                                                                     |
         |-----------------------------------------------------------------------------------*/
+        Blade::component('app.components.challenge.navegation-tab', 'NavegationTabChallenge');
         Blade::component('app.components.challenge.accordion-tab', 'AccordionTabChallenge');
         Blade::component('app.components.challenge.accordion', 'AccordionChallenge');
 
