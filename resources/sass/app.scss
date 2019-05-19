@@ -1,45 +1,45 @@
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 /*====================================================================
 | 						    	MY STYLES  							 |
 ====================================================================*/
 // Page Welcome
-@import 'pages/welcome';
-@import 'module/body-form-auth';
+@import "pages/welcome";
+@import "module/body-form-auth";
 
 /*--------------------------------------------------------------------
 | Modules Generic													 |
 --------------------------------------------------------------------*/
-@import 'module/loading';
-@import 'module/btn-top';
+@import "module/loading";
+@import "module/btn-top";
 
 /*--------------------------------------------------------------------
 | Section App														 |
 --------------------------------------------------------------------*/
 // Page Challenge
-@import 'module/card-challenge';
-@import 'module/challenge-accept';
+@import "module/card-challenge";
+@import "module/challenge-accept";
 
 /*--------------------------------------------------------------------
 | Section Admin														 |
 --------------------------------------------------------------------*/
 // Page Question Admin
-@import 'module/admin-form-question';
+@import "module/admin-form-question";
 
 // Page Challenge Admin
-@import 'module/admin-form-challenge';
-@import 'module/card-graph';
+@import "module/admin-form-challenge";
+@import "module/card-graph";
 
 // Generic
-@import 'module/toast';
+@import "module/toast";
 
 // Default class used on all pages
 .screen-full {

@@ -15,7 +15,7 @@
     <h4 class="mt-4 mb-4">Uma plataforma divertida de conhecimentos gerais.</h4>
 
     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-light col-10"><!------------- LINE - THEMATIC BREAK ------------->
+        <hr class="my-4 bg-light col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <!----------------------------- Become a member ----------------------------->
@@ -25,7 +25,7 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-light col-10"><!------------- LINE - THEMATIC BREAK ------------->
+        <hr class="my-4 bg-light col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <!----------------------------- Is a member ----------------------------->

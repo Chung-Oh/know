@@ -16,7 +16,7 @@
 		@AccordionTabQuestion
 			@slot('name', 'Waiting') <!-- Attribute name in tag -->
 			@slot('condition', NULL) <!-- Condition to know if wait or challenge -->
-			<!-- Bellow, getting past variables from the Question file, and moving on to the next component -->
+			<!-- below, getting past variables from the Question file, and moving on to the next component -->
 			@slot('questions', $questions)
 			@slot('alternatives', $alternatives)
 		@endAccordionTabQuestion

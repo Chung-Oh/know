@@ -18,7 +18,7 @@
 									@slot('questions', $questions)
 								@endCardQuestion
 
-								<!-- Card bellow showing challenges ready to create -->
+								<!-- Card below showing challenges ready to create -->
 								@CardReadyQuestion
 									@slot('levels', $levels)
 								@endCardReadyQuestion

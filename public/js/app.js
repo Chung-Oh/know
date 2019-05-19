@@ -48977,11 +48977,11 @@ module.exports = function(module) {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./lib/bootstrap */ "./resources/js/lib/bootstrap.js");
 
-__webpack_require__(/*! ./btn-top */ "./resources/js/btn-top.js");
+__webpack_require__(/*! ./app/btn-top */ "./resources/js/app/btn-top.js");
 
-__webpack_require__(/*! ./tooltip-welcome */ "./resources/js/tooltip-welcome.js");
+__webpack_require__(/*! ./app/tooltip-welcome */ "./resources/js/app/tooltip-welcome.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
@@ -49007,76 +49007,22 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ "./resources/js/bootstrap.js":
-/*!***********************************!*\
-  !*** ./resources/js/bootstrap.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
-
-try {
-  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js").default;
-  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
-  __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
-} catch (e) {}
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-
-
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-/**
- * Next we will register the CSRF Token as a common header with Axios so that
- * all outgoing HTTP requests automatically have it attached. This is just
- * a simple convenience so we don't have to attach every token manually.
- */
-
-var token = document.head.querySelector('meta[name="csrf-token"]');
-
-if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-} else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
-// import Echo from 'laravel-echo'
-// window.Pusher = require('pusher-js');
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
-
-/***/ }),
-
-/***/ "./resources/js/btn-top.js":
-/*!*********************************!*\
-  !*** ./resources/js/btn-top.js ***!
-  \*********************************/
+/***/ "./resources/js/app/btn-top.js":
+/*!*************************************!*\
+  !*** ./resources/js/app/btn-top.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var btnTop = document.querySelector(".btn-top");
+// Getting the element
+var btnTop = document.querySelector(".btn-top"); // Placing the scroll event
 
 window.onscroll = function () {
+  // Where if the top is greater than 500 will show the button
+  // and the smaller one will remove
   document.documentElement.scrollTop > 500 || document.body.scrollTop > 500 ? btnTop.style.display = "block" : btnTop.style.display = "none";
-};
+}; // Event of click on button where will to top smooth
+
 
 btnTop.addEventListener("click", function (event) {
   event.preventDefault;
@@ -49088,13 +49034,14 @@ btnTop.addEventListener("click", function (event) {
 
 /***/ }),
 
-/***/ "./resources/js/callback-alert-admin.js":
-/*!**********************************************!*\
-  !*** ./resources/js/callback-alert-admin.js ***!
-  \**********************************************/
+/***/ "./resources/js/app/callback-alert.js":
+/*!********************************************!*\
+  !*** ./resources/js/app/callback-alert.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+// If the element has temporary alert class, it will be removed in 15 seconds
 if ($('.alert-temporary')) {
   setTimeout(function () {
     $('.alert-temporary').fadeOut(10000);
@@ -49103,688 +49050,201 @@ if ($('.alert-temporary')) {
 
 /***/ }),
 
-/***/ "./resources/js/challenge/card-graph.js":
+/***/ "./resources/js/app/challenge-accept.js":
 /*!**********************************************!*\
-  !*** ./resources/js/challenge/card-graph.js ***!
+  !*** ./resources/js/app/challenge-accept.js ***!
   \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Condition for Mobile when page reload, will show message on Card Graph
-if (window.innerWidth <= 485) {
-  $('.text-warning').removeAttr('hidden');
-} // Condition for Mobile when change screen between Portrait and Landscape
+// Getting all the questions
+var questions = $('.question'); // The button will have two values, Next to go to next question and Finish to finish challenge
+
+var button = $('#btnFormAccept'); // Circles representing the questions already resolved
+
+var dot = $('.dot'); // Elements at the bottom of the form
+
+var line = $('#endLine');
+bottomForm = $('#endForm'); // This variable represents the problem that is currently being
+
+var indexQuestion = 0;
+indexAlt = 1; // Putting the first question in display
+
+initialize(questions[indexQuestion]); // Put listeners on button when was be clicked to go next question
+
+button.on('click', function () {
+  checkFields($('.alternative-accept-' + indexAlt));
+}); // Show first Question
+
+function initialize(question) {
+  $(question).removeAttr('hidden');
+  line.removeAttr('hidden');
+  bottomForm.removeAttr('hidden');
+} // Only continue if some entry has filled
 
 
-window.addEventListener('orientationchange', function () {
-  if (window.innerWidth <= 485) {
-    $('.text-warning').attr('hidden', true);
-  } else {
-    $('.text-warning').removeAttr('hidden');
-  }
-}); // Variables where will separated questions
-
-var beg = [];
-int = [];
-adv = [];
-eru = []; // List Categories
-
-var geo = [];
-mat = [];
-por = [];
-sci = [];
-sto = []; // Verify path, only Challenge page
-
-if (window.location.pathname == '/admin/challenges') {
-  var list = []; // Getting list questions
-
-  var questions = JSON.parse($('#questionGraph')[0].dataset.questions);
-  Object.keys(questions).forEach(function (key) {
-    list.push(questions[key]);
-  });
-  getLevel(list);
-} // Separates questions by level
-
-
-function getLevel(list) {
-  $(list).each(function (index, question) {
-    if (question.level_id == 1) {
-      beg.push(question);
-    } else if (question.level_id == 2) {
-      int.push(question);
-    } else if (question.level_id == 3) {
-      adv.push(question);
-    } else {
-      eru.push(question);
+function checkFields(alt) {
+  alt.each(function () {
+    if ($(this).prop('checked')) {
+      nextQuestion(questions[indexQuestion], questions[indexQuestion + 1]);
+      checkStage(indexAlt, $('#btnFormAccept'));
     }
   });
-  getCategory(beg, $('.beginner'));
-  getCategory(int, $('.intermediate'));
-  getCategory(adv, $('.advanced'));
-  getCategory(eru, $('.erudit'));
-} // Separates questions by category
+} // Change button type by removing button type to submit
 
 
-function getCategory(level, target) {
-  $(level).each(function (index, question) {
-    if (question.category_id == 1) {
-      geo.push(question);
-    } else if (question.category_id == 2) {
-      mat.push(question);
-    } else if (question.category_id == 3) {
-      por.push(question);
-    } else if (question.category_id == 4) {
-      sci.push(question);
-    } else {
-      sto.push(question);
-    }
-  });
-  isChallenge(geo, mat, por, sci, sto, target);
-  cleanCategory();
-} // Clean all variables to pass again
-
-
-function cleanCategory() {
-  geo.length = 0;
-  mat.length = 0;
-  por.length = 0;
-  sci.length = 0;
-  sto.length = 0;
-} // Check if it is a challenge, any remaining values ​​will be filled in the Card Graph
-
-
-function isChallenge(geo, mat, por, sci, sto, target) {
-  sumGeo = geo.length;
-  sumMat = mat.length;
-  sumPor = por.length;
-  sumSci = sci.length;
-  sumSto = sto.length;
-  total = sumGeo + sumMat + sumPor + sumSci + sumSto;
-
-  for (var i = 0; i <= total; i++) {
-    if (sumGeo >= 2 && sumMat >= 2 && sumPor >= 2 && sumSci >= 2 && sumSto >= 2) {
-      sumGeo -= 2;
-      sumMat -= 2;
-      sumPor -= 2;
-      sumSci -= 2;
-      sumSto -= 2;
-      total -= 10;
-    }
+function checkStage(alt, button) {
+  if (alt == 10) {
+    button[0].innerHTML = 'Finish';
+  } else if (alt == 11) {
+    load();
+    button[0].type = 'submit';
   }
-
-  checkCount(sumGeo, sumMat, sumPor, sumSci, sumSto, target);
-} // Check each category and pass to next function to fill the circle
+} // When call do you pass the current question and next question
 
 
-function checkCount(geo, mat, por, sci, sto, target) {
-  target.each(function (index, obj) {
-    if (index == 0) {
-      fill(geo, this);
-    } else if (index == 1) {
-      fill(mat, this);
-    } else if (index == 2) {
-      fill(por, this);
-    } else if (index == 3) {
-      fill(sci, this);
-    } else if (index == 4) {
-      fill(sto, this);
-    }
-  });
-} // Fill values getted in the Card Graph
+function nextQuestion(current, next) {
+  changeDot(dot[indexQuestion]);
+  $(current).attr('hidden', true);
+  $(next).removeAttr('hidden');
+  indexQuestion++;
+  indexAlt++;
+} //Change the color of the circles representing the resolved questions
 
 
-function fill(category, target) {
-  if (category == 1) {
-    changeColor(target, 1);
-  } else if (category >= 2) {
-    changeColor(target, 2);
-  }
-} // Change the color of Card Graph
+function changeDot(obj) {
+  $(obj).removeClass('bg-secondary').addClass('bg-success');
+} // Displays Loading Animation
 
 
-function changeColor(target, type) {
-  if (type == 1) {
-    $(target.children[0]).removeClass('bg-secondary').addClass('bg-success');
-  } else if (type == 2) {
-    $(target.children[0]).removeClass('bg-secondary').addClass('bg-success');
-    $(target.children[1]).removeClass('bg-secondary').addClass('bg-success');
-  }
+function load() {
+  $('.loading').css('display', 'block');
 }
 
 /***/ }),
 
-/***/ "./resources/js/challenge/card-ready-challenge.js":
-/*!********************************************************!*\
-  !*** ./resources/js/challenge/card-ready-challenge.js ***!
-  \********************************************************/
+/***/ "./resources/js/app/clock-challenge-accept.js":
+/*!****************************************************!*\
+  !*** ./resources/js/app/clock-challenge-accept.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Levels list
-var beg = [];
-int = [];
-adv = [];
-eru = []; // Categories List
+// List of all Questions
+var listQuestions = document.getElementById('listQuestions'); // Show message when time runs out
 
-var geo = [];
-mat = [];
-por = [];
-sci = [];
-sto = []; // Sum all questions of each category
+var message = document.querySelector('.time-over'); // Parent element of clock
 
-var sumGeo = 0;
-sumMat = 0;
-sumPor = 0;
-sumSci = 0;
-sumSto = 0; // This function is only for Challenge page
+var clock = document.querySelector('.clock-box'); // Form button will be submitted when the clock runs out
 
-if (window.location.pathname == '/admin/challenges') {
-  // Verify if have a paragraphy with dataset, if has this element
-  if ($('#questionsPanel')[0].dataset.questions.length > 2) {
-    // so create a list to filtered by level and category
-    var list = JSON.parse($('#questionsPanel')[0].dataset.questions);
-    Object.keys(list).forEach(function (key) {
-      // Conditions to filter by Levels
-      if (list[key].level_id == 1) {
-        beg.push(list[key]);
-      } else if (list[key].level_id == 2) {
-        int.push(list[key]);
-      } else if (list[key].level_id == 3) {
-        adv.push(list[key]);
-      } else {
-        eru.push(list[key]);
-      }
-    }); // Function where you set up a call to next, where you will filter categories from a list of levels.
-    // It also calls the function where it performs total sum of prepared challenges
+var button = document.getElementById('btnFormAccept'); // Elements where will refresh the time
 
-    beginFiltering();
+var elemMinute = document.querySelector('.minute');
+elemSecond = document.querySelector('.second'); // Variables about second
+
+var fullSecond = '60'; // Call the function to start the second
+
+clock && elemMinute && elemSecond ? initializeClock(elemMinute, elemSecond, fullSecond) : null; // Start the clock
+
+function initializeClock(minute, second, fullSecond) {
+  refreshMinute(minute);
+  refreshSecond(minute, second, fullSecond);
+} // Restart the second to 60 and decrease again
+
+
+function refreshSecond(minute, second, fullSecond) {
+  second.innerHTML = fullSecond;
+  runSecond(minute, second, fullSecond);
+} // It decreases the Seconds
+
+
+function runSecond(minute, second, fullSecond) {
+  currentSecond = parseInt(second.textContent);
+  running = setInterval(function () {
+    currentSecond--;
+    second.innerHTML = currentSecond;
+    lessTen(minute, second, fullSecond, currentSecond, running);
+  }, 1000);
+} // Set zero when the seconds were less than 10
+
+
+function lessTen(minute, second, fullSecond, currentSecond, running) {
+  if (currentSecond < 10) {
+    tempSecond = '0' + currentSecond.toString();
+    second.innerHTML = tempSecond;
   }
-} // Calls all functions to perform filtering and algorithm when a challenge is ready
+
+  secondIsZero(minute, second, fullSecond, currentSecond, running);
+} // When the second is zero refresh, need the fourth parameter to clear the Interval function
 
 
-function beginFiltering() {
-  // After of filtered the levels then call to filter by Categories
-  // First arg is id level, second is the list objects and third is element where will put count
-  getCategory(1, beg, $('#Beginner')[0]);
-  getCategory(2, int, $('#Intermediate')[0]);
-  getCategory(3, adv, $('#Advanced')[0]);
-  getCategory(4, eru, $('#Erudit')[0]); // Calls the function where it performs total sum of prepared challenges
-
-  sumTotal($('#Beginner')[0], $('#Intermediate')[0], $('#Advanced')[0], $('#Erudit')[0], $('#totalReady')[0]);
-} // Filter by Category
-
-
-function getCategory(idLevel, list, target) {
-  // Run the list passed in parameter
-  $(list).each(function () {
-    // The conditions are by category and level(this passed by parameter)
-    if (this.category_id == 1 && this.level_id == idLevel) {
-      geo.push(this);
-    } else if (this.category_id == 2 && this.level_id == idLevel) {
-      mat.push(this);
-    } else if (this.category_id == 3 && this.level_id == idLevel) {
-      por.push(this);
-    } else if (this.category_id == 4 && this.level_id == idLevel) {
-      sci.push(this);
-    } else if (this.category_id == 5 && this.level_id == idLevel) {
-      sto.push(this);
-    }
-  }); // Pass the filtered category count and the element where you will get the final value
-
-  levelSum(geo.length, mat.length, por.length, sci.length, sto.length, target); // Clean all categories to be used the next call
-
-  cleanCategories(geo, mat, por, sci, sto);
-} // Sum of category question
-
-
-function levelSum(geo, mat, por, sci, sto, target) {
-  sumGeo = geo;
-  sumMat = mat;
-  sumPor = por;
-  sumSci = sci;
-  sumSto = sto; // Once you pick up the past values, pass to the next function together with
-  // element target and value 0 to be use in the increment on table
-
-  checkSum(sumGeo, sumMat, sumPor, sumSci, sumSto, target, 0);
-} // Clean all Categories array to next call
-
-
-function cleanCategories(geo, mat, por, sci, sto) {
-  geo.length = 0;
-  mat.length = 0;
-  por.length = 0;
-  sci.length = 0;
-  sto.length = 0;
-} // Check if is a challenge ready
-
-
-function checkSum(sumGeo, sumMat, sumPor, sumSci, sumSto, target, init) {
-  // Total variable will be use to stop the condition
-  var total = sumGeo + sumMat + sumPor + sumSci + sumSto; // Get the value passed in the variable init and put in the variable question
-  // it will be used to represent the value of the challenge that is ready
-
-  var question = init;
-
-  for (var i = 0; i <= total; i++) {
-    if (sumGeo >= 2 && sumMat >= 2 && sumPor >= 2 && sumSci >= 2 && sumSto >= 2) {
-      // If enter this condition, the question variable will be incremented
-      question++;
-      target.innerHTML = question; // All variables that has count of categories will be decremented
-
-      sumGeo -= 2;
-      sumMat -= 2;
-      sumPor -= 2;
-      sumSci -= 2;
-      sumSto -= 2;
-      total -= 10;
-    }
+function secondIsZero(minute, second, fullSecond, currentSecond, running) {
+  if (minute.textContent == 0 && currentSecond == 0) {
+    timeOver(minute, second, running);
+  } else if (currentSecond == 0) {
+    refreshMinute(minute);
+    refreshSecond(minute, second, fullSecond);
+    clearInterval(running);
   }
-} // Sum of all challenges prepared to be created
+} // Decreases the minutes when the second reaches zero
 
 
-function sumTotal(beg, int, adv, eru, total) {
-  total.innerHTML = Number(beg.textContent) + Number(int.textContent) + Number(adv.textContent) + Number(eru.textContent);
+function refreshMinute(minute) {
+  currentMinute = parseInt(minute.textContent);
+  currentMinute--;
+  minute.innerHTML = currentMinute;
+
+  if (currentMinute == 0) {
+    lessOneMinute(clock);
+  }
+} // When the minute is less than one
+
+
+function lessOneMinute(clock) {
+  // Changes the color of the watch from yellow to red
+  clock.classList.remove('text-warning');
+  clock.classList.add('text-danger');
+  clock.classList.add('font-weight-bold');
+} // When the clock reaches zero, stop working
+
+
+function timeOver(minute, second, running) {
+  // Clear function interval to stop the second
+  clearInterval(running);
+  minute.innerHTML = '0';
+  second.innerHTML = '00'; // Getting list of Questions and hidding
+
+  listQuestions.setAttribute('hidden', true); // Show message when time run out
+
+  message.style.display = 'block';
+  finishChallenge(button);
+} // Submitting the challenge when time is up
+
+
+function finishChallenge(btn) {
+  setTimeout(function () {
+    // Show loading animation
+    document.querySelector('.loading').style.display = 'block'; // Changing the Type of Button to Submit
+
+    btn.type = 'submit'; // Submitting the form
+
+    btn.click();
+  }, 3000);
 }
 
 /***/ }),
 
-/***/ "./resources/js/challenge/form-challenge.js":
-/*!**************************************************!*\
-  !*** ./resources/js/challenge/form-challenge.js ***!
-  \**************************************************/
+/***/ "./resources/js/app/tooltip-welcome.js":
+/*!*********************************************!*\
+  !*** ./resources/js/app/tooltip-welcome.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Fields in the Form vinculated in Level Challenge
-var time = $('#time');
-var experience = $('#experience');
-var opportunity = $('#opportunity'); // Element Select of Categories
-
-var selectGeography = $('.questionGeography');
-var selectMathematics = $('.questionMathematics');
-var selectPortuguese = $('.questionPortuguese');
-var selectScience = $('.questionScience');
-var selectStory = $('.questionStory'); // Primary selection element in form, added event change here
-
-$('#primarySelect').change(function () {
-  allSelectQuestion(); // Placing event of changes in the Selection of Questions
-
-  cleanOptionPrimary(); // Clean All tag Select
-  // Here is Very Important, where we took the Option that was Selected in the Form
-
-  var select = $('#primarySelect').find(':selected'); // Convert string to JSON object
-
-  var contentsLevel = JSON.parse(select[0].dataset.levelChallenge);
-  var questions = JSON.parse(select[0].dataset.questions); // About Level Challenge
-
-  time.text(contentsLevel.times[0].type);
-  experience.text(contentsLevel.experiences[0].type);
-  opportunity.text(contentsLevel.opportunities[0].type); // Questions bellow Form
-
-  var option = Object.entries(questions); // Placing the options in the correct categories
-
-  inputOptions(option);
-}); // Placing Change Events in Select Questions
-
-function allSelectQuestion() {
-  // Generic variable to work with question content
-  var content; // When the question is selected the loop will go through and put the information in detail
-
-  for (var i = 1; i <= 10; i++) {
-    $('#question' + i).change(function (elemSelect) {
-      // Remove attribute hidden of detail tag
-      var tagDetail = elemSelect.target.parentNode.children[1];
-      tagDetail.removeAttribute('hidden'); // Getting paragraphy of detail
-
-      content = elemSelect.target.parentNode.children[1].children[1].children[0]; // Put content in paragraphy
-
-      content.innerHTML = elemSelect.target.options[elemSelect.target.options.selectedIndex].dataset.content;
-      idQuestion = elemSelect.target.options[elemSelect.target.options.selectedIndex].value;
-      var tagOL = elemSelect.target.parentNode.children[1].children[1].children[1]; // Call AJAX bellow for to get Alternatives
-
-      getAlternatives(tagOL);
-    });
-  }
-} // Putting the options about level challenge
-
-
-function inputOptions(option) {
-  option.forEach(function (item) {
-    // Condition to know if the category is right and if the question does not have a challenge
-    if (item[1].category_id == 1 && item[1].challenge_id == null) {
-      selectGeography.append("<option class='option-sec' data-content='" + item[1].content + "' value='" + item[1].id + "'>" + contentHandler(item[1].content) + "</option>");
-    }
-
-    if (item[1].category_id == 2 && item[1].challenge_id == null) {
-      selectMathematics.append("<option class='option-sec' data-content='" + item[1].content + "' value='" + item[1].id + "'>" + contentHandler(item[1].content) + "</option>");
-    }
-
-    if (item[1].category_id == 3 && item[1].challenge_id == null) {
-      selectPortuguese.append("<option class='option-sec' data-content='" + item[1].content + "' value='" + item[1].id + "'>" + contentHandler(item[1].content) + "</option>");
-    }
-
-    if (item[1].category_id == 4 && item[1].challenge_id == null) {
-      selectScience.append("<option class='option-sec' data-content='" + item[1].content + "' value='" + item[1].id + "'>" + contentHandler(item[1].content) + "</option>");
-    }
-
-    if (item[1].category_id == 5 && item[1].challenge_id == null) {
-      selectStory.append("<option class='option-sec' data-content='" + item[1].content + "' value='" + item[1].id + "'>" + contentHandler(item[1].content) + "</option>");
-    }
-  });
-} // Clean options of select tag
-
-
-function cleanOptionPrimary() {
-  // This option-sec was create when primary select was changed, this code be there above in loop and condition if
-  $('.option-sec').remove(); // Clear the all Sub Categories Selection Elements
-
-  for (var i = 0; i < 2; i++) {
-    selectGeography[i][0].selected = true;
-    selectMathematics[i][0].selected = true;
-    selectPortuguese[i][0].selected = true;
-    selectScience[i][0].selected = true;
-    selectStory[i][0].selected = true;
-  } // When primary switch is changed it will hide the details
-
-
-  var details = $('.info-detail');
-  details.each(function (index, item) {
-    item.setAttribute('hidden', true);
-    item.removeAttribute('open');
-  });
-} // Manipulate string to short
-
-
-function contentHandler(content) {
-  return content.length >= 50 ? content.slice(0, 50) + '...' : content;
-} // Function helper to above loop
-
-
-function firstOptionQuestion(category, listQuestions) {
-  // Take the last questions (those of the challenge), and put in the select tag
-  var type = 0; // Variable to distinguish last and penultimate question, to be presented in the select tag
-
-  var selectQuestion = category.children[0]; // Getting element Select
-
-  if (Number(category.name.charAt(category.name.length - 1)) % 2) {
-    type = 2;
-  } else {
-    type = 1;
-  } // Remove and add the selected attribute to stay focused on the first option
-
-
-  selectQuestion.removeAttribute('selected');
-  selectQuestion.setAttribute('selected', true); // Put value ID on Select Tag
-
-  selectQuestion.setAttribute('value', category.children[category.children.length - type].value); // Put question content on data attribute
-
-  insertDataOption(selectQuestion, listQuestions); // Put text of question on Select Tag
-
-  selectQuestion.innerHTML = category.children[category.children.length - type].textContent; // Put question in paragraphy
-
-  var detailParagraphy = category.parentNode.children[1].children[1].children[0];
-  detailParagraphy.innerHTML = category.children[category.children.length - type].dataset.content; // Getting id of question to pass on parameter to AJAX
-
-  idQuestion = category.children[category.children.length - type].value; // Getting tag OL to pass alternatives after response of AJAX
-
-  var tagOL = category.parentNode.children[1].children[1].children[1]; // Call AJAX bellow for to get Alternatives
-
-  getAlternatives(tagOL); // Removing attribute hidden of Detail Tag
-
-  category.parentNode.children[1].removeAttribute('hidden'); // Remove the options that belong to the challenge from the list
-
-  removeLastOption(category, category.children[category.children.length - 1]);
-  removeLastOption(category, category.children[category.children.length - 1]);
-} // Insert data content in option
-
-
-function insertDataOption(target, args) {
-  args.forEach(function (item) {
-    if (target.value == item.id) {
-      target.setAttribute('data-content', item.content);
-    }
-  });
-} // Removing option of edit the list option bellow
-
-
-function removeLastOption(parent, child) {
-  parent.removeChild(child);
-}
-
-function listAllQuestions(questions, challenge) {
-  // List of questions that do not have challenges
-  // Taken from the select primary to concatenate when you edit the challenge
-  var listQuestions = [];
-  var temp;
-
-  for (var i = 1; i < 5; i++) {
-    if ($('#primarySelect')[0].children[i].dataset.questions.length > 2) {
-      temp = JSON.parse($('#primarySelect')[0].children[i].dataset.questions);
-
-      for (var index in temp) {
-        listQuestions.push(temp[index]);
-      }
-    }
-  } // Fix bug, Array for the first challenge and objects for the others
-
-
-  if (questions.length == 10) {
-    // Placing the questions that will be edited in the list of questions
-    $(questions).each(function (index, question) {
-      listQuestions.push(question);
-    });
-  } else {
-    for (var index in questions) {
-      listQuestions.push(questions[index]);
-    }
-  } // Filtering questions by category and level
-
-
-  var matters = ['Geography', 'Mathematics', 'Portuguese', 'Science', 'Story'];
-  matters.forEach(function (matter, indexCat) {
-    $('.question' + matter).each(function (index, category) {
-      listQuestions.forEach(function (question) {
-        if (question.category_id == indexCat + 1 && question.level_id == challenge.level_challenge_id) {
-          $(category).append("<option class='option-sec' data-content='" + question.content + "' value='" + question.id + "'>" + contentHandler(question.content) + "</option>");
-        }
-      });
-      firstOptionQuestion(category, listQuestions);
-    });
-  });
-} // Clear all sub-categories
-
-
-function cleanSubCategories() {
-  for (var i = 1; i <= 10; i++) {
-    $('#question' + i)[0].children[0].innerHTML = 'Choose a Question ' + i;
-    $('#question' + i)[0].children[0].value = '';
-    $('#question' + i)[0].children[0].dataset.content = '';
-  }
-} // Modal Form for Create and Edit
-
-
-$('#formCreateChallenge').on('show.bs.modal', function (event) {
-  // Invoke function to show Tag Detail
-  allSelectQuestion(); // Clean all categories options
-
-  $('.option-sec').remove(); // Getting data attributes by event change
-
-  var button = $(event.relatedTarget);
-  var challenge = button.data('challenge');
-  var questions = button.data('questions');
-  var modal = $(this);
-
-  if (challenge) {
-    modal.find('#formChallengeModalLabel').text('Update Challenge with ID : ' + challenge.id);
-    modal.find('form').attr('action', '/admin/challenges/update');
-    modal.find('#idChallenge').val(challenge.id);
-    modal.find('#primarySelect').attr('disabled', true);
-    modal.find('#levelChallengeId').prop('value', challenge.level_challenge_id);
-    $('.bool').removeAttr('disabled'); // Removing attribute Disabled for to Update
-
-    modal.find('#btnFormChallenge').text('Update'); // Get Level Challenge object and add to Form
-
-    getInfoLevelChallenge(challenge.level_challenge_id); // List of questions that do not have challenges
-    // Taken from the select primary to concatenate when you edit the challenge
-
-    listAllQuestions(questions, challenge);
-  } else {
-    modal.find('#formChallengeModalLabel').text('New Challenge');
-    modal.find('form').attr('action', '/admin/challenges/new');
-    modal.find('#idChallenge').val('');
-    modal.find('#primarySelect').removeAttr('disabled');
-    modal.find('#levelChallengeId').prop('value', '');
-    modal.find('#levelChallengeId').text('Choose a Level');
-    modal.find('#levelChallengeId').removeAttr('selected');
-    modal.find('#levelChallengeId').attr('selected', true);
-    $(time).text('');
-    $(experience).text('');
-    $(opportunity).text('');
-    cleanOptionPrimary();
-    cleanSubCategories();
-    $('.bool').attr('disabled', true); // Add attribute disabled in all tag select Questions
-
-    modal.find('#btnFormChallenge').text('To save');
-  }
-}); // Using AJAX for to get informations about Level Challenges
-
-function getInfoLevelChallenge(idLevelChallenge) {
-  var listInfoLevels = JSON.parse($('#levelChallenge')[0].dataset.levelChallenge);
-  $(listInfoLevels).each(function (index, obj) {
-    if (idLevelChallenge == obj.id) {
-      // Need remove attribute selected to display the value real when will edit
-      $('#levelChallengeId').attr('selected', false);
-      $('#levelChallengeId').attr('selected', true); // // Putting return info on form
-
-      $('#levelChallengeId').text(obj.levels[0].name);
-      $('#experience').text(obj.experiences[0].type);
-      $('#opportunity').text(obj.opportunities[0].type);
-      $('#time').text(obj.times[0].type);
-    }
-  });
-} // Using AJAX for to get Alternatives
-
-
-function getAlternatives(list) {
-  var xhttp = new XMLHttpRequest();
-
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      // Convert String response to Json
-      var alternatives = JSON.parse(this.responseText); // Reusing variable by putting Json to Array
-
-      alternatives = Object.entries(alternatives);
-      alternatives.forEach(function (alt, index) {
-        list.children[index].innerHTML = alt[1].content;
-        list.children[index].setAttribute('class', alt[1].type == 1 ? 'text-warning font-weight-bold' : '');
-      });
-    }
-  };
-
-  xhttp.open("GET", "/admin/challenges/alternatives/" + idQuestion, true);
-  xhttp.send(); // Here it is very important, when the update button is clicked, it will cancel the AJAX request.
-
-  $('#btnFormChallenge').on('click', function (event) {
-    xhttp.abort(); // Because it was not showing the message of success
-  });
-} // Loading Animation when update button be clicked
-
-
-$('#btnFormChallenge').on('click', function (event) {
-  if ($('#btnFormChallenge')[0].textContent == 'Update') {
-    $('.loading').css('display', 'block');
-  } else {
-    var count = 0;
-    $('select').each(function () {
-      if (this.value > 0) {
-        count++;
-
-        if (count == 11) {
-          $('.loading').css('display', 'block');
-        }
-      }
-    });
-  }
+// Function ready by Bootstrap, where manipulate title for network icon
+$(document).ready(function () {
+  $('[data-toggle="tooltip"]').tooltip();
 });
-
-/***/ }),
-
-/***/ "./resources/js/challenge/form-detail.js":
-/*!***********************************************!*\
-  !*** ./resources/js/challenge/form-detail.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-$('#formDetailChallenge').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget);
-  var questions = button.data('questions');
-  var challenge = button.data('challenge');
-  var levelChallenge = $('#levelChallenge').data('level-challenge');
-  var modal = $(this);
-  modal.find('#formQuestionModalLabel').text('Challenge details with ID : ' + challenge.id);
-  modal.find('#creator').text(challenge.users[0].name);
-  modal.find('#createdAt').text(challenge.created_at);
-  modal.find('#updatedAt').text(challenge.updated_at);
-  getInfoLevel(challenge, levelChallenge);
-  throwQuestions(questions);
-}); // Get list of all Level Challenge dependencies that are in an element on the page and put in the Form
-
-function getInfoLevel(challenge, levelChallenge) {
-  $(levelChallenge).each(function (index, obj) {
-    if (challenge.level_challenge_id == obj.id) {
-      $('#level').text(obj.levels[0].name);
-      $('#timeDetail').text(obj.times[0].type);
-      $('#experienceDetail').text(obj.experiences[0].type);
-      $('#opportunityDetail').text(obj.opportunities[0].type);
-    }
-  });
-} // Put all information about question on Form
-
-
-function throwQuestions(questions) {
-  var run = 0;
-  var matters = ['Geography', 'Mathematics', 'Portuguese', 'Science', 'Story'];
-  matters.forEach(function (matter, categoryId) {
-    // Running an Object to get your Keys
-    Object.keys(questions).forEach(function (key, index) {
-      if (categoryId + 1 == questions[key].category_id) {
-        // Get elements from the Form Details section
-        run++;
-        $('#detail' + run)[0].children[1].children[0].innerHTML = questions[key].content; // Content
-
-        $('#detail' + run)[0].children[1].children[2].innerHTML = questions[key].users[0].name; // Creator
-
-        $('#detail' + run)[0].children[1].children[3].innerHTML = questions[key].created_at; // Created At
-
-        $('#detail' + run)[0].children[1].children[4].innerHTML = questions[key].updated_at; // Updated At
-
-        getAlternatives($('#detail' + run)[0].children[1].children[1], questions[key].id); // List Alternative tag OL
-      }
-    });
-  });
-} // Using AJAX for to get Alternatives
-
-
-function getAlternatives(target, idQuestion) {
-  var xhttp = new XMLHttpRequest();
-
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      // Convert String response to Json
-      var alternatives = JSON.parse(this.responseText);
-      var index = 0;
-      Object.keys(alternatives).forEach(function (key) {
-        target.children[index].innerHTML = alternatives[key].content;
-        target.children[index].setAttribute('class', alternatives[key].type == 1 ? 'text-warning font-weight-bold' : '');
-        index++;
-      });
-    }
-  };
-
-  xhttp.open("GET", "/admin/challenges/alternatives/" + idQuestion, true);
-  xhttp.send();
-}
 
 /***/ }),
 
@@ -49857,10 +49317,68 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/jquery.tablesorter.min.js":
-/*!************************************************!*\
-  !*** ./resources/js/jquery.tablesorter.min.js ***!
-  \************************************************/
+/***/ "./resources/js/lib/bootstrap.js":
+/*!***************************************!*\
+  !*** ./resources/js/lib/bootstrap.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/**
+ * We'll load jQuery and the Bootstrap jQuery plugin which provides support
+ * for JavaScript based Bootstrap features such as modals and tabs. This
+ * code may be modified to fit the specific needs of your application.
+ */
+
+try {
+  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js").default;
+  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+  __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+} catch (e) {}
+/**
+ * We'll load the axios HTTP library which allows us to easily issue requests
+ * to our Laravel back-end. This library automatically handles sending the
+ * CSRF token as a header based on the value of the "XSRF" token cookie.
+ */
+
+
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+/**
+ * Next we will register the CSRF Token as a common header with Axios so that
+ * all outgoing HTTP requests automatically have it attached. This is just
+ * a simple convenience so we don't have to attach every token manually.
+ */
+
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+/**
+ * Echo exposes an expressive API for subscribing to channels and listening
+ * for events that are broadcast by Laravel. Echo and event broadcasting
+ * allows your team to easily build robust real-time web applications.
+ */
+// import Echo from 'laravel-echo'
+// window.Pusher = require('pusher-js');
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     encrypted: true
+// });
+
+/***/ }),
+
+/***/ "./resources/js/lib/jquery.tablesorter.min.js":
+/*!****************************************************!*\
+  !*** ./resources/js/lib/jquery.tablesorter.min.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -51151,31 +50669,716 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 /***/ }),
 
-/***/ "./resources/js/question/card-ready-question.js":
-/*!******************************************************!*\
-  !*** ./resources/js/question/card-ready-question.js ***!
-  \******************************************************/
+/***/ "./resources/js/section-admin/challenge/card-graph.js":
+/*!************************************************************!*\
+  !*** ./resources/js/section-admin/challenge/card-graph.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Variables where will separated questions
+var beg = [];
+int = [];
+adv = [];
+eru = []; // List Categories
+
+var geo = [];
+mat = [];
+por = [];
+sci = [];
+sto = []; // Condition for Mobile when page reload, will show message on Card Graph
+
+if (window.innerWidth <= 485) {
+  $('.text-warning').removeAttr('hidden');
+} // Condition for Mobile when change screen between Portrait and Landscape
+
+
+window.addEventListener('orientationchange', function () {
+  if (window.innerWidth <= 485) {
+    $('.text-warning').attr('hidden', true);
+  } else {
+    $('.text-warning').removeAttr('hidden');
+  }
+}); // Verify path, only Challenge page
+
+if (window.location.pathname == '/admin/challenges') {
+  var list = []; // Getting list questions
+
+  var questions = JSON.parse($('#questionGraph')[0].dataset.questions);
+  Object.keys(questions).forEach(function (key) {
+    list.push(questions[key]);
+  });
+  getLevel(list);
+} // Separates questions by level
+
+
+function getLevel(list) {
+  $(list).each(function (index, question) {
+    if (question.level_id == 1) {
+      beg.push(question);
+    } else if (question.level_id == 2) {
+      int.push(question);
+    } else if (question.level_id == 3) {
+      adv.push(question);
+    } else {
+      eru.push(question);
+    }
+  });
+  getCategory(beg, $('.beginner'));
+  getCategory(int, $('.intermediate'));
+  getCategory(adv, $('.advanced'));
+  getCategory(eru, $('.erudit'));
+} // Separates questions by category
+
+
+function getCategory(level, target) {
+  $(level).each(function (index, question) {
+    if (question.category_id == 1) {
+      geo.push(question);
+    } else if (question.category_id == 2) {
+      mat.push(question);
+    } else if (question.category_id == 3) {
+      por.push(question);
+    } else if (question.category_id == 4) {
+      sci.push(question);
+    } else {
+      sto.push(question);
+    }
+  });
+  isChallenge(geo, mat, por, sci, sto, target);
+  cleanCategory();
+} // Clean all variables to pass again
+
+
+function cleanCategory() {
+  geo.length = 0;
+  mat.length = 0;
+  por.length = 0;
+  sci.length = 0;
+  sto.length = 0;
+} // Check if it is a challenge, any remaining values ​​will be filled in the Card Graph
+
+
+function isChallenge(geo, mat, por, sci, sto, target) {
+  sumGeo = geo.length;
+  sumMat = mat.length;
+  sumPor = por.length;
+  sumSci = sci.length;
+  sumSto = sto.length;
+  total = sumGeo + sumMat + sumPor + sumSci + sumSto;
+
+  for (var i = 0; i <= total; i++) {
+    if (sumGeo >= 2 && sumMat >= 2 && sumPor >= 2 && sumSci >= 2 && sumSto >= 2) {
+      sumGeo -= 2;
+      sumMat -= 2;
+      sumPor -= 2;
+      sumSci -= 2;
+      sumSto -= 2;
+      total -= 10;
+    }
+  }
+
+  checkCount(sumGeo, sumMat, sumPor, sumSci, sumSto, target);
+} // Check each category and pass to next function to fill the circle
+
+
+function checkCount(geo, mat, por, sci, sto, target) {
+  target.each(function (index, obj) {
+    if (index == 0) {
+      fill(geo, this);
+    } else if (index == 1) {
+      fill(mat, this);
+    } else if (index == 2) {
+      fill(por, this);
+    } else if (index == 3) {
+      fill(sci, this);
+    } else if (index == 4) {
+      fill(sto, this);
+    }
+  });
+} // Fill values getted in the Card Graph
+
+
+function fill(category, target) {
+  if (category == 1) {
+    changeColor(target, 1);
+  } else if (category >= 2) {
+    changeColor(target, 2);
+  }
+} // Change the color of Card Graph
+
+
+function changeColor(target, type) {
+  if (type == 1) {
+    $(target.children[0]).removeClass('bg-secondary').addClass('bg-success');
+  } else if (type == 2) {
+    $(target.children[0]).removeClass('bg-secondary').addClass('bg-success');
+    $(target.children[1]).removeClass('bg-secondary').addClass('bg-success');
+  }
+}
+
+/***/ }),
+
+/***/ "./resources/js/section-admin/challenge/card-ready-challenge.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/section-admin/challenge/card-ready-challenge.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Levels list
+var beg = [];
+int = [];
+adv = [];
+eru = []; // Categories List
+
+var geo = [];
+mat = [];
+por = [];
+sci = [];
+sto = []; // Sum all questions of each category
+
+var sumGeo = 0;
+sumMat = 0;
+sumPor = 0;
+sumSci = 0;
+sumSto = 0; // This function is only for Challenge page
+
+if (window.location.pathname == '/admin/challenges') {
+  // Verify if have a paragraphy with dataset, if has this element
+  if ($('#questionsPanel')[0].dataset.questions.length > 2) {
+    // so create a list to filtered by level and category
+    var list = JSON.parse($('#questionsPanel')[0].dataset.questions);
+    Object.keys(list).forEach(function (key) {
+      // Conditions to filter by Levels
+      if (list[key].level_id == 1) {
+        beg.push(list[key]);
+      } else if (list[key].level_id == 2) {
+        int.push(list[key]);
+      } else if (list[key].level_id == 3) {
+        adv.push(list[key]);
+      } else {
+        eru.push(list[key]);
+      }
+    }); // Function where you set up a call to next, where you will filter categories from a list of levels.
+    // It also calls the function where it performs total sum of prepared challenges
+
+    beginFiltering();
+  }
+} // Calls all functions to perform filtering and algorithm when a challenge is ready
+
+
+function beginFiltering() {
+  // After of filtered the levels then call to filter by Categories
+  // First arg is id level, second is the list objects and third is element where will put count
+  getCategory(1, beg, $('#Beginner')[0]);
+  getCategory(2, int, $('#Intermediate')[0]);
+  getCategory(3, adv, $('#Advanced')[0]);
+  getCategory(4, eru, $('#Erudit')[0]); // Calls the function where it performs total sum of prepared challenges
+
+  sumTotal($('#Beginner')[0], $('#Intermediate')[0], $('#Advanced')[0], $('#Erudit')[0], $('#totalReady')[0]);
+} // Filter by Category
+
+
+function getCategory(idLevel, list, target) {
+  // Run the list passed in parameter
+  $(list).each(function () {
+    // The conditions are by category and level(this passed by parameter)
+    if (this.category_id == 1 && this.level_id == idLevel) {
+      geo.push(this);
+    } else if (this.category_id == 2 && this.level_id == idLevel) {
+      mat.push(this);
+    } else if (this.category_id == 3 && this.level_id == idLevel) {
+      por.push(this);
+    } else if (this.category_id == 4 && this.level_id == idLevel) {
+      sci.push(this);
+    } else if (this.category_id == 5 && this.level_id == idLevel) {
+      sto.push(this);
+    }
+  }); // Pass the filtered category count and the element where you will get the final value
+
+  levelSum(geo.length, mat.length, por.length, sci.length, sto.length, target); // Clean all categories to be used the next call
+
+  cleanCategories(geo, mat, por, sci, sto);
+} // Sum of category question
+
+
+function levelSum(geo, mat, por, sci, sto, target) {
+  sumGeo = geo;
+  sumMat = mat;
+  sumPor = por;
+  sumSci = sci;
+  sumSto = sto; // Once you pick up the past values, pass to the next function together with
+  // element target and value 0 to be use in the increment on table
+
+  checkSum(sumGeo, sumMat, sumPor, sumSci, sumSto, target, 0);
+} // Clean all Categories array to next call
+
+
+function cleanCategories(geo, mat, por, sci, sto) {
+  geo.length = 0;
+  mat.length = 0;
+  por.length = 0;
+  sci.length = 0;
+  sto.length = 0;
+} // Check if is a challenge ready
+
+
+function checkSum(sumGeo, sumMat, sumPor, sumSci, sumSto, target, init) {
+  // Total variable will be use to stop the condition
+  var total = sumGeo + sumMat + sumPor + sumSci + sumSto; // Get the value passed in the variable init and put in the variable question
+  // it will be used to represent the value of the challenge that is ready
+
+  var question = init;
+
+  for (var i = 0; i <= total; i++) {
+    if (sumGeo >= 2 && sumMat >= 2 && sumPor >= 2 && sumSci >= 2 && sumSto >= 2) {
+      // If enter this condition, the question variable will be incremented
+      question++;
+      target.innerHTML = question; // All variables that has count of categories will be decremented
+
+      sumGeo -= 2;
+      sumMat -= 2;
+      sumPor -= 2;
+      sumSci -= 2;
+      sumSto -= 2;
+      total -= 10;
+    }
+  }
+} // Sum of all challenges prepared to be created
+
+
+function sumTotal(beg, int, adv, eru, total) {
+  total.innerHTML = Number(beg.textContent) + Number(int.textContent) + Number(adv.textContent) + Number(eru.textContent);
+}
+
+/***/ }),
+
+/***/ "./resources/js/section-admin/challenge/form-challenge.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/section-admin/challenge/form-challenge.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Fields in the Form vinculated in Level Challenge
+var time = $('#time');
+experience = $('#experience');
+opportunity = $('#opportunity'); // Element Select of Categories
+
+var selectGeography = $('.questionGeography');
+selectMathematics = $('.questionMathematics');
+selectPortuguese = $('.questionPortuguese');
+selectScience = $('.questionScience');
+selectStory = $('.questionStory'); // Primary selection element in form, added event change here
+
+$('#primarySelect').change(function () {
+  allSelectQuestion(); // Placing event of changes in the Selection of Questions
+
+  cleanOptionPrimary(); // Clean All tag Select
+  // Here is Very Important, where we took the Option that was Selected in the Form
+
+  var select = $('#primarySelect').find(':selected'); // Convert string to JSON object
+
+  var contentsLevel = JSON.parse(select[0].dataset.levelChallenge);
+  var questions = JSON.parse(select[0].dataset.questions); // About Level Challenge
+
+  time.text(contentsLevel.times[0].type);
+  experience.text(contentsLevel.experiences[0].type);
+  opportunity.text(contentsLevel.opportunities[0].type); // Questions below Form
+
+  var option = Object.entries(questions); // Placing the options in the correct categories
+
+  inputOptions(option);
+}); // Placing Change Events in Select Questions
+
+function allSelectQuestion() {
+  // Generic variable to work with question content
+  var content; // When the question is selected the loop will go through and put the information in detail
+
+  for (var i = 1; i <= 10; i++) {
+    $('#question' + i).change(function (elemSelect) {
+      // Remove attribute hidden of detail tag
+      var tagDetail = elemSelect.target.parentNode.children[1];
+      tagDetail.removeAttribute('hidden'); // Getting paragraphy of detail
+
+      content = elemSelect.target.parentNode.children[1].children[1].children[0]; // Put content in paragraphy
+
+      content.innerHTML = elemSelect.target.options[elemSelect.target.options.selectedIndex].dataset.content;
+      idQuestion = elemSelect.target.options[elemSelect.target.options.selectedIndex].value;
+      var tagOL = elemSelect.target.parentNode.children[1].children[1].children[1]; // Call AJAX below for to get Alternatives
+
+      getAlternatives(tagOL);
+    });
+  }
+} // Putting the options about level challenge
+
+
+function inputOptions(option) {
+  option.forEach(function (item) {
+    // Condition to know if the category is right and if the question does not have a challenge
+    if (item[1].category_id == 1 && item[1].challenge_id == null) {
+      selectGeography.append("<option class='option-sec' data-content='" + item[1].content + "' value='" + item[1].id + "'>" + contentHandler(item[1].content) + "</option>");
+    }
+
+    if (item[1].category_id == 2 && item[1].challenge_id == null) {
+      selectMathematics.append("<option class='option-sec' data-content='" + item[1].content + "' value='" + item[1].id + "'>" + contentHandler(item[1].content) + "</option>");
+    }
+
+    if (item[1].category_id == 3 && item[1].challenge_id == null) {
+      selectPortuguese.append("<option class='option-sec' data-content='" + item[1].content + "' value='" + item[1].id + "'>" + contentHandler(item[1].content) + "</option>");
+    }
+
+    if (item[1].category_id == 4 && item[1].challenge_id == null) {
+      selectScience.append("<option class='option-sec' data-content='" + item[1].content + "' value='" + item[1].id + "'>" + contentHandler(item[1].content) + "</option>");
+    }
+
+    if (item[1].category_id == 5 && item[1].challenge_id == null) {
+      selectStory.append("<option class='option-sec' data-content='" + item[1].content + "' value='" + item[1].id + "'>" + contentHandler(item[1].content) + "</option>");
+    }
+  });
+} // Clean options of select tag
+
+
+function cleanOptionPrimary() {
+  // This option-sec was create when primary select was changed, this code be there above in loop and condition if
+  $('.option-sec').remove(); // Clear the all Sub Categories Selection Elements
+
+  for (var i = 0; i < 2; i++) {
+    selectGeography[i][0].selected = true;
+    selectMathematics[i][0].selected = true;
+    selectPortuguese[i][0].selected = true;
+    selectScience[i][0].selected = true;
+    selectStory[i][0].selected = true;
+  } // When primary switch is changed it will hide the details
+
+
+  var details = $('.info-detail');
+  details.each(function (index, item) {
+    item.setAttribute('hidden', true);
+    item.removeAttribute('open');
+  });
+} // Manipulate string to short
+
+
+function contentHandler(content) {
+  return content.length >= 50 ? content.slice(0, 50) + '...' : content;
+} // Function helper to above loop
+
+
+function firstOptionQuestion(category, listQuestions) {
+  // Take the last questions (those of the challenge), and put in the select tag
+  var type = 0; // Variable to distinguish last and penultimate question, to be presented in the select tag
+
+  var selectQuestion = category.children[0]; // Getting element Select
+
+  if (Number(category.name.charAt(category.name.length - 1)) % 2) {
+    type = 2;
+  } else {
+    type = 1;
+  } // Remove and add the selected attribute to stay focused on the first option
+
+
+  selectQuestion.removeAttribute('selected');
+  selectQuestion.setAttribute('selected', true); // Put value ID on Select Tag
+
+  selectQuestion.setAttribute('value', category.children[category.children.length - type].value); // Put question content on data attribute
+
+  insertDataOption(selectQuestion, listQuestions); // Put text of question on Select Tag
+
+  selectQuestion.innerHTML = category.children[category.children.length - type].textContent; // Put question in paragraphy
+
+  var detailParagraphy = category.parentNode.children[1].children[1].children[0];
+  detailParagraphy.innerHTML = category.children[category.children.length - type].dataset.content; // Getting id of question to pass on parameter to AJAX
+
+  idQuestion = category.children[category.children.length - type].value; // Getting tag OL to pass alternatives after response of AJAX
+
+  var tagOL = category.parentNode.children[1].children[1].children[1]; // Call AJAX below for to get Alternatives
+
+  getAlternatives(tagOL); // Removing attribute hidden of Detail Tag
+
+  category.parentNode.children[1].removeAttribute('hidden'); // Remove the options that belong to the challenge from the list
+
+  removeLastOption(category, category.children[category.children.length - 1]);
+  removeLastOption(category, category.children[category.children.length - 1]);
+} // Insert data content in option
+
+
+function insertDataOption(target, args) {
+  args.forEach(function (item) {
+    if (target.value == item.id) {
+      target.setAttribute('data-content', item.content);
+    }
+  });
+} // Removing option of edit the list option below
+
+
+function removeLastOption(parent, child) {
+  parent.removeChild(child);
+}
+
+function listAllQuestions(questions, challenge) {
+  // List of questions that do not have challenges
+  // Taken from the select primary to concatenate when you edit the challenge
+  var listQuestions = [];
+  var temp;
+
+  for (var i = 1; i < 5; i++) {
+    if ($('#primarySelect')[0].children[i].dataset.questions.length > 2) {
+      temp = JSON.parse($('#primarySelect')[0].children[i].dataset.questions);
+
+      for (var index in temp) {
+        listQuestions.push(temp[index]);
+      }
+    }
+  } // Fix bug, Array for the first challenge and objects for the others
+
+
+  if (questions.length == 10) {
+    // Placing the questions that will be edited in the list of questions
+    $(questions).each(function (index, question) {
+      listQuestions.push(question);
+    });
+  } else {
+    for (var index in questions) {
+      listQuestions.push(questions[index]);
+    }
+  } // Filtering questions by category and level
+
+
+  var matters = ['Geography', 'Mathematics', 'Portuguese', 'Science', 'Story'];
+  matters.forEach(function (matter, indexCat) {
+    $('.question' + matter).each(function (index, category) {
+      listQuestions.forEach(function (question) {
+        if (question.category_id == indexCat + 1 && question.level_id == challenge.level_challenge_id) {
+          $(category).append("<option class='option-sec' data-content='" + question.content + "' value='" + question.id + "'>" + contentHandler(question.content) + "</option>");
+        }
+      });
+      firstOptionQuestion(category, listQuestions);
+    });
+  });
+} // Clear all sub-categories
+
+
+function cleanSubCategories() {
+  for (var i = 1; i <= 10; i++) {
+    $('#question' + i)[0].children[0].innerHTML = 'Choose a Question ' + i;
+    $('#question' + i)[0].children[0].value = '';
+    $('#question' + i)[0].children[0].dataset.content = '';
+  }
+} // Modal Form for Create and Edit
+
+
+$('#formCreateChallenge').on('show.bs.modal', function (event) {
+  // Invoke function to show Tag Detail
+  allSelectQuestion(); // Clean all categories options
+
+  $('.option-sec').remove(); // Getting data attributes by event change
+
+  var button = $(event.relatedTarget);
+  var challenge = button.data('challenge');
+  var questions = button.data('questions');
+  var modal = $(this);
+
+  if (challenge) {
+    modal.find('#formChallengeModalLabel').text('Update Challenge with ID : ' + challenge.id);
+    modal.find('form').attr('action', '/admin/challenges/update');
+    modal.find('#idChallenge').val(challenge.id);
+    modal.find('#primarySelect').attr('disabled', true);
+    modal.find('#levelChallengeId').prop('value', challenge.level_challenge_id);
+    $('.bool').removeAttr('disabled'); // Removing attribute Disabled for to Update
+
+    modal.find('#btnFormChallenge').text('Update'); // Get Level Challenge object and add to Form
+
+    getInfoLevelChallenge(challenge.level_challenge_id); // List of questions that do not have challenges
+    // Taken from the select primary to concatenate when you edit the challenge
+
+    listAllQuestions(questions, challenge);
+  } else {
+    modal.find('#formChallengeModalLabel').text('New Challenge');
+    modal.find('form').attr('action', '/admin/challenges/new');
+    modal.find('#idChallenge').val('');
+    modal.find('#primarySelect').removeAttr('disabled');
+    modal.find('#levelChallengeId').prop('value', '');
+    modal.find('#levelChallengeId').text('Choose a Level');
+    modal.find('#levelChallengeId').removeAttr('selected');
+    modal.find('#levelChallengeId').attr('selected', true);
+    $(time).text('');
+    $(experience).text('');
+    $(opportunity).text('');
+    cleanOptionPrimary();
+    cleanSubCategories();
+    $('.bool').attr('disabled', true); // Add attribute disabled in all tag select Questions
+
+    modal.find('#btnFormChallenge').text('To save');
+  }
+}); // Using AJAX for to get informations about Level Challenges
+
+function getInfoLevelChallenge(idLevelChallenge) {
+  var listInfoLevels = JSON.parse($('#levelChallenge')[0].dataset.levelChallenge);
+  $(listInfoLevels).each(function (index, obj) {
+    if (idLevelChallenge == obj.id) {
+      // Need remove attribute selected to display the value real when will edit
+      $('#levelChallengeId').attr('selected', false);
+      $('#levelChallengeId').attr('selected', true); // // Putting return info on form
+
+      $('#levelChallengeId').text(obj.levels[0].name);
+      $('#experience').text(obj.experiences[0].type);
+      $('#opportunity').text(obj.opportunities[0].type);
+      $('#time').text(obj.times[0].type);
+    }
+  });
+} // Using AJAX for to get Alternatives
+
+
+function getAlternatives(list) {
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      // Convert String response to Json
+      var alternatives = JSON.parse(this.responseText); // Reusing variable by putting Json to Array
+
+      alternatives = Object.entries(alternatives);
+      alternatives.forEach(function (alt, index) {
+        list.children[index].innerHTML = alt[1].content;
+        list.children[index].setAttribute('class', alt[1].type == 1 ? 'text-warning font-weight-bold' : '');
+      });
+    }
+  };
+
+  xhttp.open("GET", "/admin/challenges/alternatives/" + idQuestion, true);
+  xhttp.send(); // Here it is very important, when the update button is clicked, it will cancel the AJAX request.
+
+  $('#btnFormChallenge').on('click', function (event) {
+    xhttp.abort(); // Because it was not showing the message of success
+  });
+} // Loading Animation when update button be clicked
+
+
+$('#btnFormChallenge').on('click', function (event) {
+  if ($('#btnFormChallenge')[0].textContent == 'Update') {
+    $('.loading').css('display', 'block');
+  } else {
+    var count = 0;
+    $('select').each(function () {
+      if (this.value > 0) {
+        count++;
+
+        if (count == 11) {
+          $('.loading').css('display', 'block');
+        }
+      }
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/section-admin/challenge/form-detail.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/section-admin/challenge/form-detail.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('#formDetailChallenge').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget);
+  var questions = button.data('questions');
+  var challenge = button.data('challenge');
+  var levelChallenge = $('#levelChallenge').data('level-challenge');
+  var modal = $(this);
+  modal.find('#formQuestionModalLabel').text('Challenge details with ID : ' + challenge.id);
+  modal.find('#creator').text(challenge.users[0].name);
+  modal.find('#createdAt').text(challenge.created_at);
+  modal.find('#updatedAt').text(challenge.updated_at);
+  getInfoLevel(challenge, levelChallenge);
+  throwQuestions(questions);
+}); // Get list of all Level Challenge dependencies that are in an element on the page and put in the Form
+
+function getInfoLevel(challenge, levelChallenge) {
+  $(levelChallenge).each(function (index, obj) {
+    if (challenge.level_challenge_id == obj.id) {
+      $('#level').text(obj.levels[0].name);
+      $('#timeDetail').text(obj.times[0].type);
+      $('#experienceDetail').text(obj.experiences[0].type);
+      $('#opportunityDetail').text(obj.opportunities[0].type);
+    }
+  });
+} // Put all information about question on Form
+
+
+function throwQuestions(questions) {
+  var run = 0;
+  var matters = ['Geography', 'Mathematics', 'Portuguese', 'Science', 'Story'];
+  matters.forEach(function (matter, categoryId) {
+    // Running an Object to get your Keys
+    Object.keys(questions).forEach(function (key, index) {
+      if (categoryId + 1 == questions[key].category_id) {
+        // Get elements from the Form Details section
+        run++;
+        $('#detail' + run)[0].children[1].children[0].innerHTML = questions[key].content; // Content
+
+        $('#detail' + run)[0].children[1].children[2].innerHTML = questions[key].users[0].name; // Creator
+
+        $('#detail' + run)[0].children[1].children[3].innerHTML = questions[key].created_at; // Created At
+
+        $('#detail' + run)[0].children[1].children[4].innerHTML = questions[key].updated_at; // Updated At
+
+        getAlternatives($('#detail' + run)[0].children[1].children[1], questions[key].id); // List Alternative tag OL
+      }
+    });
+  });
+} // Using AJAX for to get Alternatives
+
+
+function getAlternatives(target, idQuestion) {
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      // Convert String response to Json
+      var alternatives = JSON.parse(this.responseText);
+      var index = 0;
+      Object.keys(alternatives).forEach(function (key) {
+        target.children[index].innerHTML = alternatives[key].content;
+        target.children[index].setAttribute('class', alternatives[key].type == 1 ? 'text-warning font-weight-bold' : '');
+        index++;
+      });
+    }
+  };
+
+  xhttp.open("GET", "/admin/challenges/alternatives/" + idQuestion, true);
+  xhttp.send();
+}
+
+/***/ }),
+
+/***/ "./resources/js/section-admin/question/card-ready-question.js":
+/*!********************************************************************!*\
+  !*** ./resources/js/section-admin/question/card-ready-question.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 // All categories cards
 var beginnerWait = $('.BeginnerWait');
-var intermediateWait = $('.IntermediateWait');
-var advancedWait = $('.AdvancedWait');
-var eruditWait = $('.EruditWait'); // Card Ready
+intermediateWait = $('.IntermediateWait');
+advancedWait = $('.AdvancedWait');
+eruditWait = $('.EruditWait'); // Card Ready
 
 var beginnerReady = $('#BeginnerReady');
-var intermediateReady = $('#IntermediateReady');
-var advancedReady = $('#AdvancedReady');
-var eruditReady = $('#EruditReady');
+intermediateReady = $('#IntermediateReady');
+advancedReady = $('#AdvancedReady');
+eruditReady = $('#EruditReady');
 
 function bindCard(current, target) {
   // Get value of current to work
   var geo = Number(current[0].textContent);
-  var mat = Number(current[1].textContent);
-  var por = Number(current[2].textContent);
-  var sci = Number(current[3].textContent);
-  var sto = Number(current[4].textContent); // Adding all questions and dividing to loop through
+  mat = Number(current[1].textContent);
+  por = Number(current[2].textContent);
+  sci = Number(current[3].textContent);
+  sto = Number(current[4].textContent); // Adding all questions and dividing to loop through
 
   var all = Math.round((geo + mat + por + sci + sto) / 10); // Variable responsible for to sum and add to in target
 
@@ -51222,17 +51425,17 @@ function sumReady() {
 
 /***/ }),
 
-/***/ "./resources/js/question/form-delete.js":
-/*!**********************************************!*\
-  !*** ./resources/js/question/form-delete.js ***!
-  \**********************************************/
+/***/ "./resources/js/section-admin/question/form-delete.js":
+/*!************************************************************!*\
+  !*** ./resources/js/section-admin/question/form-delete.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 $('#formDeleteQuestion').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget); // Button that triggered the modal
 
-  var question = button.data('question'); // Extract info from data-* attributes
+  question = button.data('question'); // Extract info from data-* attributes
 
   var modal = $(this);
   modal.find('#idQuestion').val(question.id);
@@ -51246,23 +51449,23 @@ $('#formDeleteQuestion').on('show.bs.modal', function (event) {
 
 /***/ }),
 
-/***/ "./resources/js/question/form-detail.js":
-/*!**********************************************!*\
-  !*** ./resources/js/question/form-detail.js ***!
-  \**********************************************/
+/***/ "./resources/js/section-admin/question/form-detail.js":
+/*!************************************************************!*\
+  !*** ./resources/js/section-admin/question/form-detail.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 $('#formDetailQuestion').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget); // Button that triggered the modal
 
-  var question = button.data('question'); // Extract info from data-* attributes
+  question = button.data('question'); // Extract info from data-* attributes
 
-  var alt1 = button.data('alt1');
-  var alt2 = button.data('alt2');
-  var alt3 = button.data('alt3');
-  var alt4 = button.data('alt4');
-  var alt5 = button.data('alt5');
+  alt1 = button.data('alt1');
+  alt2 = button.data('alt2');
+  alt3 = button.data('alt3');
+  alt4 = button.data('alt4');
+  alt5 = button.data('alt5');
   var modal = $(this);
   modal.find('#formQuestionModalLabel').text('Question details with ID : ' + question.id);
   modal.find('#level').text(question.levels[0].name);
@@ -51288,23 +51491,23 @@ $('#formDetailQuestion').on('show.bs.modal', function (event) {
 
 /***/ }),
 
-/***/ "./resources/js/question/form-question.js":
-/*!************************************************!*\
-  !*** ./resources/js/question/form-question.js ***!
-  \************************************************/
+/***/ "./resources/js/section-admin/question/form-question.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/section-admin/question/form-question.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 $('#formCreateQuestion').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget); // Button that triggered the modal
 
-  var question = button.data('question'); // Extract info from data-* attributes
+  question = button.data('question'); // Extract info from data-* attributes
 
-  var alt1 = button.data('alt1');
-  var alt2 = button.data('alt2');
-  var alt3 = button.data('alt3');
-  var alt4 = button.data('alt4');
-  var alt5 = button.data('alt5'); // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  alt1 = button.data('alt1');
+  alt2 = button.data('alt2');
+  alt3 = button.data('alt3');
+  alt4 = button.data('alt4');
+  alt5 = button.data('alt5'); // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
   var modal = $(this); // This condition serve to evite bug when for create questions
@@ -51415,10 +51618,10 @@ function verifyInput() {
 
 /***/ }),
 
-/***/ "./resources/js/question/search-panel.js":
-/*!***********************************************!*\
-  !*** ./resources/js/question/search-panel.js ***!
-  \***********************************************/
+/***/ "./resources/js/section-admin/question/search-panel.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/section-admin/question/search-panel.js ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -51614,10 +51817,10 @@ function showButton(buttonDetail, buttonEdit, buttonDelete) {
 
 /***/ }),
 
-/***/ "./resources/js/toast-admin.js":
-/*!*************************************!*\
-  !*** ./resources/js/toast-admin.js ***!
-  \*************************************/
+/***/ "./resources/js/section-admin/toast-admin.js":
+/*!***************************************************!*\
+  !*** ./resources/js/section-admin/toast-admin.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -51791,22 +51994,6 @@ function closeToast() {
 
 /***/ }),
 
-/***/ "./resources/js/tooltip-welcome.js":
-/*!*****************************************!*\
-  !*** ./resources/js/tooltip-welcome.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * Function ready by Bootstrap, where manipulate title for network icon
- */
-$(document).ready(function () {
-  $('[data-toggle="tooltip"]').tooltip();
-});
-
-/***/ }),
-
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -51819,28 +52006,30 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/btn-top.js ./resources/js/callback-alert-admin.js ./resources/js/challenge/card-graph.js ./resources/js/challenge/card-ready-challenge.js ./resources/js/challenge/form-challenge.js ./resources/js/challenge/form-detail.js ./resources/js/jquery.tablesorter.min.js ./resources/js/question/card-ready-question.js ./resources/js/question/form-delete.js ./resources/js/question/form-detail.js ./resources/js/question/form-question.js ./resources/js/question/search-panel.js ./resources/js/toast-admin.js ./resources/js/tooltip-welcome.js ./resources/sass/app.scss ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/app/btn-top.js ./resources/js/app/callback-alert.js ./resources/js/app/challenge-accept.js ./resources/js/app/clock-challenge-accept.js ./resources/js/app/tooltip-welcome.js ./resources/js/lib/bootstrap.js ./resources/js/lib/jquery.tablesorter.min.js ./resources/js/section-admin/challenge/card-graph.js ./resources/js/section-admin/challenge/card-ready-challenge.js ./resources/js/section-admin/challenge/form-challenge.js ./resources/js/section-admin/challenge/form-detail.js ./resources/js/section-admin/question/card-ready-question.js ./resources/js/section-admin/question/form-delete.js ./resources/js/section-admin/question/form-detail.js ./resources/js/section-admin/question/form-question.js ./resources/js/section-admin/question/search-panel.js ./resources/js/section-admin/toast-admin.js ./resources/sass/app.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\btn-top.js */"./resources/js/btn-top.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\callback-alert-admin.js */"./resources/js/callback-alert-admin.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\challenge\card-graph.js */"./resources/js/challenge/card-graph.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\challenge\card-ready-challenge.js */"./resources/js/challenge/card-ready-challenge.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\challenge\form-challenge.js */"./resources/js/challenge/form-challenge.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\challenge\form-detail.js */"./resources/js/challenge/form-detail.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\jquery.tablesorter.min.js */"./resources/js/jquery.tablesorter.min.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\question\card-ready-question.js */"./resources/js/question/card-ready-question.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\question\form-delete.js */"./resources/js/question/form-delete.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\question\form-detail.js */"./resources/js/question/form-detail.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\question\form-question.js */"./resources/js/question/form-question.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\question\search-panel.js */"./resources/js/question/search-panel.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\toast-admin.js */"./resources/js/toast-admin.js");
-__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\tooltip-welcome.js */"./resources/js/tooltip-welcome.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\app\btn-top.js */"./resources/js/app/btn-top.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\app\callback-alert.js */"./resources/js/app/callback-alert.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\app\challenge-accept.js */"./resources/js/app/challenge-accept.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\app\clock-challenge-accept.js */"./resources/js/app/clock-challenge-accept.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\app\tooltip-welcome.js */"./resources/js/app/tooltip-welcome.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\lib\bootstrap.js */"./resources/js/lib/bootstrap.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\lib\jquery.tablesorter.min.js */"./resources/js/lib/jquery.tablesorter.min.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\section-admin\challenge\card-graph.js */"./resources/js/section-admin/challenge/card-graph.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\section-admin\challenge\card-ready-challenge.js */"./resources/js/section-admin/challenge/card-ready-challenge.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\section-admin\challenge\form-challenge.js */"./resources/js/section-admin/challenge/form-challenge.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\section-admin\challenge\form-detail.js */"./resources/js/section-admin/challenge/form-detail.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\section-admin\question\card-ready-question.js */"./resources/js/section-admin/question/card-ready-question.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\section-admin\question\form-delete.js */"./resources/js/section-admin/question/form-delete.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\section-admin\question\form-detail.js */"./resources/js/section-admin/question/form-detail.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\section-admin\question\form-question.js */"./resources/js/section-admin/question/form-question.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\section-admin\question\search-panel.js */"./resources/js/section-admin/question/search-panel.js");
+__webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\js\section-admin\toast-admin.js */"./resources/js/section-admin/toast-admin.js");
 module.exports = __webpack_require__(/*! C:\Users\Daniel\repositorio\eusei\resources\sass\app.scss */"./resources/sass/app.scss");
 
 

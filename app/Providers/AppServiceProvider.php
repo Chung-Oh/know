@@ -33,6 +33,14 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('app.components.challenge.navegation-tab', 'NavegationTabChallenge');
         Blade::component('app.components.challenge.accordion-tab', 'AccordionTabChallenge');
         Blade::component('app.components.challenge.accordion', 'AccordionChallenge');
+        Blade::component('app.components.challenge.card', 'Card');
+
+        /*------------------------------------------------------------------------------------
+        | Page Challenge Accept                                                              |
+        |-----------------------------------------------------------------------------------*/
+        Blade::component('app.components.challenge-accept.msg-time-over', 'MsgTimeOver');
+        Blade::component('app.components.challenge-accept.questions', 'QuestionsChallengeAccept');
+        Blade::component('app.components.challenge-accept.bottom-form', 'BottomChallengeAccept');
 
         /*====================================================================================
         |                               ADMINISTRATOR SECTION                                |

@@ -1,5 +1,5 @@
 <section class="row justify-content-center pt-5">
-	<!-- All questions bellow for to treat -->
+	<!-- All questions below for to treat -->
 	<p id="questionsPanel" data-questions="{{ $questions->where('type', 1)->where('challenge_id', null) }}" hidden></p>
 	<div class="col-md-12">
 		<div class="card">

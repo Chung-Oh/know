@@ -33,7 +33,7 @@
 				<form action="{{ action('ChallengeController@accept') }}" method="post">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}"> <!-- TOKEN -->
 					<input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> <!-- ID User -->
-					<input type="hidden" name="challenge_id" value="{{ $c->id }}">
+					<input type="hidden" name="challenge_id" value="{{ $c->id }}"> <!-- ID Challenge -->
 					<button type="submit" onclick="$('.loading').css('display', 'block')" class="btn btn-primary btn-sm mt-2">{{ __('Accept') }}</button>
 				</form>
 			</div>

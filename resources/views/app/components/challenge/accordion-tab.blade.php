@@ -3,7 +3,7 @@
 
 	<!----------------------------- First Beginning Level like option ----------------------------->
 	@AccordionChallenge
-		<!-- Variables bellow is required in the Accordion components -->
+		<!-- Variables below is required in the Accordion components -->
 		@slot('name', $name)
 		@slot('accordionName', 'One' . $name) <!-- Attribute name in tag -->
 		@slot('condition', 1) <!-- Condition to know if wait or challenge -->

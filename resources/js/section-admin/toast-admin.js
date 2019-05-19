@@ -1,21 +1,21 @@
 // Levels list
-var beg = []
-    int = []
-    adv = []
-    eru = []
+var beg = [];
+    int = [];
+    adv = [];
+    eru = [];
 // Categories List
-var geo = []
-    mat = []
-    por = []
-    sci = []
-    sto = []
+var geo = [];
+    mat = [];
+    por = [];
+    sci = [];
+    sto = [];
 // Sum all questions of each category
-var sumGeo = 0
-    sumMat = 0
-    sumPor = 0
-    sumSci = 0
-    sumSto = 0
-    incToast = 0
+var sumGeo = 0;
+    sumMat = 0;
+    sumPor = 0;
+    sumSci = 0;
+    sumSto = 0;
+    incToast = 0;
 
 // Checks if this is the administrator section, function only for this section
 if (window.location.pathname == '/admin/dashboard'
@@ -23,7 +23,7 @@ if (window.location.pathname == '/admin/dashboard'
     || window.location.pathname == '/admin/challenges'
     || window.location.pathname == '/admin/history'
     || window.location.pathname == '/admin/feedback') {
-    initToast()
+    initToast();
 }
 
 // Main function of Toast where call the all dependencies
@@ -31,22 +31,22 @@ function initToast() {
     // Verify if have a paragraphy with dataset, if has this element
     if ($('#questionsToast')[0].dataset.questions.length > 2) {
         // so create a list to filtered by level and category
-        var list = JSON.parse($('#questionsToast')[0].dataset.questions)
+        var list = JSON.parse($('#questionsToast')[0].dataset.questions);
         Object.keys(list).forEach(function(key) {
             // Conditions to filter by Levels
             if (list[key].level_id == 1) {
-                beg.push(list[key])
+                beg.push(list[key]);
             } else if (list[key].level_id == 2) {
-                int.push(list[key])
+                int.push(list[key]);
             } else if (list[key].level_id == 3) {
-                adv.push(list[key])
+                adv.push(list[key]);
             } else {
-                eru.push(list[key])
+                eru.push(list[key]);
             }
-        })
+        });
         // Function where you set up a call to next, where you will filter categories from a list of levels.
         // It also calls the function where it performs total sum of prepared challenges
-        beginFiltering()
+        beginFiltering();
     }
 }
 
@@ -54,10 +54,10 @@ function initToast() {
 function beginFiltering() {
     // After of filtered the levels then call to filter by Categories
     // First arg is id level, second is the list objects, third message and fourth last register
-    getCategory(1, beg, 'Beginner', $('#questionsBeg')[0].dataset.questions)
-    getCategory(2, int, 'Intermediate', $('#questionsInt')[0].dataset.questions)
-    getCategory(3, adv, 'Advanced', $('#questionsAdv')[0].dataset.questions)
-    getCategory(4, eru, 'Erudit', $('#questionsEru')[0].dataset.questions)
+    getCategory(1, beg, 'Beginner', $('#questionsBeg')[0].dataset.questions);
+    getCategory(2, int, 'Intermediate', $('#questionsInt')[0].dataset.questions);
+    getCategory(3, adv, 'Advanced', $('#questionsAdv')[0].dataset.questions);
+    getCategory(4, eru, 'Erudit', $('#questionsEru')[0].dataset.questions);
 }
 
 // Filter by Category
@@ -67,77 +67,77 @@ function getCategory(idLevel, list, msg, lastRegister) {
         $(list).each(function() {
             // The conditions are by category and level(this passed by parameter)
             if (this.category_id == 1 && this.level_id == idLevel) {
-                geo.push(this)
+                geo.push(this);
             } else if (this.category_id == 2 && this.level_id == idLevel) {
-                mat.push(this)
+                mat.push(this);
             } else if (this.category_id == 3 && this.level_id == idLevel) {
-                por.push(this)
+                por.push(this);
             } else if (this.category_id == 4 && this.level_id == idLevel) {
-                sci.push(this)
+                sci.push(this);
             } else if (this.category_id == 5 && this.level_id == idLevel) {
-                sto.push(this)
+                sto.push(this);
             }
         })
         // Pass the filtered category count and the element where you will get the final value
-        levelSum(geo.length, mat.length, por.length, sci.length, sto.length, msg, lastRegister)
+        levelSum(geo.length, mat.length, por.length, sci.length, sto.length, msg, lastRegister);
         // Clean all categories to be used the next call
-        cleanCategories(geo, mat, por, sci, sto)
+        cleanCategories(geo, mat, por, sci, sto);
     }
 }
 
 // Sum of category question
 function levelSum(geo, mat, por, sci, sto, msg, lastRegister) {
-    sumGeo = geo
-    sumMat = mat
-    sumPor = por
-    sumSci = sci
-    sumSto = sto
+    sumGeo = geo;
+    sumMat = mat;
+    sumPor = por;
+    sumSci = sci;
+    sumSto = sto;
     // Once you pick up the past values, pass to the next function together
-    checkSum(sumGeo, sumMat, sumPor, sumSci, sumSto, msg, lastRegister)
+    checkSum(sumGeo, sumMat, sumPor, sumSci, sumSto, msg, lastRegister);
 }
 
 // Clean all Categories array to next call
 function cleanCategories(geo, mat, por, sci, sto) {
-    geo.length = 0
-    mat.length = 0
-    por.length = 0
-    sci.length = 0
-    sto.length = 0
+    geo.length = 0;
+    mat.length = 0;
+    por.length = 0;
+    sci.length = 0;
+    sto.length = 0;
 }
 
 // Check if is a challenge ready
 function checkSum(sumGeo, sumMat, sumPor, sumSci, sumSto, msg, lastRegister) {
     // Get date of last register
-    var date = getLastRegister(lastRegister)
-    var pass = 0 // Variable to verify if has challenge ready
-    var sumChallenge = 0 // Sum of challenges ready
+    var date = getLastRegister(lastRegister);
+    var pass = 0; // Variable to verify if has challenge ready
+    var sumChallenge = 0; // Sum of challenges ready
     // Total variable will be use to stop the condition
-    var total = sumGeo + sumMat + sumPor + sumSci + sumSto
+    var total = sumGeo + sumMat + sumPor + sumSci + sumSto;
     for (var i = 0; i <= total; i++) {
         if (sumGeo >= 2 && sumMat >= 2 && sumPor >= 2 && sumSci >= 2 && sumSto >= 2) {
             // If enter this condition, the incToast, pass and sumChallenge variable will be incremented
-            incToast++
-            pass++
-            sumChallenge++
+            incToast++;
+            pass++;
+            sumChallenge++;
             // All variables that has count of categories will be decremented
-            sumGeo -= 2
-            sumMat -= 2
-            sumPor -= 2
-            sumSci -= 2
-            sumSto -= 2
+            sumGeo -= 2;
+            sumMat -= 2;
+            sumPor -= 2;
+            sumSci -= 2;
+            sumSto -= 2;
         }
     }
     if (pass) {
         // Condition to create a Toast with informations about Challenge
-        var newMessage = sumChallenge + 'x ' + msg
-        newToast(incToast, date, newMessage)
+        var newMessage = sumChallenge + 'x ' + msg;
+        newToast(incToast, date, newMessage);
     }
 }
 
 // Treat object to get Date of last register
 function getLastRegister(obj) {
-    var register = JSON.parse(obj)
-    return register.updated_at
+    var register = JSON.parse(obj);
+    return register.updated_at;
 }
 
 // This create a new Toast
@@ -162,19 +162,19 @@ function newToast(inc, time, msg) {
                 </div>
             </div>
         </div>
-    `)
+    `);
 }
 
 // Toasts must be initialized with jQuery: select the specified element and call the toast() method
 $(document).ready(function(){
     // Time life of the Toast
     setTimeout(function() {
-        $('.container-toast').fadeOut(10000)
-    }, 5000)
+        $('.container-toast').fadeOut(10000);
+    }, 5000);
     // Initialized with jQuery method
     $('.toast').toast('show');
     // Putting event listener on buttons to close Toast
-    closeToast()
+    closeToast();
 })
 
 // Close Toast when click
@@ -183,7 +183,7 @@ function closeToast() {
     $('.close-toast').each(function(index, obj) {
         obj.addEventListener('click', function() {
             // Get parent element to close when button was clicked
-            $(this.parentNode.parentNode.parentNode.parentNode).remove()
-        })
-    })
+            $(this.parentNode.parentNode.parentNode.parentNode).remove();
+        });
+    });
 }

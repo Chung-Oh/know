@@ -10,7 +10,7 @@
 		@slot('condition', 1) <!-- Condition to know if wait or challenge -->
 		@slot('nameIcon', 'book-open') <!-- Name of icon -->
 		@slot('nameLevel', 'Beginner Challenges') <!-- Name in the element in the view -->
-		<!-- Variables bellow is required in the Accordion (table) and Forms (Creation / Editing and Detail) components -->
+		<!-- Variables below is required in the Accordion (table) and Forms (Creation / Editing and Detail) components -->
 		@slot('questions', $questions)
 		@slot('challenges', $challenges)
 	@endAccordionChallengeAdmin

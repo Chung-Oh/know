@@ -3,7 +3,7 @@
     <h3 class="pt-4 mb-4">Breve resumo sobre funcionamento e regras da plataforma.</h3>
 
     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-dark col-10"><!------------- LINE - THEMATIC BREAK ------------->
+        <hr class="my-4 bg-dark col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <!----------------------------- Information of each profile ----------------------------->
@@ -22,7 +22,7 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-dark col-10"><!------------- LINE - THEMATIC BREAK ------------->
+        <hr class="my-4 bg-dark col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <!----------------------------- Details of each level and what DIFFER ----------------------------->
@@ -38,7 +38,7 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-dark col-10"><!------------- LINE - THEMATIC BREAK ------------->
+        <hr class="my-4 bg-dark col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <!----------------------------- Details about TIME of each level ----------------------------->
@@ -55,7 +55,7 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-dark col-10"><!------------- LINE - THEMATIC BREAK ------------->
+        <hr class="my-4 bg-dark col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <!----------------------------- Details about OPORTUNITY of each level ----------------------------->
@@ -72,7 +72,7 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-dark col-10"><!------------- LINE - THEMATIC BREAK ------------->
+        <hr class="my-4 bg-dark col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <!----------------------------- Details about EXPERIENCE of each assertive answers ----------------------------->
@@ -89,7 +89,7 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-dark col-10"><!------------- LINE - THEMATIC BREAK ------------->
+        <hr class="my-4 bg-dark col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <!----------------------------- Detail of how to gain experience ----------------------------->
@@ -105,7 +105,7 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-dark col-10"><!------------- LINE - THEMATIC BREAK ------------->
+        <hr class="my-4 bg-dark col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <!----------------------------- Rules very important about challenges ----------------------------->

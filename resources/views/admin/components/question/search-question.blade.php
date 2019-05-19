@@ -22,7 +22,7 @@
 			<button id="search" class="btn-primary rounded-right px-3" type="button">{{ __('Go') }}</button>
 		</div>
 	</div>
-	<!----------------------------- BELLOW IS SEARCH RESULTS ----------------------------->
+	<!----------------------------- BELOW IS SEARCH RESULTS ----------------------------->
 	<div>
 		<table id="tbSearch" class="tablesorter table table-sm table-hover text-center bg-light mb-0" hidden>
 			<thead class="bg-secondary">

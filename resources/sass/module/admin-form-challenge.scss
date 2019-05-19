@@ -14,33 +14,33 @@
 
 #time::before,
 #timeDetail::before {
-	content: 'Time : ';
+	content: "Time : ";
 }
 
 #experience::before,
 #experienceDetail::before {
-	content: 'Experience : ';
+	content: "Experience : ";
 }
 
 #opportunity::before,
 #opportunityDetail::before {
-	content: 'Opportunity : ';
+	content: "Opportunity : ";
 }
 
 .content-question::before {
-	content: 'Content : ';
+	content: "Content : ";
 }
 
 .creator::before {
-	content: 'Creator : ';
+	content: "Creator : ";
 }
 
 .created-at::before {
-	content: 'Created At : ';
+	content: "Created At : ";
 }
 
 .updated-at::before {
-	content: 'Updated At : ';
+	content: "Updated At : ";
 }
 
 /* Color of the informations on form above */

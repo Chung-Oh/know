@@ -5,7 +5,8 @@
 	</div>
 	<div id="collapse{{ $accordionName }}" class="collapse" aria-labelledby="heading{{ $accordionName }}" data-parent="#accordion{{ $name }}">
 		<div class="card-body d-flex flex-wrap">
-			<input type="hidden" value="{{ $i = 1 }}"> <!-- Auxiliary storage item where will be used on title of card bellow -->
+			<!-- Auxiliary storage item where will be used on title of card below -->
+			<input type="hidden" value="{{ $i = 1 }}">
 			@if ($challenges->where('level_challenge_id', $condition)->isNotEmpty())
 				@foreach ($challenges as $c)
 					@if ($c->level_challenges[0]->id == $condition)

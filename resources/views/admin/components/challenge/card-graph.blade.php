@@ -1,5 +1,5 @@
 <section class="col-12 col-md-8 col-lg-8 col-xl-8 pt-4 pr-1 pl-1">
-	<div class="card text-center"> <!-- All questions bellow for to treat -->
+	<div class="card text-center"> <!-- All questions below for to treat -->
 		<p id="questionGraph" data-questions="{{ $questions->where('type', 1)->where('challenge_id', null) }}" hidden></p>
 		<div class="card-header bg-secondary text-white font-weight-bold" data-toggle="tooltip" data-placement="top" title="Green circles are questions created to form a challenge, Wait status.">{{ __('Questions') }}
 			<!-- Warning when the device has a lower display -->

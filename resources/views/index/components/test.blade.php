@@ -4,15 +4,15 @@
     <h5>Acredito que você teve algum interesse ou alguma curiosidade.</h5>
 
     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-dark col-10"><!------------- LINE - THEMATIC BREAK ------------->
+        <hr class="my-4 bg-dark col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <!----------------------------- Brief explanation of the test section ----------------------------->
     <h5>Essa seção tem o intuito de poder testar a plataforma <span class="font-weight-bold text-success">EuSei</span>.</h5>
     <h5>Esse teste será de nível Iniciante e você pode realizar quantas vezes que quiser, logo os pontos ganhos aqui <span class="font-weight-bold text-success">não serão contados</span> no seu histórico.</h5>
 
-     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-dark col-10"><!------------- LINE - THEMATIC BREAK ------------->
+    <div class="row d-flex justify-content-center">
+        <hr class="my-4 bg-dark col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <!----------------------------- Rules for test match ----------------------------->
@@ -30,8 +30,8 @@
         </div>
     </div>
 
-     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-dark col-10"><!------------- LINE - THEMATIC BREAK ------------->
+    <div class="row d-flex justify-content-center">
+        <hr class="my-4 bg-dark col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <!----------------------------- Initiate test ----------------------------->
@@ -42,8 +42,8 @@
         </div>
     </div>
 
-     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-dark col-10"><!------------- LINE - THEMATIC BREAK ------------->
+    <div class="row d-flex justify-content-center">
+        <hr class="my-4 bg-dark col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <h5>Desenvolvido com muito carinho, pensando em <span class="font-weight-bold text-success">você</span>.</h5>

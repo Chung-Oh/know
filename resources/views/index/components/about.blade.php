@@ -3,7 +3,7 @@
     <h3 class="pt-4 mb-4">Aqui você irá se divertir testando seus conhecimentos.</h3>
 
     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-light col-10"><!------------- LINE - THEMATIC BREAK ------------->
+        <hr class="my-4 bg-light col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <!----------------------------- What the platform has to offer ----------------------------->
@@ -19,7 +19,7 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-light col-10"><!------------- LINE - THEMATIC BREAK ------------->
+        <hr class="my-4 bg-light col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <!----------------------------- Content about challenge ----------------------------->
@@ -37,7 +37,7 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-        <hr class="my-4 bg-light col-10"><!------------- LINE - THEMATIC BREAK ------------->
+        <hr class="my-4 bg-light col-10"> <!------------- LINE - THEMATIC BREAK ------------->
     </div>
 
     <!----------------------------- User level ----------------------------->

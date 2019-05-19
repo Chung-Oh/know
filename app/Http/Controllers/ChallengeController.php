@@ -32,11 +32,14 @@ class ChallengeController extends Controller
     public function accept(Request $request)
     {
         $users = User::all();
-        $challenge = $request->input('challenge_id');
-        $levelChallenge = LevelChallenge::find($request->input('challenge_id'))
-            ->with(['levels', 'experiences', 'opportunities', 'times'])->get();
+        $challenge = Challenge::find($request->input('challenge_id'));
+        $levelChallenge = LevelChallenge::with(['levels', 'experiences', 'opportunities', 'times'])->get();
         $questions = Question::all()->where('challenge_id', $request->input('challenge_id'));
         $alternatives = Alternative::all();
+
+        // dd($request->all());
+        // dd($challenge->level_challenge_id);
+        // dd($levelChallenge->where('id', $challenge->level_challenge_id)[$challenge->level_challenge_id]);
 
     	return view('app.challenges-accept')
             ->with([
@@ -46,5 +49,10 @@ class ChallengeController extends Controller
                 'questions' => $questions,
                 'alternatives' => $alternatives
             ]);
+    }
+
+    public function finish(Request $request)
+    {
+        dd($request->all());
     }
 }

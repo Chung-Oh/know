@@ -44,7 +44,7 @@
 
     <!-- Calling the jQuery Plugin function to sort the tables -->
     <script>
-        $(function(){
+        $(function() {
             $('.tablesorter').tablesorter();
         });
     </script>
