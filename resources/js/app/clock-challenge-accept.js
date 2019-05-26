@@ -8,7 +8,7 @@ var clock = document.querySelector('.clock-box');
 var button = document.getElementById('btnFormAccept');
 // Elements where will refresh the time
 var elemMinute = document.querySelector('.minute');
-elemSecond = document.querySelector('.second');
+    elemSecond = document.querySelector('.second');
 // Variables about second
 var fullSecond = '60';
 

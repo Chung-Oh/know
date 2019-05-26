@@ -6,8 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Feedback extends Model
 {
+	/**
+     * The attribute guarded the ID.
+     *
+     * @var array
+     */
 	protected $guarded = ['id'];
-	protected $fillable = ['message', 'user_id'];
+
+	/**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+	protected $fillable = [
+        'message',
+        'user_id',
+    ];
 
 	/*----------------------------------------------------------------------------------------
     | Relationships with another Models, and too in the Database                             |

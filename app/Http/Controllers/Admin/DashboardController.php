@@ -19,7 +19,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the application Dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */

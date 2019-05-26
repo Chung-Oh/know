@@ -6,7 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Result extends Model
 {
+    /**
+     * The attribute guarded the ID.
+     *
+     * @var array
+     */
     protected $guarded = ['id'];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
     	'points',
     	'opportunity_made',

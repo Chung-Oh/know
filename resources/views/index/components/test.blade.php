@@ -24,8 +24,7 @@
                 <li class="list-group-item list-group-item-success border border-success correct-size"><span class="font-italic font-weight-bold">Complexidade</span> da pergunta <span class="font-italic font-weight-bold">baixa</span></li>
                 <li class="list-group-item list-group-item-success border border-success correct-size">Desafio realizado <span class="font-italic font-weight-bold">5xp</span></li>
                 <li class="list-group-item list-group-item-success border border-success correct-size">Resposta correta <span class="font-italic font-weight-bold">1xp</span></li>
-                <li class="list-group-item list-group-item-success border border-success correct-size"><span class="font-italic font-weight-bold">Não</span> pode <span class="font-italic font-weight-bold">abrir</span> outra aba no seu navegador</li>
-                <li class="list-group-item list-group-item-success border border-success correct-size"><span class="font-italic font-weight-bold">Não</span> pode <span class="font-italic font-weight-bold">minimizar</span> aplicação</li>
+                <li class="list-group-item list-group-item-success border border-success correct-size"><span class="font-italic font-weight-bold">Não</span> pode <span class="font-italic font-weight-bold">fechar</span> aplicação</li>
             </ul>
         </div>
     </div>

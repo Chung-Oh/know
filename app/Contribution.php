@@ -6,8 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contribution extends Model
 {
+    /**
+     * The attribute guarded the ID.
+     *
+     * @var array
+     */
     protected $guarded = ['id'];
-    protected $fillable = ['user_id', 'question_id'];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id',
+        'question_id',
+    ];
 
     /*----------------------------------------------------------------------------------------
     | Relationships with another Models, and too in the Database                             |

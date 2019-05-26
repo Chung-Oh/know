@@ -9,10 +9,45 @@ class Question extends Model
 {
     // To enable soft deletes for a model
     use SoftDeletes;
-    // protected $table = 'question'; // Alter table name
+
+    /**
+     * The attribute alter table name.
+     *
+     * @var bool
+     */
+    // protected $table = 'question';
+
+    /**
+     * The attribute guarded the ID.
+     *
+     * @var array
+     */
     protected $guarded = ['id'];
-    protected $fillable = ['content', 'type', 'category_id', 'level_id', 'user_id', 'challenge_id'];
-    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'content',
+        'type',
+        'category_id',
+        'level_id',
+        'user_id',
+        'challenge_id',
+    ];
+
+    /**
+     * The attributes that are dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
     /*----------------------------------------------------------------------------------------
     | Relationships with another Models, and too in the Database                             |

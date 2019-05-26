@@ -7,11 +7,33 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Challenge extends Model
 {
-	// To enable soft deletes for a model
+    /**
+     * To enable soft deletes for a model.
+     */
     use SoftDeletes;
 
+    /**
+     * The attribute guarded the ID.
+     *
+     * @var array
+     */
     protected $guarded = ['id'];
-    protected $fillable = ['user_id', 'level_challenge_id'];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id',
+        'level_challenge_id',
+    ];
+
+    /**
+     * Adding deleted column.
+     *
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
     /*----------------------------------------------------------------------------------------

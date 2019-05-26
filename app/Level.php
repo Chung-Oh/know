@@ -6,7 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Level extends Model
 {
-	// protected $table = 'level' // Alter table name
+	/**
+     * The attribute alter table name.
+     *
+     * @var bool
+     */
+	// protected $table = 'level'
+
+	/**
+     * The attribute dont have timestamp.
+     *
+     * @var bool
+     */
 	// public $timestamps = false;
 
 	/*----------------------------------------------------------------------------------------

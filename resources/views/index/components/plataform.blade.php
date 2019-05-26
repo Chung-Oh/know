@@ -113,7 +113,6 @@
         <h5>Regras a seguir <span class="font-italic font-weight-bold text-danger">são válidas para todos os níveis</span>, é muito <span class="font-italic font-weight-bold text-danger">importante</span> que você saibe desde já para <span class="font-italic font-weight-bold text-danger">não perder pontos e oportunidades</span>.</h5>
         <div class="row d-flex justify-content-center">
             <ul class="list-group col-11 col-md-8 col-lg-6 col-xl-6 pr-0">
-                <li class="list-group-item list-group-item-danger border border-danger correct-size">Não poderá <span class="font-italic font-weight-bold">consultar</span> no seu navegador, pois assim será <span class="font-italic font-weight-bold">anulado</span> o desafio e ficará registrado no seu histórico</li>
                 <li class="list-group-item list-group-item-danger border border-danger correct-size">Assim que <span class="font-italic font-weight-bold">iniciar</span> um desafio não poderá <span class="font-italic font-weight-bold">fechar</span> aplicação, pois será <span class="font-italic font-weight-bold">abortado</span> e também ficará registrado no seu histórico</li>
             </ul>
         </div>

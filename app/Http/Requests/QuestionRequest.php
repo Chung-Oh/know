@@ -39,9 +39,13 @@ class QuestionRequest extends FormRequest
         ];
     }
 
+    /**
+     * Change Language for validation Messages.
+     *
+     * @return array
+     */
     public function messages()
     {
-        // Exemple bellow
         return [
             // 'required' => 'O campo :attribute não pode ficar vazio!',
             // 'min' => 'O campo :attribute não pode ser menor que 1!',

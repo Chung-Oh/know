@@ -39,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         | Page Challenge Accept                                                              |
         |-----------------------------------------------------------------------------------*/
         Blade::component('app.components.challenge-accept.msg-time-over', 'MsgTimeOver');
+        Blade::component('app.components.challenge-accept.clock', 'Clock');
         Blade::component('app.components.challenge-accept.questions', 'QuestionsChallengeAccept');
         Blade::component('app.components.challenge-accept.bottom-form', 'BottomChallengeAccept');
 

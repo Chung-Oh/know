@@ -13,13 +13,23 @@ use App\Http\Requests\ChallengeRequest;
 
 class ChallengeController extends Controller
 {
-    // Method Using AJAX for Forms, Displaying Alternates in tag Detail
+    /**
+     * Method Using AJAX for Forms, Displaying Alternates in tag Detail.
+     *
+     * @param int $idQuestion
+     * @return JSON
+     */
     public function alternatives($idQuestion)
     {
         return response()->json(Alternative::all()->where('question_id', $idQuestion));
     }
 
-    // Using AJAX for to get informations about Level Challenges
+    /**
+     * Using AJAX for to get informations about Level Challenges.
+     *
+     * @param int $idLevelChallenge
+     * @return JSON
+     */
     public function levelChallenge($idLevelChallenge)
     {
         return response()->json(
@@ -28,6 +38,11 @@ class ChallengeController extends Controller
         );
     }
 
+    /**
+     * Takes to Challenge Manager page.
+     *
+     * @return view /admin/challenges
+     */
     public function index()
     {
         $categories = Category::all();
@@ -44,6 +59,12 @@ class ChallengeController extends Controller
             ]);
     }
 
+    /**
+     * Create a new Challenge.
+     *
+     * @param array $request
+     * @return view /admin/challenges
+     */
     public function create(ChallengeRequest $request)
     {
         $challenge = new Challenge;
@@ -68,6 +89,13 @@ class ChallengeController extends Controller
             ->action('Admin\ChallengeController@index');
     }
 
+
+    /**
+     * Update the Challenge.
+     *
+     * @param array $request
+     * @return view /admin/challenges
+     */
     public function update(ChallengeRequest $request)
     {
         $challenge = Challenge::find($request->input('id_challenge'));

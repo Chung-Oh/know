@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 
 class ChallengeController extends Controller
 {
+    /**
+     * Takes to Application Challenge page.
+     *
+     * @return view /app/challenges
+     */
     public function index()
     {
     	$levels = Level::all();
@@ -29,6 +34,12 @@ class ChallengeController extends Controller
     		]);
     }
 
+    /**
+     * User accepted Challenge.
+     *
+     * @param array $request
+     * @return view /app/challenges-accept
+     */
     public function accept(Request $request)
     {
         $users = User::all();
@@ -36,10 +47,6 @@ class ChallengeController extends Controller
         $levelChallenge = LevelChallenge::with(['levels', 'experiences', 'opportunities', 'times'])->get();
         $questions = Question::all()->where('challenge_id', $request->input('challenge_id'));
         $alternatives = Alternative::all();
-
-        // dd($request->all());
-        // dd($challenge->level_challenge_id);
-        // dd($levelChallenge->where('id', $challenge->level_challenge_id)[$challenge->level_challenge_id]);
 
     	return view('app.challenges-accept')
             ->with([
@@ -51,6 +58,12 @@ class ChallengeController extends Controller
             ]);
     }
 
+    /**
+     * When the Challenge is completed.
+     *
+     * @param array $request
+     * @return view /app/challenges
+     */
     public function finish(Request $request)
     {
         dd($request->all());

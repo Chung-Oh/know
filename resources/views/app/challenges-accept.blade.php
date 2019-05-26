@@ -15,12 +15,12 @@
 	        	<form class="bg-light rounded overflow-auto col-lg-8 col-xl-6" action="{{ action('ChallengeController@finish') }}" method="post">
 	        		<input type="hidden" name="_token" value="{{ csrf_token() }}"> <!-- TOKEN -->
 					<input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> <!-- ID User -->
+					<input type="hidden" name="challenge_id" value="{{ $challenge->id }}"> <!-- Challenge ID -->
         			<!----------------------------- Time ----------------------------->
-        			<div class="clock-box rounded-bottom float-right bg-dark text-warning text-center px-3 py-2">
-	        			<p class="mb-0">
-	        				<i class="fas fa-clock mr-2"></i><span class="minute">{{ $levelChallenge->where('id', $challenge->level_challenge_id)[$challenge->level_challenge_id - 1]->times[0]->type }}</span>:<span class="second">00</span>
-	        			</p>
-        			</div>
+        			@Clock
+        				@slot('challenge', $challenge) <!-- Goes to pass the level challenge ID -->
+						@slot('levelChallenge', $levelChallenge) <!-- Will get past ID to get challenge time -->
+        			@endClock
 
         			<!----------------------------- Message when Time runs Out ----------------------------->
 			    	@MsgTimeOver @endMsgTimeOver

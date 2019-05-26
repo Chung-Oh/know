@@ -12,7 +12,12 @@ use App\Http\Requests\QuestionRequest;
 
 class QuestionController extends Controller
 {
-    // Using AJAX for to get informations about Questions
+    /**
+     * Using AJAX for to get informations about Questions.
+     *
+     * @param string $content|null
+     * @return JSON
+     */
     public function search($content = null)
     {
         // List of questions you will return after searching
@@ -36,6 +41,11 @@ class QuestionController extends Controller
         return response()->json($list);
     }
 
+    /**
+     * Takes to Questions Manager page.
+     *
+     * @return view /admin/questions
+     */
     public function index()
     {
         $levels = Level::all();
@@ -44,14 +54,20 @@ class QuestionController extends Controller
         $alternatives = Alternative::with('questions')->get();
 
         return view('admin\questions')
-            ->with([
-                'levels' => $levels,
-                'categories' => $categories,
-                'questions' => $questions,
-                'alternatives' => $alternatives
-            ]);
+        ->with([
+            'levels' => $levels,
+            'categories' => $categories,
+            'questions' => $questions,
+            'alternatives' => $alternatives
+        ]);
     }
 
+    /**
+     * Create a new Question.
+     *
+     * @param array $request
+     * @return view /admin/questions
+     */
     public function create(QuestionRequest $request)
     {
         $question = new Question;
@@ -84,13 +100,19 @@ class QuestionController extends Controller
         $category = Category::find($request->input('category_id'));
 
         $request->session()
-            ->flash('status', $category->name . " question successfully registered!");
+        ->flash('status', $category->name . " question successfully registered!");
 
         return redirect()
-            ->action('Admin\QuestionController@index');
+        ->action('Admin\QuestionController@index');
     }
 
-    public function update(QuestionRequest $request, Question $question)
+    /**
+     * Update the Question.
+     *
+     * @param array $request
+     * @return view /admin/questions
+     */
+    public function update(QuestionRequest $request)
     {
         $question = Question::find($request->id_question);
         $question->content = $request->question;
@@ -119,22 +141,28 @@ class QuestionController extends Controller
         endforeach;
 
         $request->session()
-            ->flash('status', "Question with ID <span class='font-weight-bold'>$request->id_question</span> successfully updated!");
+        ->flash('status', "Question with ID <span class='font-weight-bold'>$request->id_question</span> successfully updated!");
 
         return redirect()
-            ->action('Admin\QuestionController@index');
+        ->action('Admin\QuestionController@index');
     }
 
-    public function destroy(Request $request, Question $question)
+    /**
+     * Destroy the Question.
+     *
+     * @param array $request
+     * @return view /admin/questions
+     */
+    public function destroy(QuestionRequest $request)
     {
         // $question = Question::find($request->input('id_question'));
         // For soft delete use delete() or destroy(). For delete permanently use forceDelete()
         $question->destroy($request->input('id_question'));
 
         $request->session()
-            ->flash('status', "Question with ID <span class='font-weight-bold'>$request->id_question</span> was successfully removed!");
+        ->flash('status', "Question with ID <span class='font-weight-bold'>$request->id_question</span> was successfully removed!");
 
         return redirect()
-            ->action('Admin\QuestionController@index');
+        ->action('Admin\QuestionController@index');
     }
 }
